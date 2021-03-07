@@ -1,0 +1,26 @@
+﻿@model AppIntegrador.Models.PreguntaConNumeroSeccion
+
+@{
+    Layout = null;
+}
+
+@*RIP-EDF6*@
+
+@*Se está aprovechando que los modelos tienen referencias a tablas a las que tiene llave foránea o viceversa,
+    en vez de crear uno o varios modelos distintos.*@
+@{string respuestaname = "secciones[" + Model.OrdenSeccion + "].Preguntas[" + Model.OrdenPregunta + "]";
+    string radname = respuestaname + ".Opciones[0]";}
+
+<div class="card-body opcion-pequena" style="margin-left:unset">
+    @for (var index = Model.Pregunta.Pregunta_con_opciones.Escalar.Minimo;
+        index <= Model.Pregunta.Pregunta_con_opciones.Escalar.Maximo;
+        index += Model.Pregunta.Pregunta_con_opciones.Escalar.Incremento)
+    {
+        <div style="display: inline-block; padding:2px; text-align: center;">
+            <label for="@radname @index">
+                @index<br />
+                <input type="radio" class="radio-grande" name="@radname" id="@radname @index" value="@index" @(Model.Opciones != null && Model.Opciones.Any() && Model.Opciones[0] == index ? "checked" : "") />
+            </label>
+        </div>
+    }
+</div>

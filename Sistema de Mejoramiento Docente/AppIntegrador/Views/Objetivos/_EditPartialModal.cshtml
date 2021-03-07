@@ -1,0 +1,154 @@
+﻿
+@model AppIntegrador.Models.Objetivo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+    var objModel = Model;
+    string objectiveNum = this.ViewData.ContainsKey("objectiveNumber") ? this.ViewData["objectiveNumber"].ToString() : string.Empty;
+
+    string idModal = "idModal-";
+    idModal += @objModel.codPlan.ToString();
+    idModal += '-';
+    idModal += @objectiveNum;
+    idModal += "-edit";
+
+}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn-blancoUCR" data-toggle="modal" data-target="#@idModal">
+    Editar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="@idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edición del Objetivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <h3>Edición del objetivo</h3>
+            <div class="row">
+                <div class="col-4">
+                    @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-8">
+                    @Html.EditorFor(model => model.nombre, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control",
+                            maxlength = "50",
+                            placeholder = "Máximo 50 caracteres",
+                            @onkeyup = "validacionEdicionObjetivo()",
+                            id = "nombreObjetivo"
+                        }
+                    })
+                    <span class="error"><p id="nombreObjetivo_subMsj" class="regularMsj">Te quedan 50 caracteres.</p></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    @Html.LabelFor(model => model.nombTipoObj, htmlAttributes: new { @class = "control-label" })
+                </div>
+
+                <div class="col-8">
+                    @Html.DropDownList("nombTipoObj", null, htmlAttributes: new
+                    {
+                        @class = "form-control",
+                        id = "dropDownObjetivo",
+                        @onchange = "validacionEdicionObjetivo()"
+                    })
+                    <span class="error"><p id="dropDownObjetivo_subMsj" class="regularMsj">Tipo de objetivo.</p></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label" })
+                </div>
+
+                <div class="col-8">
+                    @Html.EditorFor(model => model.fechaInicio, new
+                    {
+                        htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   id = "fechaInicioObjetivo",
+                                   @onchange = "validacionEdicionObjetivo()"
+                               }
+                    })
+                    <span class="error"><p id="fechaInicioObjetivo_subMsj" class="regularMsj">Inicio de objetivo.</p></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "control-label" })
+                </div>
+
+                <div class="col-8">
+                    @Html.EditorFor(model => model.fechaFin, new
+                    {
+                        htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   id = "fechaFinalObjetivo",
+                                   @onchange = "validacionEdicionObjetivo()"
+                               }
+                    })
+                    <span class="error"><p id="fechaFinalObjetivo_subMsj" class="regularMsj">Fin de objetivo.</p></span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-4">
+                    @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label" })
+                </div>
+
+                <div class="col-8">
+                    @Html.TextAreaFor(model => model.descripcion, new
+                        {
+                            @class = "form-control",
+                            rows = "2",
+                            maxlength = "250",
+                            style = "resize:vertical",
+                            placeholder = "Máximo 250 caracteres",
+                            id = "descripcionObjetivo",
+                            @onkeyup = "validacionEdicionObjetivo()"
+                        })
+                    <span class="error"><p id="descripcionObjetivo_subMsj" class="regularMsj">Descripción del objetivo, te quedan 250 caracteres.</p></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            @using (Html.BeginForm())
+            {
+                <div class="botonCentrado">
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function validacionEdicionObjetivo() {
+        console.log('Andres');
+    }
+
+</script>
+

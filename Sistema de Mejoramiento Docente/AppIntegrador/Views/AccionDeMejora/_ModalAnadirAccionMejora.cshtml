@@ -1,0 +1,85 @@
+﻿@model AppIntegrador.Models.AccionDeMejora
+@{
+    var llamadoValidarAccionMejora = "manejarFechas('campoFechaInicioAccionMejora', 'campoFechaFinAccionMejora', null, 'campoDescripcionAccionMejora', 'campoFechaInicioObjetivo', 'campoFechaFinObjetivo', 'CrearAccionMejoraBoton', 'campoFechaInicioAccionable', 'campoFechaFinAccionable')";
+
+}
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalAccionMejora" tabindex="-1" role="dialog" aria-labelledby="ModalFormulariosLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregando acciones de mejora al objetivo</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="formAccionMejora">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group col-lg-12">
+                            <h5>@Html.DisplayNameFor(model => model.descripcion)</h5>
+                            <div col-lg-10>
+                                @Html.EditorFor(model => model.descripcion, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   id = "campoDescripcionAccionMejora",
+                                   @onkeyup = llamadoValidarAccionMejora,
+                                   @maxlength = "250",
+                                   required = "required",
+                                   placeholder = "Descripción de la acción de mejora"
+                               }
+                           }
+)
+                                <div id="campoDescripcionAccionMejora_subMsj" class="contador small float-right">0/250 caracteres usados </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 offset-lg-0">
+                            <h5>@Html.DisplayNameFor(model => model.fechaInicio)</h5>
+                            <div>
+                                @Html.EditorFor(model => model.fechaInicio, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   @onchange = llamadoValidarAccionMejora,
+                                   id = "campoFechaInicioAccionMejora"
+                               }
+                           }
+)
+                                <div id="campoFechaInicioAccionMejora_subMsj" class="contador small float-right">Inicio de la acción de mejora.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 offset-lg-0">
+                            <h5>@Html.DisplayNameFor(model => model.fechaFin)</h5>
+                            <div>
+                                @Html.EditorFor(model => model.fechaFin, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   @onchange = llamadoValidarAccionMejora,
+                                   id = "campoFechaFinAccionMejora"
+                               }
+                           }
+)
+                                <div id="campoFechaFinAccionMejora_subMsj" class="contador small float-right">Fin de la acción de mejora.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                    <button type="button"
+                            id="CrearAccionMejoraBoton"
+                            disabled
+                            class="btn-azulUCR "
+                            onclick="agregarAccionMejora()"
+                            data-dismiss="modal">
+                        Agregar acción de mejora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AppIntegrador.Models.Accionable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="impText">Accionables</h2>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+            <br />
+            @Html.ActionLink("Crear nuevo accionable", "Create", null, new { @class = "modal-link btn btn-Nuevo col-md-12" })
+        </div>
+
+        @if (Model.Count() == 0)
+        {
+            <div class="centeredText">
+                <p>
+                    Aún no se han creado accionables para la acción de mejora seleccionada
+                </p>
+            </div>
+        }
+        else
+        {
+            <table class="table">
+                <tr class="EncabezadoTabla">
+                    <th>
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaFin)
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+
+            </table>
+        }
+
+    </div>
+</div>

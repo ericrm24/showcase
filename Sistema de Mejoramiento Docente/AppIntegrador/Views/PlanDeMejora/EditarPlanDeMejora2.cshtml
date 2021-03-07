@@ -1,0 +1,359 @@
+﻿@model AppIntegrador.Models.PlanDeMejora
+@*
+    Creado por: Johan Córdoba
+    Historia a la que pertenece: MOS-25 "como usuario quiero tener una interfaz que muestre de forma clara las jerarquías entre las distintas partes del subsistema de creación de planes de mejora"
+    Vista que contiene todo el plan de mejora después de creado y permite añadir objetivos, acciones y accionables
+*@
+
+@Scripts.Render("~/Scripts/PlanesDeMejora/Validator.js")
+
+<div class="fullWidth">
+    <div id="modal-containerPlanes" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+
+    <div class="card card-default">
+        <div class="card-body">
+
+            @if (ViewBag.editar == true)
+            {
+                <h2>Editar Plan de mejora @ViewBag.IdPlan </h2>
+            }
+            else
+            {
+                <h2>Crear Plan de mejora @ViewBag.IdPlan </h2>
+            }
+
+            <form role="form" id="newPlan" action="EditarPlanDeMejora2" method="post">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.codigo)
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label" })
+                            <div class="row">
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.nombre, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            id = "nombrePlanDM",
+                                            @onkeyup = "validarPlanDeMejora()",
+                                            placeholder = "Máximo 50 caracteres",
+                                            maxlength = "50"
+                                        }
+                                    })
+                                    <span><p id="nombrePlanDM_subMsj" class="regularMsj">50 letras restantes.</p> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label" })
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.fechaInicio, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            id = "fechaInicioPlanDM",
+                                            @onchange = "validarPlanDeMejora()"
+                                        }
+                                    })
+                                    <span class="error">
+                                        <p id="fechaInicioPlanDM_subMsj" class="regularMsj">Inicio plan de mejora.</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "control-label" })
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.fechaFin, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            id = "fechaFinalPlanDM",
+                                            @class = "form-control",
+                                            @onchange = "validarPlanDeMejora()"
+                                        }
+                                    })
+                                    <span class="error">
+                                        <p id="fechaFinalPlanDM_subMsj" class="regularMsj">Fin plan de mejora.</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="botonCentrado">
+                            <input type="submit" id='sendPDMListo' value="Guardar" class="btn-azulUCR" disabled />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="card card-default">
+                <div class="card-body grisUCR1">
+                    <div id="crearNuevoObjetivo">
+                        <h2>Objetivos del Plan de mejora </h2>
+                        <div id="crear">
+                            @Html.Action("divObjetivo", new { id = ViewBag.IdPlan })
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="text-align:center">Lista de objetivos</h4>
+
+                        <div id="divObjetivos">
+                            @Html.Partial("_objetivosDelPlan", Model.Objetivo)
+                        </div>
+                    </div>
+
+                    <div class="card card-default">
+                        <div class="card-body grisUCR2">
+                            <div id="crearNuevaAccion">
+                                <h2>Seleccione un Objetivo</h2>
+                                <div id="crearAccion">
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="text-align:center">Lista de acciones de mejora</h4>
+                                <div id="divAcciones">
+                                </div>
+                            </div>
+
+                            <div class="card card-default">
+                                <div class="card-body grisUCR3" id="divDeAccionables">
+
+                                    <div id="crearNuevoAccionable">
+                                        <h2>Seleccione una Acción de mejora</h2>
+                                        <div id="crearAccionable">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 style="text-align:center">Lista de accionables</h4>
+                                        <div id="divAccionables">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.ActionLink("Terminar", "Index", "PlanDeMejora", new { @class = "btn-azulUCR" })
+</div>
+
+@section Scripts {
+
+
+
+    @*@Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")*@
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        // PARA LA VALIDACION DE LOS PLANES DE MEJORA
+        function validarPlanDeMejora() {
+            let fechaInicioPlan2 = document.getElementById('fechaInicioPlanDM');
+            let fechaFinalPlan2 = document.getElementById('fechaFinalPlanDM');
+            let nombrePlan2 = document.getElementById('nombrePlanDM');
+
+            // Dejando el limite superior de las fechas a 10 años en el caso de la creacion de los planes de mejora
+            let minDate2 = new Date(); // Todays Date
+            let topDate2 = new Date(minDate2.getFullYear() + 10, minDate2.getMonth(), minDate2.getDate()); //10 years from now
+            let validator2 = new Validador(50, 50, minDate2, topDate2, 'sendPDMListo');
+
+            //Definimos la cantidad de validaciones
+            validator2.setTotalValidations(2);
+
+            // Ahora haciendo las validaciones
+            validator2.validateSomethingInTextInput(nombrePlan2, 50);
+            validator2.validateDates(fechaInicioPlan2, fechaFinalPlan2);
+
+            validator2.validityOfForm();
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#profesores-selector').multiselect({
+                enableFiltering: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            //modifica la vista parcial de los objetivos al crear uno nuevo
+            $('#newObjetivo').submit(function (e) {
+                //alert("dentro del submit");
+                var id = "@ViewBag.IdPlan";
+                e.preventDefault();
+                $.ajax({
+                    url:'/PlanDeMejora/CrearObjetivo/',
+                    type:'post',
+                    data:$('#newObjetivo').serialize(),
+                    success:function(){
+                        $.ajax({
+                            type: 'GET',
+                            url: "@Url.Content("/PlanDeMejora/RefrescarObjetivos/")",
+                            data : {
+                                        Id:id  //Data need to pass as parameter
+                                    },
+                            dataType: 'html', //dataType - html
+                            success:function(result)
+                            {
+                                //alert ("Inside ajax"),
+                                $('#divObjetivos').html(result);
+                            }
+                        });
+                    }
+                });
+
+                swal({
+                    title: "Objetivo guardado exitosamente!",
+                    type: "success",
+                    text: "Puede ser visto la lista de objetivos",
+                    icon: 'success',
+
+                    timer: 100000,
+                    showConfirmButton: true
+
+                });
+            });
+
+        });
+
+    </script>
+
+    <script>
+        clickObjetivo = function (id, plan, obj, fechaInicioObjetivo, fechaFinObjetivo) {
+            //alert("plan id:" + plan + " nombre obj:" + obj + " id obj:" + id);
+            var content = '<h2>Acciones de mejora del Objetivo ' + id + '</h2>' + '<div id="crearAccion"></div>';
+            document.getElementById('crearNuevaAccion').innerHTML = content;
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Content("/AccionDeMejora/divAccion/")",
+                data: {
+                      //parametros para el controlador
+                        plan: plan,
+                        nombObj: obj,
+                        fechaInicioObjetivo: fechaInicioObjetivo,
+                        fechaFinObjetivo: fechaFinObjetivo
+                      },
+                dataType: 'html',
+                success:function(result)
+                {
+                    $('#crearAccion').html(result);
+                }
+            });
+
+            actualizarAccionesDeMejora(plan, obj);
+
+            var content = '<div id="crearNuevoAccionable">\
+                                            <h2>Seleccione una Acción de mejora</h2>\
+                                            <div id="crearAccionable">\
+                                            </div>\
+                                        </div>\
+                                        <div>\
+                                            <h4 style="text-align:center">Lista de accionables</h4>\
+                                            <div id="divAccionables">\
+                                            </div>\
+                                        </div>';
+            document.getElementById('divDeAccionables').innerHTML = content;
+        };
+    </script>
+
+    <script>
+        clickAccionDeMejora = function (id, plan, obj, acm, fechaInicioAccionDeMejora, fechaFinAccionDeMejora) {
+            //alert("ID: " + plan + "\nNombre objetivo: " + obj + "\nID objetivo: " + id + "\nDescripción de la acción de mejora:" + acm);
+            var content = '<h2>Accionables de la acción de mejora ' + id + '</h2>' + '<div id="crearAccionable"></div>';
+            document.getElementById('crearNuevoAccionable').innerHTML = content;
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Content("/Accionables/Create/")",
+                data: {
+                      //parámetros para el controlador
+                      codPlan: plan,
+                      nombObj: obj,
+                        descripAcMej: acm,
+                        fechaInicioAccionDeMejora: fechaInicioAccionDeMejora,
+                        fechaFinAccionDeMejora: fechaFinAccionDeMejora
+                      },
+                dataType: 'html',
+                success:function(result)
+                {
+                    $('#crearAccionable').html(result);
+                }
+            });
+
+            actualizarAccionables(plan, obj, acm);
+        };
+    </script>
+
+    <script>
+        function actualizarAccionesDeMejora(plan, obj) {
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Content("/AccionDeMejora/AccionesDeObjetivo/")",
+                data: {
+                      //parámetros para el controlador
+                      plan: plan,
+                      nombObj: obj
+                      },
+                dataType: 'html',
+                success:function(result)
+                {
+                    $('#divAcciones').html(result);
+                }
+            });
+        }
+    </script>
+    <script>
+        function actualizarAccionables(plan, obj, desc) {
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Content("/Accionables/TablaAccionables/")",
+                data: {
+                      //parámetros para el controlador
+                      codPlan: plan,
+                      nombObj: obj,
+                      descripAcMej: desc
+                      },
+                dataType: 'html',
+                success:function(result)
+                {
+                    $('#divAccionables').html(result);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function cargarAccionesDeMejora(plan, obj) {
+            //alert("en la funcion cargar  id:"+plan+" y obj:"+obj);
+            actualizarAccionesDeMejora(plan, obj);
+        }
+    </script>
+    <script>
+        function cargarAccionables(plan, obj, desc) {
+            //alert("en la funcion cargar  id:"+plan+" y obj:"+obj);
+            actualizarAccionables(plan, obj, desc);
+        }
+    </script>
+
+
+}

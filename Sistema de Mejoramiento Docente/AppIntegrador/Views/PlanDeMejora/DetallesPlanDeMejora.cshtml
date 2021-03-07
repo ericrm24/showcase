@@ -1,0 +1,224 @@
+﻿@model AppIntegrador.Models.PlanDeMejora
+@*
+    Creado por: Johan Córdoba
+    Historia a la que pertenece: MOS-25 "como usuario quiero tener una interfaz que muestre de forma clara las jerarquías entre las distintas partes del subsistema de creación de planes de mejora"
+    Vista que contiene todo el plan de mejora después de creado y permite añadir objetivos, acciones y accionables
+*@
+
+<div class="fullWidth">
+
+    <div class="card card-default">
+        <div class="card-body">
+
+            <h2>Detalles del Plan de mejora @ViewBag.IdPlan </h2>
+
+            <form>
+                @Html.HiddenFor(model => model.codigo)
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label" })
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.nombre, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            disabled = "disabled"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label" })
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.fechaInicio, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            disabled = "disabled"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "control-label" })
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.fechaFin, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "form-control",
+                                            disabled = "disabled"
+                                        }
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="button" value="Profesores asociados" class="btn-azulUCR float-right" id="VerProfesoresBoton" onclick="modalGen('#ModalProfesoresDeUnPlanVer')" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="button" value="Formularios asociados" class="btn-azulUCR float-right" id="VerProfesoresBoton" onclick="modalGen('#ModalFormulariosVer')" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+            <br />
+            <div class="card card-default">
+                <div class="card-body grisUCR1">
+                    <div>
+                        <h2>Objetivos del Plan de mejora @ViewBag.IdPlan </h2>
+                    </div>
+                    <div>
+                        <div id="listaDeObjetivos">
+                            @Html.Action("listaDeObjetivos", "Objetivos", new { id = ViewBag.IdPlan })
+                        </div>
+                    </div>
+
+                    <div class="card card-default">
+                        <div class="card-body grisUCR2">
+                            <div>
+                                <div id="encabezadoAccion">
+                                </div>
+                                <div id="divAcciones">
+                                </div>
+                                <div class="card card-default">
+                                    <div class="card-body grisUCR1">
+                                        <div>
+                                            <div id="encabezadoAccionable">
+                                            </div>
+                                            <div id="divAccionables">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="botonCentrado">
+        @Html.ActionLink("Volver", "Index", "PlanDeMejora", new { @class = "btn-blancoUCR" })
+    </div>
+</div>
+
+@{Html.RenderPartial("_ModalListaProfesoresDeUnPlan");}
+@{Html.RenderPartial("_ModalListaFormularioDeUnPlan");}
+@{Html.RenderPartial("../Objetivos/_ModalSeccionesLista");}
+@{Html.RenderPartial("../AccionDeMejora/_ModalPreguntasLista");}
+
+@section Scripts{
+
+    <script>
+        function seleccionaObjetivoLista(plan, obj) {
+            var content = '<h2>Acciones de mejora </h2>';
+            document.getElementById('encabezadoAccion').innerHTML = content;
+            document.getElementById('encabezadoAccionable').innerHTML = "";
+            document.getElementById('divAccionables').innerHTML = "";
+            actualizarAccionesDeMejora(plan, obj);
+        };
+
+        function actualizarAccionesDeMejora(plan, obj) {
+            var edit = false;
+            $.ajax({
+                type: 'GET',
+                url: '/AccionDeMejora/AccionesDeObjetivo',
+                data: {
+                    //parámetros para el controlador
+                    plan: plan,
+                    nombObj: obj,
+                    edit: edit
+                },
+                dataType: 'html',
+                success: function (result) {
+                    $('#divAcciones').html(result);
+                }
+            });
+        }
+
+        function modalGen(modal) {
+            $(`${modal}`).modal();
+        }
+
+        function seleccionaAccionLista(plan, obj, descr) {
+            var content = '<h2>Accionables de la Acción de mejora</h2>';
+            document.getElementById('encabezadoAccionable').innerHTML = content;
+            actualizarAccionables(plan, obj, descr);
+        };
+
+        function actualizarAccionables(plan, obj, desc) {
+            var edit = false;
+            $.ajax({
+                type: 'GET',
+                url: '/Accionables/TablaAccionables',
+                data: {
+                    //parámetros para el controlador
+                    codPlan: plan,
+                    nombObj: obj,
+                    descripAcMej: desc,
+                    edit: edit
+                },
+                dataType: 'html',
+                success: function (result) {
+                    $('#divAccionables').html(result);
+                }
+            });
+        }
+
+        function verSeccionesAsocidas(plan, obj) {
+            $.ajax({
+                type: 'GET',
+                url: '/Objetivos/TablaSeccionesAsociadas',
+                data: {
+                    //parámetros para el controlador
+                    id: plan,
+                    objt: obj
+                },
+                success: function (result) {
+                    $('#ModalListaSeccionesInterno').html(result);
+                    modalGen('#ModalSeccionesLista');
+                }
+            });
+        }
+
+        function verPreguntasAsociadas(plan, obj, desc) {
+            $.ajax({
+                type: 'GET',
+                url: '/AccionDeMejora/TablaPreguntasAsociadas',
+                data: {
+                    //parámetros para el controlador
+                    id: plan,
+                    objt: obj,
+                    des: desc
+                },
+                success: function (result) {
+                    $('#ModalListaAccionableInterno').html(result);
+                    modalGen('#ModalPreguntaLista');
+                }
+            });
+        }
+
+    </script>
+
+}

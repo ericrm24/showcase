@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DataIntegrador</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{0f06dff1-647f-488e-89a9-bd1f3714a98d}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DataIntegrador</RootNamespace>
+    <AssemblyName>DataIntegrador</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Formularios\" />
+    <Folder Include="Formularios\Preguntas\" />
+    <Folder Include="Formularios\Respuestas\" />
+    <Folder Include="Formularios\Procedimientos" />
+    <Folder Include="Formularios\Funciones" />
+    <Folder Include="Usuarios y Perfiles" />
+    <Folder Include="Usuarios y Perfiles\Procedures" />
+    <Folder Include="Usuarios y Perfiles\Triggers" />
+    <Folder Include="PlanesDeMejora" />
+    <Folder Include="PlanesDeMejora\FuncionesProcedimientos" />
+    <Folder Include="Usuarios y Perfiles\Functions" />
+    <Folder Include="Filtros" />
+    <Folder Include="Filtros\FiltrosFormulario" />
+    <Folder Include="Filtros\FiltrosProfesor" />
+    <Folder Include="Filtros\FiltrosGrupo" />
+    <Folder Include="Filtros\FiltrosCarreraEnfasis" />
+    <Folder Include="Filtros\FiltrosUA" />
+    <Folder Include="Usuarios y Perfiles\Indices" />
+    <Folder Include="PlanesDeMejora\Indices" />
+    <Folder Include="PlanesDeMejora\ProcedimientosDePruebaPDM" />
+    <Folder Include="Filtros\Indices" />
+    <Folder Include="Filtros\FiltrosFormulario\Indices" />
+    <Folder Include="PlanesDeMejora\TableTypes" />
+    <Folder Include="Formularios\Asignar" />
+    <Folder Include="Formularios\Triggers" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="LoginUsuario.sql" />
+    <Build Include="Usuario.sql" />
+    <Build Include="Persona.sql" />
+    <Build Include="Estudiante.sql" />
+    <Build Include="Funcionario.sql" />
+    <Build Include="Profesor.sql" />
+    <Build Include="UnidadAcademica.sql" />
+    <Build Include="Carrera.sql" />
+    <Build Include="Enfasis.sql" />
+    <Build Include="Curso.sql" />
+    <Build Include="Grupo.sql" />
+    <Build Include="Perfil.sql" />
+    <Build Include="Permiso.sql" />
+    <Build Include="Empadronado_en.sql" />
+    <Build Include="Matriculado_en.sql" />
+    <Build Include="Imparte.sql" />
+    <Build Include="Trabaja_en.sql" />
+    <Build Include="UsuarioPerfil.sql" />
+    <Build Include="PerfilPermiso.sql" />
+    <Build Include="Formularios\Preguntas\Escalar.sql" />
+    <Build Include="Formularios\Preguntas\Opciones_de_seleccion.sql" />
+    <Build Include="Formularios\Preguntas\Pregunta.sql" />
+    <Build Include="Formularios\Preguntas\Pregunta_con_opciones.sql" />
+    <Build Include="Formularios\Preguntas\Pregunta_con_opciones_de_seleccion.sql" />
+    <Build Include="Formularios\Preguntas\Pregunta_con_respuesta_libre.sql" />
+    <Build Include="Formularios\Preguntas\Si_no_nr.sql" />
+    <Build Include="Formularios\Respuestas\Opciones_seleccionadas_respuesta_con_opciones.sql" />
+    <Build Include="Formularios\Respuestas\Responde_respuesta_con_opciones.sql" />
+    <Build Include="Formularios\Respuestas\Responde_respuesta_libre.sql" />
+    <Build Include="Formularios\Respuestas\Respuestas_a_formulario.sql" />
+    <Build Include="Formularios\Activa_por.sql" />
+    <Build Include="Formularios\Formulario.sql" />
+    <Build Include="Formularios\Formulario_tiene_seccion.sql" />
+    <Build Include="Formularios\Periodo_activa_por.sql" />
+    <Build Include="Formularios\Seccion.sql" />
+    <Build Include="Formularios\Seccion_tiene_pregunta.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerSeccionesDeFormulario.sql" />
+    <Build Include="Mediana.sql" />
+    <Build Include="DesviacionEstandarEscalar.sql" />
+    <Build Include="PromedioRespuestasPreguntaEscalaNumerica.sql" />
+    <Build Include="Formularios\Procedimientos\PopularSeccionesConPreguntas.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerPreguntasDeSeccion.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerOpcionesDePregunta.sql" />
+    <Build Include="Inscrita_en.sql" />
+    <Build Include="Pertenece_a.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarPreguntaConOpcion.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarPreguntas.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarOpcion.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarSeccion.sql" />
+    <Build Include="Origina.sql" />
+    <Build Include="Formularios\Procedimientos\AsociarSeccionConFormulario.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarFormulario.sql" />
+    <Build Include="Formularios\Procedimientos\AsociarPreguntaConSeccion.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\ModificarCorreo.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\ChangePassword.sql" />
+    <Build Include="Usuarios y Perfiles\Triggers\AddingPersonsNUsers.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\AgregarUsuario.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\CheckID.sql" />
+    <Build Include="Formularios\Procedimientos\PopularFormulariosConSecciones.sql" />
+    <Build Include="Formularios\Procedimientos\GuardarRespuestaAFormulario.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\AgregarPlan.sql" />
+    <Build Include="PlanesDeMejora\Accionable.sql" />
+    <Build Include="PlanesDeMejora\AccionDeMejora.sql" />
+    <Build Include="PlanesDeMejora\AsignadoA.sql" />
+    <Build Include="PlanesDeMejora\CreadoPor.sql" />
+    <Build Include="PlanesDeMejora\Evalua.sql" />
+    <Build Include="PlanesDeMejora\Objetivo.sql" />
+    <Build Include="PlanesDeMejora\PlanDeMejora.sql" />
+    <Build Include="PlanesDeMejora\PlantillaAccionDeMejora.sql" />
+    <Build Include="PlanesDeMejora\PlantillaObjetivo.sql" />
+    <Build Include="PlanesDeMejora\ResponsableDe.sql" />
+    <Build Include="PlanesDeMejora\TipoObjetivo.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\PerfilesXUsuario.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\EnfasisXCarreraXPerfil.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\CarrerasXPerfilXUsuario.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\TienePermiso.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\TienePermisoSinEnfasis.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\TienePermisoSinEnfasisNiCarrera.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\EnfasisXCarrera.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\SugerirConfiguracion.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\TienePerfilEnElEnfasis.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\TienePermisoActivoEnEnfasis.sql" />
+    <Build Include="Formularios\Procedimientos\PopularFormulariosDePrueba.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarPreguntaRespuestaLibre.sql" />
+    <Build Include="Formularios\Procedimientos\GuardarRespuestaAPreguntaLibre.sql" />
+    <Build Include="Formularios\Procedimientos\GuardarRespuestaAPreguntaConOpciones.sql" />
+    <Build Include="Formularios\Procedimientos\GuardarOpcionesSeleccionadas.sql" />
+    <Build Include="Formularios\Procedimientos\AgregarPreguntaEscalar.sql" />
+    <Build Include="Formularios\Procedimientos\EliminarRespuestasDeFormulario.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerRespuestasAFormulario.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerRespuestasAPreguntaConOpciones.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerOpcionesSeleccionadas.sql" />
+    <Build Include="Formularios\Procedimientos\EliminarSeccionFormulario.sql" />
+    <Build Include="Formularios\Procedimientos\EliminarPreguntaDeSeccion.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerRespuestaLibreGuardada.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\AgregarUsuarioPerfil.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\AgregarPerfilPermiso.sql" />
+    <Build Include="UsuarioActual.sql" />
+    <Build Include="Usuarios y Perfiles\Triggers\BorrarPersona.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\BorrarAccionDeMejora.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\BorrarObjetivo.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\BorrarPlan.sql" />
+    <Build Include="PlanesDeMejora\SeAsignaA.sql" />
+    <Build Include="InsertarUnidadCSV.sql" />
+    <Build Include="InsertarCarreraCSV.sql" />
+    <Build Include="InsertarEnfasisCSV.sql" />
+    <Build Include="InsertarCursoCSV.sql" />
+    <Build Include="InsertarGrupoCSV.sql" />
+    <Build Include="InsertarPersonaCSV.sql" />
+    <Build Include="InsertarProfesorCSV.sql" />
+    <Build Include="InsertarEstudianteCSV.sql" />
+    <Build Include="InsertarFuncionarioCSV.sql" />
+    <Build Include="TriggerUnidad.sql" />
+    <Build Include="TriggerCarrera.sql" />
+    <Build Include="TriggerEnfasis.sql" />
+    <Build Include="TriggerCurso.sql" />
+    <Build Include="TriggerGrupo.sql" />
+    <Build Include="TriggerFuncionario.sql" />
+    <Build Include="TriggerProfesor.sql" />
+    <Build Include="TriggerEstudiante.sql" />
+    <Build Include="InsertarTrabajaEn.sql" />
+    <Build Include="InsertarInscrita_En.sql" />
+    <Build Include="InsertarPertenece_a.sql" />
+    <Build Include="InsertarImparte.sql" />
+    <Build Include="InsertarEmpadronadoEn.sql" />
+    <Build Include="Usuarios y Perfiles\EmpadronadoEnInsertar.sql" />
+    <Build Include="TriggerImparte.sql" />
+    <Build Include="TriggerInscritaEn.sql" />
+    <Build Include="TriggerPertenece_a.sql" />
+    <Build Include="TriggerTrabajaEn.sql" />
+    <Build Include="PromedioProfesor.sql" />
+    <Build Include="PromedioCursos.sql" />
+    <Build Include="InsertarMatriculado_en.sql" />
+    <Build Include="TriggerMatriculado_en.sql" />
+    <Build Include="Index_persona.sql" />
+    <Build Include="Filtros\FiltrosFormulario\ObtenerFormulariosCarreraEnfasis.sql" />
+    <Build Include="Filtros\FiltrosFormulario\ObtenerFormulariosFiltros.sql" />
+    <Build Include="Filtros\FiltrosFormulario\ObtenerFormulariosGrupo.sql" />
+    <Build Include="Filtros\FiltrosFormulario\ObtenerFormulariosProfesor.sql" />
+    <Build Include="Filtros\FiltrosFormulario\ObtenerFormulariosUA.sql" />
+    <Build Include="Filtros\Tipos_filtros.sql" />
+    <Build Include="Filtros\FiltrosProfesor\ObtenerProfesoresCarreraEnfasis.sql" />
+    <Build Include="Filtros\FiltrosProfesor\ObtenerProfesoresFiltros.sql" />
+    <Build Include="Filtros\FiltrosProfesor\ObtenerProfesoresGrupo.sql" />
+    <Build Include="Filtros\FiltrosProfesor\ObtenerProfesoresUA.sql" />
+    <Build Include="Filtros\FiltrosGrupo\ObtenerGruposUA.sql" />
+    <Build Include="Filtros\FiltrosGrupo\ObtenerGruposProfesor.sql" />
+    <Build Include="Filtros\FiltrosGrupo\ObtenerGruposFiltros.sql" />
+    <Build Include="Filtros\FiltrosGrupo\ObtenerGruposCarreraEnfasis.sql" />
+    <Build Include="Filtros\FiltrosCarreraEnfasis\ObtenerCarrerasEnfasisFiltros.sql" />
+    <Build Include="Filtros\FiltrosCarreraEnfasis\ObtenerCarrerasEnfasisGrupo.sql" />
+    <Build Include="Filtros\FiltrosCarreraEnfasis\ObtenerCarrerasEnfasisProfesor.sql" />
+    <Build Include="Filtros\FiltrosCarreraEnfasis\ObtenerCarrerasEnfasisUA.sql" />
+    <Build Include="Filtros\FiltrosUA\ObtenerUAsCarreraEnfasis.sql" />
+    <Build Include="Filtros\FiltrosUA\ObtenerUAsFiltros.sql" />
+    <Build Include="Filtros\FiltrosUA\ObtenerUAsGrupo.sql" />
+    <Build Include="Filtros\FiltrosUA\ObtenerUAsProfesor.sql" />
+    <Build Include="Filtros\Indices\Index_CodigoPregunta_OpSelecRespConOps.sql" />
+    <Build Include="Filtros\Indices\Index_Finalizado_RespForm.sql" />
+    <Build Include="Filtros\FiltrosFormulario\Indices\Index_FechaFin.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\getPlanFull.sql" />
+    <Build Include="PlanesDeMejora\Indices\nombrePersona.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\GetTeacherName.sql" />
+    <Build Include="PlanesDeMejora\Indices\IndicePlanMejora.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\AgregarMultiplesObjetivos.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\AgregarMultiplesAccionesDeMejora.sql" />
+    <Build Include="Usuarios y Perfiles\Indices\Identificacion.sql" />
+    <Build Include="Usuarios y Perfiles\Indices\Carnet.sql" />
+    <Build Include="EnlaceSeguro.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\AgregarEnlaceSeguro.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerFormulariosDeEstudiante.sql" />
+    <Build Include="Formularios\Asignar\AsignarFormulario.sql" />
+    <Build Include="PlanesDeMejora\ProcedimientosDePruebaPDM\PruebasPDM.sql" />
+    <Build Include="PlanesDeMejora\ObjVsSeccion.sql" />
+    <Build Include="PlanesDeMejora\AccionVsPregunta.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\EstaEnCarreraYEnfasis.sql" />
+    <Build Include="Usuarios y Perfiles\Indices\EnfasisCodCarrera.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\GruposXPerfiXlUsuario.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\ProfesoresXUsuarioXPerfil.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\UAXPerfilXUsuario.sql" />
+    <Build Include="Usuarios y Perfiles\Triggers\BorrarEnlaceSeguro.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerFormulariosPorSemestre.sql" />
+    <Build Include="Formularios\Procedimientos\ModificarFormulario.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\AgregarPlanComplete.sql" />
+    <Build Include="PlanesDeMejora\TableTypes\TableTypes.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\ObtenerFormulariosParaAsociar.sql" />
+    <Build Include="PlanesDeMejora\AccionableEscala.sql" />
+    <Build Include="PlanesDeMejora\AccionableSiNo.sql" />
+    <Build Include="PlanesDeMejora\AccionablePorcentaje.sql" />
+    <Build Include="Usuarios y Perfiles\Procedures\ConfigurarPerfilesDefault.sql" />
+    <Build Include="Usuarios y Perfiles\Functions\CarrerasYEnfasisXUsuarioXPerfil.sql" />
+    <Build Include="Formularios\Asignar\ObtenerGruposAsociados.sql" />
+    <Build Include="Formularios\Procedimientos\ObtenerEstudiantesAsociadosAFormulario.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\AgregarMultiplesAccionables.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\ObtenerCorreosDeProfesoresDelPlan.sql" />
+    <Build Include="Formularios\Triggers\TriggerPeriodo.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\ObtenerFormulariosAsociados.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\ObtenerSeccionesAsociadasAObjetivo.sql" />
+    <Build Include="PlanesDeMejora\FuncionesProcedimientos\ObtenerPreguntasDeAccionDeMejora.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeploymentData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DataIntegrador.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Usuarios y Perfiles\Indices\IndicePersona.sql" />
+  </ItemGroup>
+</Project>

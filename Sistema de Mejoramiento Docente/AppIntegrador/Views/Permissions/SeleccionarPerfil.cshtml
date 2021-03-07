@@ -1,0 +1,131 @@
+﻿<!--Página que muestra la funcionalidad de la historia TAM-3.7-1: que un usuario pueda configurar el perfil, la carrera y el énfasis
+    con los que está trabajando en el sistema.-->
+@model AppIntegrador.Models.ConfigViewHolder
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/users&profiles")
+
+<div class="container col-8 p-5 border" style="background-color: #fbfbfb">
+    <div class="row" style="display:flex; padding-left:15px; ">
+        <div class="column" style="flex:50%;">
+            <h2>
+                Seleccionar perfil de trabajo
+            </h2>
+        </div>
+    </div>
+    <p>Actualmente usted está trabajando con el perfil: @AppIntegrador.Models.CurrentUser.getUserProfile()</p>
+    <p>Carrera: @Html.DisplayFor(model => model.NombreCarrera)</p>
+    <p>Enfasis: @Html.DisplayFor(model => model.NombreEnfasis)</p>
+    
+    @using (Html.BeginForm("GuardarSeleccion", "Permissions", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        <div class="row" style="display:flex; padding-left:15px; ">
+            <div class="col-md-4 pl-0" style="flex:50%;">
+                @Html.Label("Seleccione perfil")
+                <br />
+                @Html.DropDownListFor(model => model.ListaPerfiles, Model.PerfilesSeleccionables, new { @class = "form-control", @required = "required" })
+                <br />
+            </div>
+
+            <div class="col-md-4" style="flex:50%;">
+                @Html.Label("Seleccione carrera")
+                <br />
+                @Html.DropDownListFor(model => model.ListaCarreras, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @required = "required" })
+                <br />
+            </div>
+
+            <div class="col-md-4" style="flex:50%;">
+                @Html.Label("Seleccione énfasis")
+                <br />
+                @Html.DropDownListFor(model => model.ListaEnfasis, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @required = "required" })
+                <br />
+            </div>
+        </div>
+
+        <button type="submit" class="btn-azulUCR">Seleccionar</button>
+        @Html.ActionLink("Cancelar", "Index", "Home", new object { }, new { @class = "btn-blancoUCR" })
+    }
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+    /*Función que invoca a la función que carga las carreras de un usuario, según el perfil que haya escogido.*/
+    $("#ListaPerfiles").on("change", function () {
+        cargarCarreras($("#ListaPerfiles option:selected").val());
+        $("#ListaEnfasis").children().remove();
+        $("#ListaEnfasis").append("<option value=\"\" selected disabled hidden >Nada seleccionado</option>");
+    })
+
+    /**
+     * Carga las carreras del usuario según el perfil que haya elegido.
+     * <param> val Código del perfil seleccionado.
+     */
+    function cargarCarreras(val) {
+        $.getJSON('@Url.Action("CargarCarreras", "Permissions")' + "?perfilSeleccionado=" + val, function (result) {
+            $("#ListaCarreras").children().remove();
+
+            var data = result.data;
+            for (var i = 0; i < data.length; ++i) {
+                var splitted = data[i].toString().split(",");
+                $("#ListaCarreras").append("<option value=" + splitted[0] + ">" + splitted[1] + "</option>");
+            }
+            $("#ListaCarreras").append("<option value=\"\" selected disabled hidden >Nada seleccionado</option>");
+        })
+    }
+
+    /*Función que invoca a la función que carga los énfasis para el usuario, según el perfil y la carrera que haya elegido.*/
+    $("#ListaCarreras").on("change", function(){
+        cargarEnfasisXPerfil($("#ListaCarreras option:selected").val(), $("#ListaPerfiles option:selected").val());
+    })
+
+    /**
+     * Carga los énfasis en el dropdown respectivo según el perfil y la carrera que haya elegido el usuario.
+     * <param> val Código de la carrera seleccionado.
+     * <param> profile Código del perfil seleccionado.
+     */
+    function cargarEnfasisXPerfil(val, profile) {
+        
+        $.getJSON('@Url.Action("CargarEnfasisDeCarreraPorPerfil", "Permissions")' + "?value=" + val + "&profile=" + profile, function (result) {
+            $("#ListaEnfasis").children().remove();
+
+            var data = result.data;
+            for (var i = 0; i < data.length; ++i) {
+                var splitted = data[i].toString().split(",");
+                $("#ListaEnfasis").append("<option value=" + splitted[0] + ">" + splitted[1] + "</option>");
+            }
+            $("#ListaEnfasis").append("<option value=\"\" selected disabled hidden >Nada seleccionado</option>");
+
+        })
+    }
+    
+</script>
+<script>
+    /*Evento que se dispara cuando se carga la página, para cargar los valores por defecto de los dropdowns.*/ 
+    window.onload = function loadDefaultValues() {
+        $.getJSON('@Url.Action("CargarDatosDefault", "Permissions")', function (result) {
+                    
+            var major = result.defaultMajor.split(",");
+            var emphasis = result.defaultEmphasis.split(",");
+            if (major.length > 1) {
+                cargarCarreras(result.defaultProfile);
+            }
+            $('#ListaPerfiles').val(result.defaultProfile);
+            $("#ListaCarreras").append("<option value=\"\" selected disabled hidden >Nada seleccionado</option>");
+            $("#ListaEnfasis").append("<option value=\"\" selected disabled hidden >Nada seleccionado</option>");
+                    
+        })
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquerymin")
+    @Scripts.Render("~/bundles/custom")
+}

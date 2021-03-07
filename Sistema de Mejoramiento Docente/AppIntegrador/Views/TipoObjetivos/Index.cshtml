@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AppIntegrador.Models.TipoObjetivo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*//MOS-8 Como Usuario administrativo	quiero poder agregar tipos de objetivos para dar opciones a la hora de crear los objetivos
+    //Tarea 1: "1. Es necesario agregar un scaffold de las operaciones de CRUD de los tipos de objetivos
+    //Christian Asch
+    //Commits: 29298cf, c0d43bd, e4023d4*@
+<!--Estilos tomados de las tablas de los Tamales-->
+
+<div class="container">
+    <div class="row" style="display:flex; padding-left:15px; ">
+        <div class="column" style="flex:50%;">
+            <h2>
+                Administración de tipos de objetivos
+            </h2>
+        </div>
+        <div class="column" style="padding-right:15px; flex:50%; text-align:right; vertical-align:bottom;">
+
+            <p>@Html.ActionLink("+ Agregar tipo de objetivo", "Create", "Create", new { @class = "btn btn-success" })</p>
+        </div>
+    </div>
+    <br />
+    <table class="table table-striped table-bordered table-sm center" cellspacing="0" width="100%" style="position: sticky;  top: 0; border-collapse: separate;">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    Opciones
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.nombre }, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Details", "Details", new { id = item.nombre }, new { @class = "btn btn-default" })*@
+
+
+                    @*
+                       Cambiado por: casch
+                       Este cambio responde a la historia:
+                       MOS-8 Como Usuario administrativo quiero poder agregar tipos de objetivos para dar opciones a la hora de crear los objetivos
+                    *@
+                    @Html.ActionLink("Borrar", "DeleteConfirmed", 
+                                    new { id = item.nombre,
+                                          confirmed = true },
+                                    new { onclick = "return confirm('¿Está seguro que desea borrar este tipo de objetivo? " +
+                                                    "Esto dejará sin tipo a los objetivos que lo utilizan.')",
+                                        @class = "btn btn-danger"
+                                    })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

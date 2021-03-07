@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" lang="es">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Sistema de Mejoramiento Docente</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    @{ bool EnableBS4SiteWide = true;}
+    <!--Se añanden metodos por medio de viewbag para determinar si debe cargar boostrap3 o 4, metodo temporal mientras se transiciona a la nueva tecnologia de BS4.3.1-->
+    @if (ViewBag.EnableBS4NoNavBar != true && ViewBag.EnableBS4 != true && EnableBS4SiteWide == false)
+    {
+        @Styles.Render("~/Content/bs3")
+        @Scripts.Render("~/bundles/modernizr")
+        @Styles.Render("~/Content/css")
+    }
+    else
+    {
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        @Styles.Render("~/Content/bs4.3.1")
+        @Styles.Render("~/packages/Bootstrap.Multiselect.0.9.13/Css/bootstrap-multiselect.css")
+        @Styles.Render("~/Content/Main.css")
+
+        if (ViewBag.EnableBS4NoNavBar != true)
+        {
+            @Styles.Render("~/Content/css")
+        }
+    }
+</head>
+<body>
+    <!--No siempre se debe cargar el Navbar, se usa viebag para desabilitarla-->
+    @if (ViewBag.EnableBS4NoNavBar != true)
+    {
+        <div class="">
+            <div>
+                <div class="mainBar row align-items-center">
+                    <div class="col m-0 text-left">
+                        <a href="https://www.ucr.ac.cr" class="svg" id="firma-ucr" target="_blank" tabindex="2">
+                            <img height="50" src="~/Content/images/logo_ucr.png" alt="Logo Universidad de Costa Rica">
+                        </a>
+                    </div>
+                    <div class="nombreProyecto col m-0 text-center">
+                        <h4>Sistema de Mejoramiento Docente</h4>
+                    </div>
+                    <div class="col m-0 text-right">
+                        <img height="40" src="@HttpContext.Current.Session["ProfileImage"]" alt="Usuario Default">
+                        <div class="dropdown">
+                            <!--TAM-9.2 - Se indica que existen submenus en usuario-->
+                            <button class="dropbtn dropbtn_alt">
+                                @HttpContext.Current.User.Identity.Name &#9660;<br />
+                            </button>
+                            <div class="dropdown-content">
+                                <!--Modificar los dos últimos argumentos cuando ya se tengan los controladores respectivos-->
+                                @Html.ActionLink("Seleccionar Perfil", "SeleccionarPerfil", "Permissions", new object { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Cambiar Contraseña", "CambiarContrasenna", "Home", new object { }, new { @class = "dropdown-item" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Salir", "Logout", "Home", new object { }, new { @class = "dropdown-item" })
+                            </div>
+                        </div>
+                        <!--TAM-9.2 - Imagen default de usuario-->
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="header">
+                    <ul class="nav">
+                        <li><a href="/Home/Index">Inicio</a></li>
+                        <!--TAM-3.6-1: Condicional que muestra el dropdown de administración de usuarios y perfiles si el usuario tiene un perfil
+                        con permisos de acceder a esa funcionalidad, sino entonces muestra el botón desabilitado y bloquea los intentos de acceso
+                        por otros medios.-->
+                        @{
+                            AppIntegrador.Utilities.IPerm permissionManager = new AppIntegrador.Utilities.PermissionManager();
+                            if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_USUARIOS) ||
+                            permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.EDITAR_USUARIOS) ||
+                            permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_DETALLES_USUARIOS) ||
+                            permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_USUARIOS) ||
+                            permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.BORRAR_USUARIOS) ||
+                            permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.ASIGNAR_PERFILES_USUARIOS) ||
+                            permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.ASIGNAR_PERMISOS_PERFILES))
+                            {
+                                <li>
+                                    <a href="/Users/Index">Usuarios &#9660;</a>
+                                    <ul>
+                                        @{ if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_USUARIOS) ||
+                                                     permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.EDITAR_USUARIOS) ||
+                                                     permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_DETALLES_USUARIOS) ||
+                                                     permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_USUARIOS) ||
+                                                     permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.BORRAR_USUARIOS))
+                                            {
+
+                                                <li><a href="/Users/Index">Administración de usuarios</a></li>
+                                            }
+                                        }
+
+                                        @{ if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.ASIGNAR_PERFILES_USUARIOS) ||
+                                                     permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.ASIGNAR_PERMISOS_PERFILES))
+                                            {
+
+                                                <li><a href="/Permissions/Index">Administración de perfiles</a></li>
+                                            }
+                                        }
+
+
+
+
+
+                                    </ul>
+
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="align-self-center" data-toggle="tooltip" data-placement="bottom" title="No tiene permisos para accesar estas opciones">
+                                    <span style="color:gray">Usuarios &#9660;</span>
+                                </li>
+                            }
+                        }
+
+                        @{
+                            if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_FORMULARIO) ||
+                                permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_SECCION) ||
+                                permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_PREGUNTAS) ||
+                                permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.LLENAR_FORMULARIO))
+                            {
+                                <li>
+
+                                    <a href="">Formularios &#9660;</a>
+                                    <ul>
+                                        <li>
+                                            <a href="">Formulario &#9658;</a>
+                                            <ul>
+                                                @if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_FORMULARIO))
+                                                {
+
+                                                    <li><a href="/Formularios/Create">Crear Formulario</a></li>
+                                                }
+                                                @if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_FORMULARIO))
+                                                {
+                                                    <li><a href="/Formularios/Index">Ver Formulario</a></li>
+                                                }
+                                                <li><a href="/LlenarFormulario/MisFormularios">Mis Formularios</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            @if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_SECCION))
+                                            {
+                                                <a href="">Sección &#9658;</a>
+                                                <ul>
+                                                    <li><a href="/Seccion/Index">Ver Sección</a></li>
+                                                </ul>
+                                            }
+                                        </li>
+                                        <li>
+                                            @if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_PREGUNTA))
+                                            {
+                                                <a href="">Preguntas &#9658;</a>
+                                                <ul>
+                                                    @*@if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_PREGUNTA))
+                {
+                    <li><a href="/Preguntas/Create">Crear pregunta</a></li>
+                }*@
+                                                    <li><a href="/PreguntaConOpcionesDeSeleccion/Index">Ver Pregunta</a></li>
+                                                </ul>
+                                            }
+                                        </li>
+                                    </ul>
+                                </li>
+                                    }
+                                    else
+                                    {
+<li class="align-self-center" data-toggle="tooltip" data-placement="bottom" title="No tiene permisos para accesar estas opciones">
+                                            <span style="color:gray">Formularios &#9660;</span>
+                                        </li>
+                                        }
+                                        }
+
+                                        @{
+                                            if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_PLANES_MEJORA))
+                                            {
+                                                <li>
+                                                    <a href="">Planes de mejora &#9660;</a>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="">Mis planes &#9658;</a>
+                                                            <ul>
+                                                                <li><a href="/PlanDeMejora/Index">Ver mis planes</a></li>
+
+                                                                @if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CREAR_PLANES_MEJORA))
+                                                                {
+                                                                    <li><a href="/PlanDeMejora/Crear">Crear plan</a></li>
+                                                                }
+
+                                                            </ul>
+                                                        </li>
+
+
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="align-self-center" data-toggle="tooltip" data-placement="bottom" title="No tiene permisos para accesar estas opciones">
+                                                    <span style="color:gray">Planes de mejora &#9660;</span>
+                                                </li>
+                                            }
+                                        }
+
+                                        @{
+                                            if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_RESPUESTAS_FORMULARIOS_ENFASIS) ||
+                                                permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.VER_RESPUESTAS_FORMULARIOS_PROPIOS))
+                                            {
+                                                <li>
+                                                    <a href="">Visualización &#9660;</a>
+                                                    <ul>
+                                                        <li><a href="/Dashboard/Index">Dashboard</a></li>
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="align-self-center" data-toggle="tooltip" data-placement="bottom" title="No tiene permisos para accesar estas opciones">
+                                                    <span style="color:gray">Visualización &#9660;</span>
+                                                </li>
+                                            }
+                                        }
+
+                                        @{
+                                            if (permissionManager.IsAuthorized(AppIntegrador.Utilities.Permission.CARGAR_DATOS_DESDE_CSV))
+                                            {
+                                                <li>
+                                                    <a href="">Carga de Datos &#9660;</a>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="">Archivos &#9658;</a>
+                                                            <ul>
+                                                                <li><a href="/CSV/Clase">Lista de Clase</a></li>
+                                                                <li><a href="/CSV/Funcionarios">Lista de Funcionarios</a></li>
+                                                                <li><a href="/CSV/GuiaHorarios">Guia de Horarios</a></li>
+                                                                <li><a href="/CSV/Index">Lista de Estudiantes</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="align-self-center" data-toggle="tooltip" data-placement="bottom" title="No tiene permisos para accesar estas opciones">
+                                                    <span style="color:gray">Carga de Datos &#9660;</span>
+                                                </li>
+                                            }
+                                        }
+
+                                        <li><a href="/Home/About">Acerca de</a></li>
+                                        <li class="ml-auto align-self-center mr-4">Perfil: @AppIntegrador.Models.CurrentUser.getUserProfile()</li>
+                                    </ul>
+
+</div>
+            </div>
+        </div>
+
+        <br />
+    }
+
+    <!--Se añanden metodos por medio de viewbag para determinar si debe cargar boostrap3 o 4, metodo temporal mientras se transiciona a la nueva tecnologia de BS4.3.1-->
+    @RenderBody()
+    @if (ViewBag.EnableBS4NoNavBar != true && ViewBag.EnableBS4 != true && EnableBS4SiteWide == false)
+    {
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    }
+    else
+    {
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        @Scripts.Render("~/bundles/jquery3.3.1", "~/bundles/popper1.14.7", "~/bundles/bs4.3.1")
+        @Scripts.Render("~/packages/Bootstrap.Multiselect.0.9.13/Scripts/bootstrap-multiselect.js")
+        @Scripts.Render("~/packages/Bootstrap.Multiselect.0.9.13/Scripts/bootstrap-multiselect-collapsible-groups.js")
+    }
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        (function ($) {
+            $(document).ready(function () {
+                $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $(this).parent().siblings().removeClass('open');
+                    $(this).parent().toggleClass('open');
+                });
+            });
+        })(jQuery);
+    </script>
+
+
+
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // Initialize numeric spinner input boxes
+            //$(".numeric-spinner").spinedit();
+
+            // Initalize modal dialog
+            // attach modal-container bootstrap attributes to links with .modal-link class.
+            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+    </script>
+
+    <!--Se usa un tooltip para indicar al usuario porque la opcion del navbar esta desabilitada-->
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+
+</html>

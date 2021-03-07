@@ -1,0 +1,3 @@
+CorreoPersona, IdPersona, TipoIdPersona, NombrePersona, ApellidoPersona,Borrado, CorreoFuncionario, CorreoProfesor, CorreoFuncionarioTrabaja, CodigoUnidadTrabaja
+cristian.quesada@ucr.ac.cr,100000001, Cédula, Cristian, Quesada,False,cristian.quesada@ucr.ac.cr, cristian.quesada@ucr.ac.cr, cristian.quesada@ucr.ac.cr, IN00000003
+alvaro.delaossa@ucr.ac.cr,100000002, Cédula, Alvaro, De La Ossa,False,alvaro.delaossa@ucr.ac.cr, alvaro.delaossa@ucr.ac.cr, alvaro.delaossa@ucr.ac.cr, IN00000003

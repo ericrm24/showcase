@@ -1,0 +1,34 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <img class="rounded mx-auto d-block centerImage" src="~/Content/images/firma.png" alt="logo universida de costa rica">
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
+@*//Si hay un mensaje de alerta en el Viewbag mostrarlo como alerta*@
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom")
+    @if (!string.IsNullOrEmpty(ViewBag.typeMessage))
+    {
+        if (ViewBag.typeMessage != "sweetalertmessage")
+        {
+            <script type="text/javascript">
+                customAlert('danger','@ViewBag.AlertMessage');
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+                    Swal.fire({
+                        type: 'success',
+                        title: '@ViewBag.AlertMessage',
+                        });
+            </script>
+        }
+    }
+}

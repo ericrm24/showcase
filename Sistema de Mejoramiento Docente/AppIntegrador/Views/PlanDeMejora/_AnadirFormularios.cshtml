@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AppIntegrador.Models.Formulario>
+@{
+    ViewBag.Title = "Añadir Formularios";
+    var FormulariosLista = (List<AppIntegrador.Models.Formulario>)ViewBag.FormulariosLista;
+    var totalFormularios = 0;
+}
+
+<h4> Añadir formularios al plan </h4>
+
+<table id="TablaSeleccionarFormularios" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Codigo
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        @foreach (var formulario in FormulariosLista)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" 
+                           id="pr(@totalFormularios)" 
+                           class="SectionCheckbox" 
+                           value="@formulario.Codigo" 
+                           onclick="seleccionaCheckBoxGen(this, 'form', 'codigo', cantidadForm)" />
+                </td>
+                    
+                <td>
+                    @formulario.Nombre
+                </td>
+                <td>
+                    @formulario.Codigo 
+                </td>
+            </tr>
+            totalFormularios += 1;
+        }
+    </thead>
+</table>

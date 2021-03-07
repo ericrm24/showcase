@@ -1,0 +1,19 @@
+﻿@model AppIntegrador.Models.PlanDeMejora
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalFormularios" tabindex="-1" role="dialog" aria-labelledby="ModalFormulariosLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="ModalAgregarFormulariosInterno" style="width:auto">
+                        @{Html.RenderPartial("_AnadirFormularios", Model.Formulario);}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn-azulUCR " onclick="agregarGen('form', 'codigo', cantidadForm, 'AnadirFormularios', 'FormularioSeleccionado', '#divTablaFormularios', codigosFormularios)" data-dismiss="modal">Agregar formularios seleccionados</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

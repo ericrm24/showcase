@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "_ModalAnadirSecciones";
+}
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalSecciones" tabindex="-1" role="dialog" aria-labelledby="ModalSeccionesLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="ModalAgregarSeccionesInterno" style="width:auto">
+                        Aún no se han seleccionado formularios para el plan por lo que no es posible mostrar secciones.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn-azulUCR " onclick="agregarSeccionesSeleccionadas()" data-dismiss="modal">Agregar secciones seleccionadas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<AppIntegrador.Models.PlanDeMejora>
+
+
+
+<div class="planesTable">
+    <table class='table table-bordered table-condensed table-striped table-hover'>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaFin)
+            </th>
+            <th>
+                Creado por:
+            </th>
+            <th>
+                Asignado a:
+            </th>
+            <th>
+                Opciones de Edición
+            </th>
+        </tr>
+
+        @foreach (var plan in Model)
+        {
+            <tr>
+                <td id="codigoTemporal">
+                    @Html.DisplayFor(modelItem => plan.codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => plan.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => plan.fechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => plan.fechaFin)
+                </td>
+                <td>
+                    @HttpContext.Current.User.Identity.Name
+                </td>
+                <td>
+                    @HttpContext.Current.User.Identity.Name
+                </td>
+
+                <td>
+                    <div class="verticalBoxes">
+                        <div class="flexItemPlanes">
+                            @Html.Partial("~/Views/PlanDeMejora/_editPlanDeMejora.cshtml", plan)
+                        </div>
+                        <div class="flexItemPlanes">
+                            @Html.Partial("~/Views/PlanDeMejora/_borrarPlanDeMejora.cshtml", plan)
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+    
+</div>

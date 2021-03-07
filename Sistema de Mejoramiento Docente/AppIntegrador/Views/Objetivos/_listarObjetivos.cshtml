@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AppIntegrador.Models.Objetivo>
+
+@{ 
+    var numObj = 1;
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="centeredText">
+        <p>
+            Aún no se han creado Objetivos en este Plan de mejora.
+        </p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <colgroup>
+            <col class="TablasNumero">
+            <col class="TablasNombre">
+            <col class="TablasDescripcion">
+            <col class="TablasFecha">
+            <col class="TablasFecha">
+        </colgroup>
+
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaFin)
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr class="FilaTablasPlanesDeMejora" onclick="clickObjetivo(@numObj, @item.codPlan, `@item.nombre`)">
+                    <td>
+                        @numObj
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaFin)
+                    </td>
+                </tr>
+            </tbody>
+            numObj++;
+        }
+
+    </table>
+}

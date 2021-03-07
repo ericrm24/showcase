@@ -1,0 +1,6 @@
+CodigoUnidad, NombreFacultad, CodigoUnidadCarrera, CodigoCarreraUnidad, CodigoCarrera, NombreCarrera, CodigoCarreraEnfasis, CodigoEnfasis, NombreEnfasis
+IN00000001, Escuela de Ingeniería Eléctrica, PO00000001, C000000001, C000000001, Ingeniería Eléctrica, C000000001, E000000001, Ingeniería Eléctrica
+IN00000002, Escuela de Ingeniería Mecánica, IN00000002, C000000002, C000000002,Ingeniería Mecánica, C000000002, E000000001, Ingeniería Mecánica
+IN00000003, Escuela de Computación e Informática, IN00000003, C000000003, C000000003, Bachillerato en Computación, C000000003, E000000001, Ciencias de la Computación
+FA00000001, Facultad de Farmacia, FA00000001, C000000004, C000000004, Farmacia, C000000003, E000000002, Ingeniería de Software
+MI00000001, Facultad de Microbiología, MI00000001, C000000005,C000000005, Microbiología y Química Clínica, C000000003, E000000003, Tecnologías de la Información

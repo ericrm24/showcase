@@ -1,0 +1,131 @@
+﻿@model AppIntegrador.Models.Accionable
+@{
+    var llamadoValidarAccionable = "validarCampos('campoFechaInicioAccionable', 'campoFechaFinAccionable', null, 'campoDescripcionAccionable', 'campoFechaInicioAccionMejora', 'campoFechaFinAccionMejora', 'CrearAccionableBoton')";
+    List<SelectListItem> pesos = new List<SelectListItem>();
+    pesos.Add(new SelectListItem
+    {
+        Text = "-- Seleccione el peso --",
+        Value = "0"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "1",
+        Value = "1"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "2",
+        Value = "2",
+        Selected = true
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "3",
+        Value = "3"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "4",
+        Value = "4"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "5",
+        Value = "5"
+    });
+}
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalAccionable" tabindex="-1" role="dialog" aria-labelledby="ModalFormulariosLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregando accionables a la acción de mejora</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="formAccionable">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group col-lg-12">
+                            <h5>@Html.DisplayNameFor(model => model.descripcion)</h5>
+                            <div col-lg-10>
+                                @Html.EditorFor(model => model.descripcion, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control",
+                                        id = "campoDescripcionAccionable",
+                                        @onkeyup = llamadoValidarAccionable,
+                                        @maxlength = "250",
+                                        required = "required",
+                                        placeholder = "Descripción del accionable"
+                                    }
+                                }
+     )
+                                <div id="campoDescripcionAccionable_subMsj" class="contador small float-right">0/250 caracteres usados </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 offset-lg-0">
+                            <h5>@Html.DisplayNameFor(model => model.fechaInicio)</h5>
+                            <div>
+                                @Html.EditorFor(model => model.fechaInicio, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   @onchange = llamadoValidarAccionable,
+                                   id = "campoFechaInicioAccionable"
+                               }
+                           }
+)
+                                <div id="campoFechaInicioAccionable_subMsj" class="contador small float-right">Inicio del accionable.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 offset-lg-0">
+                            <h5>@Html.DisplayNameFor(model => model.fechaFin)</h5>
+                            <div>
+                                @Html.EditorFor(model => model.fechaFin, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "form-control",
+                                   @onchange = llamadoValidarAccionable,
+                                   id = "campoFechaFinAccionable"
+                               }
+                           }
+)
+                                <div id="campoFechaFinAccionable_subMsj" class="contador small float-right">Fin del accionable.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5 offset-lg-0">
+                            <h5>@Html.DisplayNameFor(model => model.peso)</h5>
+                            @Html.DropDownListFor(model => model.peso, new SelectList(pesos, "Value", "Text", "0"), new
+                           {
+                                @class = "form-control",
+                                @id = "peso"
+                           })
+                        </div>
+                        <div class="form-group col-lg-4 offset-lg-0">
+                            <h5>@Html.DisplayNameFor(model => model.tipo)</h5>
+                            <select id="TipoAccionableAnadir" class="form-control">
+                                <option value="P">Porcentaje</option>
+                                <option value="E">Escalar</option>
+                                <option value="S">Sí / No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                        <button type="button"
+                                id="CrearAccionableBoton"
+                                disabled
+                                class="btn-azulUCR "
+                                onclick="agregarAccionable()"
+                                data-dismiss="modal">
+                            Agregar accionable
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

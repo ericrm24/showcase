@@ -1,0 +1,275 @@
+{
+  "id": "3c07b8d6-3675-4f14-ac55-9b4d45dfe7d9",
+  "version": "2.0",
+  "name": "FormularioBorrarSecciones",
+  "url": "https://localhost:44334/Formularios/Create",
+  "tests": [{
+    "id": "06994b8a-3857-4b06-aba2-6d1c243cad65",
+    "name": "Ingreso",
+    "commands": [{
+      "id": "510c7d79-fb6b-426f-b075-c6b46c41dce2",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b402015a-f714-4e5e-8ddb-90d35256dbf9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x706",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "09f75bb8-4a0b-476b-add0-763364a5444b",
+      "comment": "",
+      "command": "click",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "0e2885e1-aa23-489b-835a-467651b58be7",
+      "comment": "",
+      "command": "click",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "f6d8d7f6-c3c4-44d2-8053-d0946f7cc139",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0216aca6-5ee0-473b-8d7e-d845e5bc729f",
+    "name": "BorrarSeccion",
+    "commands": [{
+      "id": "f80d1ce6-861a-48f6-b77e-f9bb686256ba",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:44334/Formularios/Create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dcb210bd-3d9b-4e37-a147-b520fd5f1e70",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x706",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4ea75192-b88c-42f6-ade5-ff5084e1e1b0",
+      "comment": "",
+      "command": "click",
+      "target": "id=textCode",
+      "targets": [
+        ["id=textCode", "id"],
+        ["name=Formulario.Codigo", "name"],
+        ["css=#textCode", "css:finder"],
+        ["xpath=//input[@id='textCode']", "xpath:attributes"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9821e993-ac5b-4759-8c11-2a943c8bbc94",
+      "comment": "",
+      "command": "type",
+      "target": "id=textCode",
+      "targets": [
+        ["id=textCode", "id"],
+        ["name=Formulario.Codigo", "name"],
+        ["css=#textCode", "css:finder"],
+        ["xpath=//input[@id='textCode']", "xpath:attributes"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "test1234"
+    }, {
+      "id": "2b58fe4d-8ebb-4d0c-983c-f8b5f4e8af71",
+      "comment": "",
+      "command": "click",
+      "target": "id=textName",
+      "targets": [
+        ["id=textName", "id"],
+        ["name=Formulario.Nombre", "name"],
+        ["css=#textName", "css:finder"],
+        ["xpath=//input[@id='textName']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff4c3992-0ab1-4b2f-af92-55b785173192",
+      "comment": "",
+      "command": "type",
+      "target": "id=textName",
+      "targets": [
+        ["id=textName", "id"],
+        ["name=Formulario.Nombre", "name"],
+        ["css=#textName", "css:finder"],
+        ["xpath=//input[@id='textName']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "2e34ac77-8a20-4147-9aef-5eed9077194e",
+      "comment": "",
+      "command": "click",
+      "target": "id=AgregarSeccion",
+      "targets": [
+        ["id=AgregarSeccion", "id"],
+        ["css=#AgregarSeccion", "css:finder"],
+        ["xpath=//input[@id='AgregarSeccion']", "xpath:attributes"],
+        ["xpath=//div[@id='secciones']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e044193-f50a-4590-b8a9-a9cffcc40ed9",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=AgregarSeccion",
+      "targets": [
+        ["id=AgregarSeccion", "id"],
+        ["css=#AgregarSeccion", "css:finder"],
+        ["xpath=//input[@id='AgregarSeccion']", "xpath:attributes"],
+        ["xpath=//div[@id='secciones']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ab34199-b197-4095-933f-730908d51e6e",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=AgregarSeccion",
+      "targets": [
+        ["id=AgregarSeccion", "id"],
+        ["css=#AgregarSeccion", "css:finder"],
+        ["xpath=//input[@id='AgregarSeccion']", "xpath:attributes"],
+        ["xpath=//div[@id='secciones']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f1670fd-2b7f-46bf-9803-ac1733725a96",
+      "comment": "",
+      "command": "click",
+      "target": "id=ch(00000001)",
+      "targets": [
+        ["id=ch(00000001)", "id"],
+        ["css=#ch\\(00000001\\)", "css:finder"],
+        ["xpath=//input[@id='ch(00000001)']", "xpath:attributes"],
+        ["xpath=//tr[@id='sec(00000001)']/td/center/input", "xpath:idRelative"],
+        ["xpath=//center/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "90986f89-86a7-43eb-b394-aebd4b9f4bd9",
+      "comment": "",
+      "command": "click",
+      "target": "id=ch(00000002)",
+      "targets": [
+        ["id=ch(00000002)", "id"],
+        ["css=#ch\\(00000002\\)", "css:finder"],
+        ["xpath=//input[@id='ch(00000002)']", "xpath:attributes"],
+        ["xpath=//tr[@id='sec(00000002)']/td/center/input", "xpath:idRelative"],
+        ["xpath=//tr[2]/td/center/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "91e6b0c3-639c-4bec-8feb-eea8d6ae0eab",
+      "comment": "",
+      "command": "click",
+      "target": "id=ch(00000003)",
+      "targets": [
+        ["id=ch(00000003)", "id"],
+        ["css=#ch\\(00000003\\)", "css:finder"],
+        ["xpath=//input[@id='ch(00000003)']", "xpath:attributes"],
+        ["xpath=//tr[@id='sec(00000003)']/td/center/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td/center/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfd37dff-c565-4d31-9757-c27b0302fd5f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-footer > .btn-azulUCR",
+      "targets": [
+        ["css=.modal-footer > .btn-azulUCR", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='ExampleModal']/div/div/div[2]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar secciones seleccionadas')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8affa0e5-5bff-4591-be75-9732fe4d36c5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.card:nth-child(5) #borrarSec",
+      "targets": [
+        ["css=.card:nth-child(5) #borrarSec", "css:finder"],
+        ["xpath=(//button[@id='borrarSec'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='seccionesActuales']/div[2]/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c959d2c4-8a8a-4515-aceb-ea678a379690",
+      "comment": "",
+      "command": "click",
+      "target": "css=.card:nth-child(5) #borrarSec",
+      "targets": [
+        ["css=.card:nth-child(5) #borrarSec", "css:finder"],
+        ["xpath=(//button[@id='borrarSec'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='seccionesActuales']/div[2]/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe72e4b1-74ab-4709-b71e-555b463e2149",
+      "comment": "",
+      "command": "click",
+      "target": "id=borrarSec",
+      "targets": [
+        ["id=borrarSec", "id"],
+        ["css=#borrarSec", "css:finder"],
+        ["xpath=//button[@id='borrarSec']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionesActuales']/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'X')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "91e56603-fb26-480d-99fa-02edddad6853",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["06994b8a-3857-4b06-aba2-6d1c243cad65"]
+  }],
+  "urls": ["https://localhost:44334/", "https://localhost:44334/Formularios/Create"],
+  "plugins": []
+}

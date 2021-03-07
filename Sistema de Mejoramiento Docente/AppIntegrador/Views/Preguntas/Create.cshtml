@@ -1,0 +1,122 @@
+﻿@model AppIntegrador.Models.Pregunta
+
+@*@Scripts.Render("~/bundles/jquery")*@
+@*@Scripts.Render("~/bundles/jqueryval")*@
+
+<div class="container">
+    <div class="card card-default shadow">
+        @*test3*@
+        <div class="card-body">
+            <h3>Crear pregunta</h3>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="card card-default shadow">
+                        <div class="card-body grisUCR2">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    @*<div>
+                <button name="@Html.NameFor(m => m.Tipo)" value="-" id="@Html.NameFor(m => m.Tipo)" class="btn btn-secondary dropdown-toggle form-control" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span class="texto-btn">Escoger tipo</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu col-lg-10" style="margin-left: 7.5%" aria-labelledby="Tipo">
+                    <li value="U"><a href="#">Opción única</a></li>
+                    <li value="M"><a href="#">Opción múltiple</a></li>
+                    <li value="L"><a href="#">Respuesta libre</a></li>
+                    <li value="E"><a href="#">Escalar</a></li>
+                    <li value="S"><a href="#">Sí / No / No responde</a></li>
+                </ul>
+            </div>*@
+
+                                    <select id="Tipo" name="Tipo" class="form-control" onchange="SeleccionarTipoCrearPregunta(this)">
+                                        <option value="-">Escoger tipo</option>
+                                        <option value="U">Opción única</option>
+                                        <option value="M">Opción múltiple</option>
+                                        <option value="L">Respuesta libre</option>
+                                        <option value="E">Escalar</option>
+                                        <option value="S">Sí / No / No responde</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    @Html.EditorFor(model => model.Codigo, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                            @class = "validar-codigo-pregunta form-control",
+                                            @maxlength = "8",
+                                            required = "required",
+                                            @onkeyup = "contarCaracteres(this)",
+                                            @placeholder = "Código",
+                                            @id = "PreguntaCodigo"
+                                        }
+                                    })
+
+                                    <div class="contador small float-right">0/8 caracteres usados</div>
+                                    @*Historia MSU: que el mensaje de error salga en rojo*@
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Codigo, "", new { @style = "color:red" })
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                @Html.TextAreaFor(model => model.Enunciado, new
+                                {
+                                    @class = "validar form-control long-textbox",
+                                    @style = "width: 100%;max-width: 100%; min-width: 100%",
+                                    @maxlength = "250",
+                                    required = "required",
+                                    data_val = "true",
+                                    data_val_length_max = "250",
+                                    @onkeyup = "contarCaracteres(this)",
+                                    @placeholder = "Enunciado de la pregunta",
+                                    @id = "PreguntaEnunciado"
+                                })
+
+                                <div class="contador small float-right">0/250 caracteres usados</div>
+                                @*Historia MSU: que el mensaje de error salga en rojo*@
+                                @Html.ValidationMessageFor(model => model.Enunciado, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="card card-default shadow">
+                    <div class="card-body grisUCR1">
+                        <div id="contenedor-preguntas">
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group float-right">
+                    <div class="col-lg-12">
+                        <input type="button" value="Regresar al banco de Preguntas" class="btn-blancoUCR" onclick="CerrarCrearPregunta()" />
+                        <input type="button" value="Guardar" class="btn-azulUCR" onclick="GuardarPregunta()" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/creacionpregunta.js"></script>
+    <script src="~/Scripts/Formularios/ContadorCaracteres.js"></script>
+    <script src="~/Scripts/Formularios/CrearPreguntas.js"></script>
+    <script src="~/Scripts/Formularios/DesactivarBotonCrear.js"></script>
+    <script src="~/Scripts/Formularios/CargarPreguntas.js"></script>
+
+    <script>
+        
+        $(document).ready(function () {
+            deshabilitarCamposBasicos(true)
+            validarEntradas();
+        })
+    </script>
+}

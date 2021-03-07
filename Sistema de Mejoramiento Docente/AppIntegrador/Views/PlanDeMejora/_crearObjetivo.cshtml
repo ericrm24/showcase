@@ -1,0 +1,180 @@
+﻿@model AppIntegrador.Models.Metadata.ObjetivoMetadata
+
+@*
+    Creado por: Johan Córdoba
+    Historia a la que pertenece: MOS-25 "como usuario quiero tener una interfaz que muestre de forma clara las jerarquías entre las distintas partes del subsistema de creación de planes de mejora"
+    Vista parcial para crear los objetivos de un plan de mejora
+*@
+
+@{
+
+    Layout = null;
+}
+
+<div>
+    <form role="form" id="newObjetivo">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.codPlan, new { style = "display:none;", @Value = ViewBag.IdPlan })
+                            @Html.ValidationMessageFor(model => model.codPlan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label" })
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new 
+                                { 
+                                    @class = "form-control", 
+                                    maxlength = "50", 
+                                    placeholder = "Máximo 50 caracteres",
+                                    @onkeyup = "validacion()",
+                                    id = "nombreObjetivo"
+                                } })
+                                <span class="error">
+                                    <p id="nombreObjetivo_subMsj" class="regularMsj">Te quedan 50 caracteres.</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.nombTipoObj, htmlAttributes: new { @class = "control-label" })
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.DropDownList("nombTipoObj", null, htmlAttributes: new 
+                                { 
+                                    @class = "form-control",
+                                    id = "dropDownObjetivo",
+                                    @onchange = "validacion()" 
+                                })
+                                <span class="error">
+                                    <p id="dropDownObjetivo_subMsj" class="regularMsj">Tipo de objetivo.</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label" })
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.fechaInicio, new { htmlAttributes = new 
+                                { 
+                                    @class = "form-control" ,
+                                    id = "fechaInicioObjetivo",
+                                    @onchange = "validacion()" 
+                                } })
+                                <span class="error">
+                                    <p id="fechaInicioObjetivo_subMsj" class="regularMsj">Inicio de objetivo.</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "control-label" })
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.fechaFin, new { htmlAttributes = new 
+                                { 
+                                    @class = "form-control" ,
+                                    id = "fechaFinalObjetivo",
+                                    @onchange = "validacion()" 
+                                } })
+                                <span class="error">
+                                    <p id="fechaFinalObjetivo_subMsj" class="regularMsj">Fin de objetivo.</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.descripcion, new 
+                        { 
+                            @class = "form-control", 
+                            rows = "2", 
+                            maxlength = "250", 
+                            style = "resize:vertical", 
+                            placeholder = "Máximo 250 caracteres",
+                            id = "descripcionObjetivo",
+                            @onkeyup = "validacion()"  
+                        })
+                        <span class="error">
+                            <p id="descripcionObjetivo_subMsj" class="regularMsj">Descripción del objetivo, te quedan 250 caracteres.</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            /*
+                Modificado por: Johan Córdoba
+                Historia a la que pertenece: MOS-1.2 "agregar, modificar, borrar y consultar los objetivos de un plan de mejora"
+                Cambio la funcionalidad del boton para que no refresque toda la vista
+                y solo cierre el modal. Además esto tambien permite que en las vistas parciales
+                an cancelar la creación de un plan de mejora vuelva a esta vista y no a la de
+                index de acciones de mejora.
+
+            */
+            <div class="form-group">
+                <div class="row">
+                    <div class="botonCentrado">
+                        <input type="submit" id="crearObjetivoButton" value="Crear" class="btn-azulUCR" disabled/>
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+
+</div>
+
+@section Scripts {
+
+
+}
+
+<script>
+    function validacion() {
+        let fechaInicioObjetivo = document.getElementById('fechaInicioObjetivo');
+        let fechaFinalObjetivo = document.getElementById('fechaFinalObjetivo');
+        let nombreObjetivo = document.getElementById('nombreObjetivo');
+        let descripcionObjetivo = document.getElementById('descripcionObjetivo');
+
+        // Dejando el limite superior e inferior con respecto a las fechas que tiene el plan de mejora
+        let temp = document.getElementById('fechaInicioPlanDM').value;
+        let minDate = new Date(temp + 'CST');
+        temp = document.getElementById('fechaFinalPlanDM').value;
+        let topDate = new Date(temp + 'CST');
+
+        let validatorObjetivos = new Validador(50, 250, minDate, topDate, 'crearObjetivoButton');
+
+        //Definimos la cantidad de validaciones
+        validatorObjetivos.setTotalValidations(3);
+
+        //// Ahora haciendo las validaciones
+        validatorObjetivos.validateSomethingInTextInput(nombreObjetivo, 50);
+        validatorObjetivos.validateSomethingInTextInput(descripcionObjetivo, 250);
+        validatorObjetivos.validateDates(fechaInicioObjetivo, fechaFinalObjetivo);
+
+        validatorObjetivos.validityOfForm();
+    }
+</script>

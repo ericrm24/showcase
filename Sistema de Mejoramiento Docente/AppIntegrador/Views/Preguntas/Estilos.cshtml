@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Estilos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="container">
+
+
+        <div class="card card-body">
+            <h2>Índice de estilos</h2>
+            <table class="table">
+                <tr>
+                    <th scope="col">Clase</th>
+                    <th scope="col">Vista previa</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <th scope="row">btn-blancoUCR</th>
+                        <td><button class="btn-blancoUCR">Blanco UCR</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">btn-azulUCR</th>
+                        <td><button class="btn-azulUCR">Azul UCR</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">btn-rojoUCR</th>
+                        <td><button class="btn-rojoUCR">Rojo UCR</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">btn-linkUCR</th>
+                        <td class="btn-linkUCR">Link normal</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">azulUCR</th>
+                        <td class="azulUCR">Fondo Azul UCR</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">grisUCR1</th>
+                        <td class="grisUCR1">Fondo gris UCR 1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">grisUCR2</th>
+                        <td class="grisUCR2">Fondo gris UCR 2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">grisUCR3</th>
+                        <td class="grisUCR3">Fondo gris UCR 3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">sortable-container</th>
+                        <td class="sortable-container">Fondo usado en opciones de preguntas de OU (Tiene hover y cambia el cursor)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div class="card card-body">
+            <h3>Agregar nuevos estilos</h3>
+            Para agregar nuevos estilos, se necesita instalar el compilador de SCSS. Se instala con NuGet escribiendo:
+            <code>Install-Package BuildWebCompiler</code>
+            Luego, en el archivo Main.scss, se agregan los las clases con los estilos que se ocupen. Si se quiere heredar el estilo de
+            alguna clase de Bootstrap o de las que ya están, se usa lo siguiente:
+            <code>@@extend .clase</code>
+            Cuando se hacen cambios en este archivo, hay que compilar para que el Main.css se actualice.
+
+        </div>
+    </div>

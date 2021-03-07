@@ -1,0 +1,110 @@
+﻿@model AppIntegrador.Models.AccionDeMejora
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<div class="modal-body">
+    
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        La descripción es obligatoria.
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-horizontal">*@
+        <h4>Acción de mejora @*@Session["id"]  @Session["name"]*@</h4> 
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @*@Html.LabelFor(model => model.nombreObj, htmlAttributes: new { @class = "control-label" })*@
+                    @*@Html.EditorFor(model => model.nombreObj, new { htmlAttributes = new { @class = "form-control", maxlength = "50", placeholder = "Máximo 50 caracteres" } })*@
+                    @Html.TextBoxFor(model => model.nombreObj, new { style = "display:none;", @Value = @Session["name"] })
+                    @Html.ValidationMessageFor(model => model.nombreObj, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fechaInicio, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fechaInicio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    @*@Html.LabelFor(model => model.codPlan, htmlAttributes: new { @class = "control-label" })*@
+                    <div class="row">
+                        <div class="col-md-12">
+                            @*@Html.EditorFor(model => model.codPlan, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.TextBoxFor(model => model.codPlan, new {style = "display:none;", @Value = @Session["id"] })
+                            @Html.ValidationMessageFor(model => model.codPlan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "control-label" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fechaFin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fechaFin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", rows = "4",
+                                                                        maxlength = "250",
+                                                                        style = "resize:vertical",
+                                                                        placeholder = "Máximo 250 caracteres",
+                                                                        @onkeyup = "crearAccionMejora()"})
+                    @*@Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        /*
+         Modificado por: Johan Córdoba
+         Historia a la que pertenece: MOS-1.3 "agregar, modificar, borrar y listar las acciones de mejora de un objetivo"
+         Cambio la funcionalidad del boton para que no refresque toda la vista 
+         y solo cierre el modal. Además esto tambien permite que en las vistas parciales
+         an cancelar la creación de un plan de mejora vuelva a esta vista y no a la de 
+         index de acciones de mejora.
+         
+        */
+        <div class="form-group">
+            <div class="row">
+                <div class="botonCentrado">
+                    <input type="submit" id="crearAccion" value="Crear" class="btn btn-success" disabled="disabled" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    @*@Html.ActionLink("Cancelar", "Index", "PlanDeMejora", null, new { @class = "btn btn-danger" })*@
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+

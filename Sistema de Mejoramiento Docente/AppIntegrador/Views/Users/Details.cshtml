@@ -1,0 +1,157 @@
+﻿@model AppIntegrador.Models.UsuarioPersona
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{AppIntegrador.Utilities.IPerm permissionManager = new AppIntegrador.Utilities.PermissionManager(); }
+<!--Historia de usuario 2.9: ver detalles de un usuario. Se modificó para mostrarlos en una tabla
+    para que el layout sea responsive.-->
+<div class="container">
+    <h2>Detalles</h2>
+
+    <div>
+        <hr />
+        <table class="table table-striped table-responsive-md" cellspacing="0" width="60%">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.TipoIdentificacion)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.TipoIdentificacion)
+                </td>
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Identificacion)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Identificacion)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Correo)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Correo)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.CorreoAlt)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.CorreoAlt)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Nombre1)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Nombre1)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Nombre2)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Nombre2)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Apellido1)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Apellido1)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Estudiante.Carne)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Estudiante.Carne)
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Persona.Usuario.Activo)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Persona.Usuario.Activo)
+                </td>
+
+            </tr>
+
+
+        </table>
+
+
+    </div>
+    <br />
+    <br />
+    <div class="col-md-6 col-centered" style="text-align:center">
+        <!--TAM-3.6-1: Condicional que muestra el botón de editar si el usuario tiene un perfil
+            con permisos de acceder a esa funcionalidad, sino entonces no lo muestra y bloquea los intentos de acceso
+            por otros medios.-->
+        @{if (permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.EDITAR_USUARIOS))
+            {
+
+                <p>
+                    @Html.ActionLink("Editar", "Edit", new
+               {
+                   username = Model.Persona.Correo.Substring(0, Model.Persona.Correo.LastIndexOf('.')),
+                   domain = Model.Persona.Correo.Substring(Model.Persona.Correo.LastIndexOf('.'))
+               },
+                                      new
+                                      {
+                                          @class = "btn-azulUCR"
+                                      }
+
+                      )
+                    @Html.ActionLink("Atrás", "Index", "Index", new { @class = "btn btn-default" })
+                </p>
+            }
+            else
+            {
+                <p>@Html.ActionLink("Atrás", "Index", "Index", new { @class = "btn-blancoUCR" })</p>
+            }
+        }
+    </div>
+</div>

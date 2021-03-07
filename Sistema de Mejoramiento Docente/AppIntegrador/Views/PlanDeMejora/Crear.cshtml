@@ -1,0 +1,145 @@
+﻿@model AppIntegrador.Models.PlanDeMejora
+
+@{
+    ViewBag.Title = "Crear";
+    var llamadoValidarPlan = "manejarFechas('campoFechaInicioPlanMejora', 'campoFechaFinPlanMejora', 'campoNombrePlanMejora', null, null, null, 'CrearPlanBoton', 'campoFechaInicioObjetivo', 'campoFechaFinObjetivo')";
+    var objetivos = (List<AppIntegrador.Models.Objetivo>)ViewBag.ObjetivosCreados;
+}
+<div class="container">
+    @using (Html.BeginForm(null, "PlanDeMejora"))
+    {
+        <div>
+            <div class="card card-body shadow" id="formPlanMejora">
+                @Html.AntiForgeryToken()
+                <h3>Crear plan de mejora</h3>
+                <div id="seccionPlanMejora" class="card card-default shadow">
+                    <div class="card-body grisUCR2">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <h5>@Html.DisplayNameFor(model => model.nombre)</h5>
+                                <div col-lg-10>
+                                    @Html.EditorFor(model => model.nombre, new
+                                    {
+                                        htmlAttributes = new
+                                        {
+                                           @class = "form-control",
+                                           id = "campoNombrePlanMejora",
+                                           @onkeyup = llamadoValidarPlan,
+                                           @maxlength = "50",
+                                           required = "required",
+                                           placeholder = "Nombre del plan"
+                                       }
+                                    })
+                                    <div id="campoNombrePlanMejora_subMsj"
+                                         class="contador small float-right"
+                                         style="height: 40px">
+                                        0/50 caracteres usados
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-3 offset-lg-0">
+                                <h5>@Html.DisplayNameFor(model => model.fechaInicio)</h5>
+                                <div>
+                                    @Html.EditorFor(model => model.fechaInicio, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control",
+                                       id = "campoFechaInicioPlanMejora",
+                                       @onchange = llamadoValidarPlan
+                                   }
+                               }
+)
+                                    <div id="campoFechaInicioPlanMejora_subMsj" class="contador small float-right">Inicio plan de mejora.</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <h5>@Html.DisplayNameFor(model => model.fechaFin)</h5>
+                                <div>
+                                    @Html.EditorFor(model => model.fechaFin, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control",
+                                       id = "campoFechaFinPlanMejora",
+                                       @onchange = llamadoValidarPlan
+                                   }
+                               }
+)
+                                    <div id="campoFechaFinPlanMejora_subMsj" class="contador small float-right">Fin plan de mejora.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <hr />
+                        <h4>Profesores que se asignarán</h4>
+                        <div id="divTablaProfesores">
+                            Aún no se han escogido profesores para el plan.
+                        </div>
+                        <input type="button" value="Añadir profesores" class="btn-azulUCR float-right" id="AgregarProfesoresBoton" onclick="modalGen('#ModalProfesores')" />
+                        <hr>
+
+                        <h4>Formularios que se asignarán</h4>
+                        <div id="divTablaFormularios">
+                            Aún no se han escogido formularios para el plan.
+                        </div>
+                        <input type="button" value="Añadir formularios" class="btn-azulUCR float-right" id="AgregarFormulariosBoton" onclick="modalGen('#ModalFormularios')" />
+                    </div>
+                </div>
+                <br>
+                <div id="seccionObjetivos" class="card card-default shadow">
+                    <div class="card-body grisUCR2">
+                        <h4>Objetivos</h4>
+                        <div id="divTablaObjetivos">
+                            Aún no se han agregado objetivos.
+                        </div>
+                        <input type="button" value="Crear objetivo" class="btn-azulUCR float-right" id="AgregarObjetivoBoton" onclick="modalGen('#ModalObjetivo')" />
+                        <input type="button" value="Asociar a secciones" class="btn btn-azulUCR float-left" id="AsociarSeccionObjetivoTabla" onclick="getSecciones()" hidden disabled />
+                    </div>
+                </div>
+                <br />
+                <div id="seccionAccionesMejora" class="card card-default shadow" hidden>
+                    <div class="card-body grisUCR2">
+                        <h4>Acciones de Mejora</h4>
+                        <div id="divTablaAccionesDeMejora">
+                            Aún no se han agregado acciones de mejora para este objetivo.
+                        </div>
+                        <input type="button" value="Crear accion de mejora" class="btn-azulUCR float-right" id="AgregarAccionMejoraBoton" onclick="modalGen('#ModalAccionMejora')" />
+                        <input type="button" value="Asociar a preguntas" class="btn btn-azulUCR float-left" id="AsociarPreguntaAccionMejoraTabla" onclick="getPreguntas()" hidden disabled />
+                    </div>
+                </div>
+                <br />
+                <div id="seccionAccionables" class="card card-default shadow" hidden>
+                    <div class="card-body grisUCR2">
+                        <h4>Accionables</h4>
+                        <div id="divTablaAccionables">
+                            Aún no se han agregado accionables para esta acción de mejora.
+                        </div>
+                        <input type="button" value="Crear accionable" class="btn-azulUCR float-right" id="AgregarAccionableBoton" onclick="modalGen('#ModalAccionable')" />
+                    </div>
+                </div>
+            </div>
+            <div class="card card-body shadow form-group float-right sticky-bottom">
+                <div>
+                    @*<input type="submit" value="Crear Plan" class="btn-azulUCR" id="CrearPlanBoton" disabled />*@
+                    <input type="button" value="Crear Plan" class="btn-azulUCR" id="CrearPlanBoton" disabled onclick="enviarDatosPlan()" />
+                    @Html.ActionLink("Cancelar", "Index", "PlanDeMejora", new { @class = "btn-blancoUCR" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@{Html.RenderPartial("_ModalAnadirProfesores", Model);}
+@{Html.RenderPartial("_ModalAnadirFormularios", Model);}
+@{Html.RenderPartial("~/Views/Objetivos/_ModalAnadirSecciones.cshtml");}
+@{Html.RenderPartial("~/Views/Objetivos/_ModalAnadirObjetivos.cshtml", new AppIntegrador.Models.Objetivo());}
+@{Html.RenderPartial("~/Views/AccionDeMejora/_ModalAnadirPreguntas.cshtml");}
+@{Html.RenderPartial("~/Views/AccionDeMejora/_ModalAnadirAccionMejora.cshtml", new AppIntegrador.Models.AccionDeMejora());}
+@{Html.RenderPartial("~/Views/Accionables/_ModalAnadirAccionable.cshtml", new AppIntegrador.Models.Accionable());}
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/PlanesDeMejora/CrearPlanDeMejora.js")
+    @Scripts.Render("~/Scripts/PlanesDeMejora/Validator.js")
+}

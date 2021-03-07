@@ -1,0 +1,101 @@
+﻿@* Corresponde a MOS 1.3 (2) *@
+@model AppIntegrador.Models.AccionDeMejora
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = null;
+}
+
+<div class="modal-body">
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Seguro que desea borrar esta acción de mejora. Esta acción es irreversible.
+    </div>
+    @*<div class="alert alert-warning">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            Seguro que desea borrar este objetivo. Esta acción es irreversible.
+        </div>*@
+
+    <div>
+        <h4>Acción de mejora</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.codPlan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.codPlan)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaInicio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fechaInicio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaFin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fechaFin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nombreObj)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombreObj)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+
+
+
+
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.PlantillaObjetivo.nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PlantillaObjetivo.nombre)
+                </dd>*@
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            /*
+             Modificado por: Johan Córdoba
+             Historia a la que pertenece: MOS-1.3 "agregar, modificar, borrar y listar las acciones de mejora de un objetivo"
+             Cambio la funcionalidad del boton para que no refresque toda la vista 
+             y solo cierre el modal. Además esto tambien permite que en las vistas parciales
+             an cancelar la creación de un plan de mejora vuelva a esta vista y no a la de 
+             index de acciones de mejora.
+         
+            */
+            <div class="botonCentrado">
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })*@
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

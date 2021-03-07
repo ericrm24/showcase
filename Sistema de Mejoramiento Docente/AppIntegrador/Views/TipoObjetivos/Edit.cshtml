@@ -1,0 +1,47 @@
+﻿@model AppIntegrador.Models.TipoObjetivo
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+    <div class="container">
+        @using (Html.BeginForm("Edit", "TipoObjetivos"))
+        {
+            <div>
+                @Html.AntiForgeryToken()
+                <div class="card card-body shadow">
+                    <h3>Editar tipo de objetivo</h3>
+                    <div class="card card-default shadow">
+                        <div class="card-body grisUCR2">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <h5>@Html.DisplayNameFor(model => model.nombre)</h5>
+                                    <div col-lg-10>
+                                        @Html.EditorFor(model => model.nombre, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "form-control",
+                                                id = "campoTipoObjetivo",
+                                                @maxlength = "50",
+                                                required = "required",
+                                                placeholder = "Nombre del tipo de objetivo"
+                                            }
+                                        }
+                                        )
+                                        <div id="campoTipoObjetivo_subMsj" class="contador small float-right">50 caracteres máximo </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-body shadow form-group float-right sticky-bottom">
+                    <div>
+                        <input type="submit" id='tipoObjetivoEditado' value="Guardar" class="btn-azulUCR"/>
+                        @Html.ActionLink("Cancelar", "Index", "TipoObjetivos", new { @class = "btn-blancoUCR" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

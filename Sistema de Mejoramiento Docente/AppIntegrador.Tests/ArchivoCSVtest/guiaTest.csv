@@ -1,0 +1,5 @@
+CodigoCarreraCurso, CodigoEnfasisCurso, SiglaCursoCarrera, SiglaCurso, NombreCurso, SiglaCursoGrupo, NumeroGrupo, Semestre, Anno, SiglaCursoMatricula, NumeroGrupoMatricula, SemestreMatricula, AnnoMatricula, CorreoMatricula
+3, E000000001, CI0129, CI0129, Inteligencia Artificial, CI0129,1,2,2019, CI0129,1,2,2019, ismael.gutierrezhidalgo@ucr.ac.cr
+C000000003, E000000001, CI0132, CI0132, Teoría de la Computación, CI0132,1,2,2019, CI0132,1,2,2019, ismael.gutierrezhidalgo@ucr.ac.cr
+C000000003, E000000002, CI0135, CI0135, Interacción Humano Computador, CI0135,2,2,2019, CI0135,2,2,2019, cristian.quesada@ucr.ac.cr
+

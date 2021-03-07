@@ -1,0 +1,191 @@
+﻿@model AppIntegrador.Models.CrearFormularioModel
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+@{
+    ViewBag.Title = Model.Creado ? "Edit" : "Create";
+}
+
+@*<form id="__AjaxAntiForgeryForm" action="#" method="post"><%= Html.AntiForgeryToken()%></form>*@
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+    <div>
+        @Html.AntiForgeryToken()
+
+        @Html.Hidden("formularioCreado", null, new { @id = "formularioCreado", @Value = @Model.Creado ? "1" : "0" })
+        @Html.Hidden("formulario.Codigo", null, new { @id = "codigoViejo" })
+        @*RIP CF5: Creación de un tabla para organizar la información*@
+        <div class="card card-body shadow">
+            <h3 id="titulo">@(Model.Creado ? "Editar" : "Crear") Formulario</h3>
+            @*Acomodar el código y el nombre en el mismo nivel*@
+            <div class="card card-default shadow">
+                <div class="card-body grisUCR2">
+                    <div class="row">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group col-lg-2">
+                            <div>
+                                @Html.EditorFor(model => model.Formulario.Codigo, new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @class = "validar-agregar-secciones form-control",
+                                   id = "textCode",
+                                   name = "CodigoNuevo",
+                                   @maxlength = "8",
+                                   required = "required",
+                                   placeholder = "Código",
+                                   rows = "5",
+                                   @onkeyup = "contarCaracteres(this)",
+                                   @title = "Código requerido",
+                                   @Value = Model.Formulario.Codigo,
+                                   @onfocusout = "ValidarCodigo()",
+                                   @onkeydown = "CambiosSinGuardar()"
+                               }
+                           })
+                                <div class="contador small float-right">0/8 caracteres usados</div>
+                                <label id="validacion-codigo" style="color: red;"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-10">
+                            <div class="">
+                                <form accept-charset="UTF-8" action="" method="POST">
+                                    @Html.EditorFor(model => model.Formulario.Nombre, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "validar-agregar-secciones form-control",
+                                       id = "textName",
+                                       name = "formulario.Nombre",
+                                       @maxlength = "250",
+                                       required = "required",
+                                       placeholder = "Nombre del formulario",
+                                       rows = "5",
+                                       @onkeyup = "contarCaracteres(this)",
+                                       @title = "Nombre del formulario requerido",
+                                       @Value = Model.Formulario.Nombre,
+                                       @onfocusout = "ValidarCodigo()",
+                                       @onkeydown = "CambiosSinGuardar()"
+                                   }
+                               })
+
+                                    <div class="contador small float-right">0/250 caracteres usados</div>
+                                    @Html.ValidationMessageFor(model => model.Formulario.Nombre, "", new { @style = "color:red" })
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="secciones" class="card card-default shadow">
+                @*Espacio donde se despliegan las secciones ya agregadas al formulario*@
+                <div class="card-body grisUCR2  ">
+                    <h3>Secciones del formulario</h3>
+                    <hr />
+                    <div class="form-group col-md-12" id="seccionesActuales">
+                        @if (Model.seccionesConPreguntas != null)
+                        {
+                            Html.RenderPartial("../Seccion/SeccionConPreguntas", Model.seccionesConPreguntas);
+                        }
+                        else
+                        {
+                            <div style="text-align:center;font-size:large;">Aún no ha agregado secciones</div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <div class="">
+                            @*Posibilidad de agregar sección*@
+                            <input type="button" value="Agregar secciones" class="btn-azulUCR float-right" id="AgregarSeccion" onclick="AbrirSeccionesModal()" />
+                        </div>
+                    </div>
+                    <div class="form-horizontal card-group">
+                        <div class="modal fade" id="ExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="BancoDeSecciones">
+                                            <div id="ModalAgregarSecciones" style="width:auto">
+                                                @{Html.RenderPartial("/Views/Seccion/_SeccionPartial.cshtml", Model.seccion);}
+                                            </div>
+                                            <input type="button" class="btn-linkUCR float-right CrearSeccionModal" value="Crear Sección" />
+                                        </div>
+                                        <div id="ModalCrearSeccion">
+                                            @{Html.RenderPartial("/Views/Seccion/_CreateSeccionPartial.cshtml", Model.crearSeccionModel);}
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn-azulUCR " onclick="addSeccionToFormulario()" data-dismiss="modal">Agregar secciones seleccionadas</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="card card-body shadow form-group float-right sticky-bottom">
+            <div id="cambiosGuardados">
+                Cambios sin guardar
+            </div>
+            <hr/>
+            <div>
+                @Html.ActionLink("Volver al banco de formularios", "Index", null, new { @class = "btn-blancoUCR" })
+                @*@Html.ActionLink("Crear otro formulario", "Create", null, new { @class = "btn-blancoUCR" })
+                *@
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<style>
+    .error {
+        border: 1px solid red;
+    }
+</style>
+
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/jqueryval/")*@
+
+    <script src="~/Scripts/Formularios/almacenador.js"></script>
+    <script src="~/Scripts/Formularios/ContadorCaracteres.js"></script>
+    <script src="~/Scripts/Formularios/agregarsecciones.js"></script>
+    <script src="~/Scripts/Formularios/AgregarPreguntas.js"></script>
+    <script src="~/Scripts/Formularios/DesactivarBotonCrear.js"></script>
+    <script src="~/Scripts/Formularios/FormulariosModal.js"></script>
+    <script src="~/Scripts/Formularios/CrearFormulario.js"></script>
+    <script src="~/Scripts/Formularios/CrearPreguntasModal.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/creacionpregunta.js"></script>
+    <script src="~/Scripts/Formularios/DesactivarBotonCrear.js"></script>
+    <script src="~/Scripts/Formularios/CargarPreguntas.js"></script>
+    <script src="~/Scripts/Formularios/CrearPreguntas.js"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            agregarsecciones.init();
+            agregarPreguntas.init();
+            DesactivarSeccionesAgregadas();
+            //validarEntradasAgregarSecciones();
+        });
+
+    </script>
+
+    <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+}

@@ -1,0 +1,87 @@
+﻿
+@model AppIntegrador.Models.CrearSeccionModel
+
+@{
+    ViewBag.Title = "Crear sección";
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <td style="width:36%">
+
+                <h2>Crear Sección</h2>
+                <div class="form-horizontal card-group">
+
+                    <div class="card card-default">
+
+                        <div class="card-body grisUCR2">
+                            <div class="form-horizontal row">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group col-lg-5">
+                                    <div>
+                                        @Html.EditorFor(model => model.Seccion.Codigo, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "validar-crear-seccion form-control",
+                                                id = "sectionCode",
+                                                name = "sectionCode",
+                                                @maxlength = "8",
+                                                required = "required",
+                                                placeholder = "Código",
+                                                rows = "5",
+                                                @onkeyup = "contarCaracteres(this)",
+                                                @title = "Código requerido"
+                                            }
+                                        })
+                                        <div class="contador small float-right">0/8 caracteres usados</div>
+                                        <label id="validacion-codigo-seccion" style="color: red;"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-7">
+                                    <div>
+                                        <form accept-charset="UTF-8" action="" method="POST">
+                                            @Html.EditorFor(model => model.Seccion.Nombre, new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "validar-crear-seccion form-control",
+                                                    id = "sectionName",
+                                                    name = "sectionName",
+                                                    @maxlength = "250",
+                                                    required = "required",
+                                                    placeholder = "Nombre de la sección",
+                                                    rows = "5",
+                                                    @onkeyup = "contarCaracteres(this)",
+                                                    @title = "Nombre de la sección requerido"
+                                                }
+                                            })
+
+                                            <div class="contador small float-right">0/250 caracteres usados</div>
+                                            @Html.ValidationMessageFor(model => model.Seccion.Nombre, "", new { @style = "color:red" })
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row float-right">
+                                <div>
+                                    <input type="button" value="Regresar al banco de Secciones" class="btn-blancoUCR" onclick="CerrarCrearSeccion()" />
+                                    <input type="button" value="Guardar" class="btn-azulUCR" onclick="GuardarSeccion()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+
+        </tr>
+    </table>
+}

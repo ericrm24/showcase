@@ -1,0 +1,14 @@
+﻿@model AppIntegrador.Models.Pregunta
+
+@{
+    ViewBag.Title = "Vista previa";
+}
+
+<div class="container">
+    <h4>Vista previa de la pregunta @Model.Codigo</h4>
+    <div class="card card-body">
+        @Html.Action("TodasLasPreguntas", "Preguntas", Model.Codigo)
+    </div>
+</div>
+
+

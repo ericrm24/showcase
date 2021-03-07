@@ -1,0 +1,106 @@
+﻿@model IEnumerable<AppIntegrador.Models.Objetivo>
+
+@*
+    Creado por: Johan Córdoba
+    Historia a la que pertenece: MOS-25 "como usuario quiero tener una interfaz que muestre de forma clara las jerarquías entre las distintas partes del subsistema de creación de planes de mejora"
+    Vista parcial de los objetvos de un plan de mejora, lista todos los objetivos del plan y sus opciones
+*@
+
+
+
+@*
+    Modificado por: Johan Córdoba
+    Historia a la que pertenece: MOS-1.2 "agregar, modificar, borrar y consultar los objetivos de un plan de mejora"
+    Cambio para que se adapte a la vista parcial de planes de mejoras.
+*@
+@{
+    var numObj = 1;
+    ViewBag.EnableBS4NoNavBar = true;
+}
+
+
+@if (Model.Count() == 0)
+{
+    <div class="centeredText">
+        <p>
+            Aún no se han creado objetivos en este Plan de Mejora.
+        </p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <colgroup>
+            <col class="TablasNumero">
+            <col class="TablasNombre">
+            <col class="TablasNombre">
+            <col class="TablasFecha">
+            <col class="TablasFecha">
+            <col class="TablasOpciones">
+        </colgroup>
+
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoObjetivo)
+                </th>
+                <th>
+                    Opciones
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var obj in Model)
+        {
+            <tbody id="dataOb">
+                <tr class="FilaTablasPlanesDeMejora" onclick="clickObjetivo(@numObj ,@obj.codPlan, `@obj.nombre`, `@obj.fechaInicio`, `@obj.fechaFin`);">
+                    <td>
+                        @numObj
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.fechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.fechaFin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.TipoObjetivo)
+                    </td>
+                    <td>
+                        <div>
+                            @*@Html.ActionLink("Editar", "Edit", "Objetivos", new { plan = obj.codPlan, title = obj.nombre }, new { @class = "modal-link btn-blancoUCR" })*@
+                            @*@Html.Partial("~/Views/Objetivos/_EditPartialModal.cshtml", obj, new ViewDataDictionary { { "objectiveNumber", numObj } })*@
+
+                            @*@Html.ActionLink("Borrar", "Delete", "Objetivos", new { plan = obj.codPlan, title = obj.nombre }, new { @class = "modal-link btn-rojoUCR" })*@
+                            @Html.Partial("~/Views/Objetivos/_DeletePartialModal.cshtml", obj, new ViewDataDictionary { { "objectiveNumber", numObj } })
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            numObj++;
+        }
+
+    </table>
+}

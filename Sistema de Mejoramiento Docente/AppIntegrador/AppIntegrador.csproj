@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34B30C1F-56DC-4CB5-BBE5-080CC95A977D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppIntegrador</RootNamespace>
+    <AssemblyName>AppIntegrador</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44334</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeFirstStoreFunctions, Version=1.2.0.0, Culture=neutral, PublicKeyToken=46c4868af4307d2c, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.CodeFirstStoreFunctions.1.2.0\lib\net45\CodeFirstStoreFunctions.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.1.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.3.1.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="LINQtoCSV, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\LINQtoCSV.1.5.0.0\lib\net35\LINQtoCSV.dll</HintPath>
+    </Reference>
+    <Reference Include="LINQtoCSV.Excel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\LINQtoCSV.Excel.1.0.1\lib\net452\LINQtoCSV.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.13.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>packages\Moq.4.13.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccionablesController.cs" />
+    <Compile Include="Controllers\AccionDeMejoraController.cs" />
+    <Compile Include="Controllers\ActivaFormularioController.cs" />
+    <Compile Include="Controllers\AsignacionFormulariosController.cs" />
+    <Compile Include="Controllers\CSVController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EnlaceSeguroController.cs" />
+    <Compile Include="Controllers\FormulariosController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LlenarFormularioController.cs" />
+    <Compile Include="Controllers\ObjetivosController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
+    <Compile Include="Controllers\PlanDeMejoraController.cs" />
+    <Compile Include="Controllers\PlanesDeMejoraBI\PlanDeMejoraBI.cs" />
+    <Compile Include="Controllers\PlanesDeMejoraBI\PlanesDeMejoraUtil.cs" />
+    <Compile Include="Controllers\PreguntaConOpcionesDeSeleccionController.cs" />
+    <Compile Include="Controllers\PreguntasController.cs" />
+    <Compile Include="Controllers\SeccionController.cs" />
+    <Compile Include="Controllers\ResultadosFormularioController.cs" />
+    <Compile Include="Controllers\TipoObjetivosController.cs" />
+    <Compile Include="Controllers\Validador.cs" />
+    <Compile Include="Controllers\ValidadorGuia.cs" />
+    <Compile Include="Controllers\ValidadorListaClase.cs" />
+    <Compile Include="Controllers\ValidadorListaDeEstudiantes.cs" />
+    <Compile Include="Controllers\ValidadorListaFuncionarios.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Comparador.cs" />
+    <Compile Include="Helpers\GoogleCaptchaHelper.cs" />
+    <Compile Include="Helpers\InvalidGoogleCaptchaLabel.cs" />
+    <Compile Include="Helpers\SiteSettings.cs" />
+    <Compile Include="Helpers\ValidateGoogleCaptchaAttribute.cs" />
+    <Compile Include="Models\Accionable.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccionableEscala.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccionablePorcentaje.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccionableSiNo.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccionDeMejora.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activa_por.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carrera.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CarrerasEnfasisFiltros.cs" />
+    <Compile Include="Models\CarrerasXPerfilXUsuario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CarrerasYEnfasisXUsuarioXPerfil_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\ConfigViewHolder.cs" />
+    <Compile Include="Models\Curso.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__RefactorLog.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataIntegradorModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataIntegradorModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataIntegradorModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataIntegradorModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataIntegradorModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enfasis.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EnfasisXCarreraXPerfil_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EnfasisXCarrera_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EnlaceSeguro.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Escalar.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estudiante.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FechasSolapadasInfo.cs" />
+    <Compile Include="Models\FiltrosModelContext.cs" />
+    <Compile Include="Models\Formulario.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormularioAsignado.cs" />
+    <Compile Include="Models\Formulario_tiene_seccion.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Funcionario.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getPlanFull_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grupo.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GruposFiltros.cs" />
+    <Compile Include="Models\GruposXPerfilXUsuario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GuiaHorario.cs" />
+    <Compile Include="Models\ListaClase.cs" />
+    <Compile Include="Models\ListaEstudiante.cs" />
+    <Compile Include="Models\ListaFuncionario.cs" />
+    <Compile Include="Models\Metadata\AccionableMetadata.cs" />
+    <Compile Include="Models\Metadata\EstudianteMetadata.cs" />
+    <Compile Include="Models\Metadata\PermisoMetadata.cs" />
+    <Compile Include="Models\Metadata\PersonaMetadata.cs" />
+    <Compile Include="Models\Metadata\RelacionesPlanesFormularios\AccionPregunta.cs" />
+    <Compile Include="Models\Metadata\RelacionesPlanesFormularios\ObjetivoSeccion.cs" />
+    <Compile Include="Models\Metadata\RelacionesPlanesFormularios\PlanFormulario.cs" />
+    <Compile Include="Models\MisFormulariosModel.cs" />
+    <Compile Include="Models\Objetivo.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerCarrerasEnfasisFiltros_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerCarrerasEnfasisGrupo_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerCarrerasEnfasisProfesor_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerCarrerasEnfasisUA_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerEstudiantesAsociadosAFormulario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerEstudiantesAsociados_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosCarreraEnfasis_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosDeEstudiante_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosFiltros_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosGrupo_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosParaAsociar_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosPorSemestre_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosProfesor_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerFormulariosUA_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerGruposAsociados_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerGruposCarreraEnfasis_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerGruposFiltros_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerGruposProfesor_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerGruposUA_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerOpcionesDePregunta_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerOpcionesSeleccionadas_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerPreguntasDeSeccion_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerProfesoresCarreraEnfasis_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerProfesoresFiltros_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerProfesoresGrupo_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerProfesoresUA_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerRespuestaLibreGuardada_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerRespuestasAFormulario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerRespuestasAPreguntaConOpciones_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerSeccionesDeFormulario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerUAsCarreraEnfasis_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerUAsFiltros_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerUAsGrupo_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ObtenerUAsProfesor_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Opciones_de_seleccion.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Opciones_seleccionadas_respuesta_con_opciones.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Perfil.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PerfilesXUsuario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PerfilPermiso.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Periodo_activa_por.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Permiso.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Persona.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanDeMejora.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanMejora.cs" />
+    <Compile Include="Models\PlantillaAccionDeMejora.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlantillaObjetivo.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pregunta.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pregunta_con_opciones.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pregunta_con_opciones_de_seleccion.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pregunta_con_respuesta_libre.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Profesor.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProfesoresFiltros.cs" />
+    <Compile Include="Models\FormulariosFiltros.cs" />
+    <Compile Include="Models\PermissionManagerViewBuilder.cs" />
+    <Compile Include="Models\PermissionsViewHolder.cs" />
+    <Compile Include="Models\PersonProfileViewHolder.cs" />
+    <Compile Include="Models\ProfesoresXUsuarioXPerfil_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProfilePermissionViewHolder.cs" />
+    <Compile Include="Models\Responde_respuesta_con_opciones.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Responde_respuesta_libre.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Respuestas_a_formulario.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seccion.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seccion_tiene_pregunta.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Si_no_nr.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoObjetivo.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UAsFiltros.cs" />
+    <Compile Include="Models\UAXPerfilXUsuario_Result.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UnidadAcademica.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioActual.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioPerfil.cs">
+      <DependentUpon>DataIntegradorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioPersona.cs" />
+    <Compile Include="Models\CrearFormularioModel.cs" />
+    <Compile Include="Models\CrearSeccionModel.cs" />
+    <Compile Include="Models\Metadata\AccionDeMejoraMetadata.cs" />
+    <Compile Include="Models\Metadata\ObjetivoMetadata.cs" />
+    <Compile Include="Models\Metadata\PlanDeMejoraMetadata.cs" />
+    <Compile Include="Models\LlenarFormulario.cs" />
+    <Compile Include="Models\PreguntaConNumeroSeccion.cs" />
+    <Compile Include="Models\Metadata\PlantillaObjetivoMetadata.cs" />
+    <Compile Include="Models\Metadata\TipoObjetivoMetadata.cs" />
+    <Compile Include="Models\PartialClasses.cs" />
+    <Compile Include="Models\ResponsableDe.cs" />
+    <Compile Include="Models\ResultadosFormularioModel.cs" />
+    <Compile Include="Models\SeccionConPreguntas.cs" />
+    <Compile Include="Models\TodasLasPreguntas.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Utilities\EmailNotification.cs" />
+    <Compile Include="Utilities\FormsAuth.cs" />
+    <Compile Include="Utilities\IAuth.cs" />
+    <Compile Include="Utilities\IPerm.cs" />
+    <Compile Include="Utilities\PermissionManager.cs" />
+    <Compile Include="Utilities\ProfilePicture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Email\EmailFooterTemplate.htm" />
+    <Content Include="Content\Email\EmailHeaderTemplate.htm" />
+    <Content Include="Content\images\defaultuser.png" />
+    <Content Include="Content\images\firma.png" />
+    <Content Include="Content\images\logo_ucr.png" />
+    <Content Include="Content\Navbar\navbar.css" />
+    <Content Include="Content\PlanDeMejora\mainPlanesDeMejora.css" />
+    <Content Include="Content\PlanDeMejora\planesDeMejoraStructureStyles.css" />
+    <Content Include="Content\Plugins\animate.css" />
+    <Content Include="Content\Visualizacion\texto_abierto_icono.png" />
+    <Content Include="Content\Visualizacion\multiselect.css" />
+    <Content Include="Models\DataIntegradorModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataIntegradorModel.edmx</DependentUpon>
+      <LastGenOutput>DataIntegradorModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DataIntegradorModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataIntegradorModel.edmx</DependentUpon>
+      <LastGenOutput>DataIntegradorModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\Formularios\almacenador.js" />
+    <Content Include="Scripts\Formularios\filtrosAsignacion.js" />
+    <Content Include="Scripts\PlanesDeMejora\CrearPlanDeMejora.js" />
+    <Content Include="Scripts\PlanesDeMejora\Validator.js" />
+    <Content Include="Scripts\UsuariosYPerfiles\bootstrap-select-min.js" />
+    <Content Include="Content\UsuariosYPerfiles\login.css" />
+    <Content Include="Content\UsuariosYPerfiles\Perfiles.css" />
+    <Content Include="Content\Visualizacion\bootstrap-multiselect.css" />
+    <Content Include="Content\Visualizacion\bootstrap.min.css" />
+    <Content Include="Content\Visualizacion\styles.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Index.cshtml" />
+    <Content Include="Content\BootstrapSccs\bootstrap-grid.scss" />
+    <Content Include="Content\BootstrapSccs\bootstrap-reboot.scss" />
+    <Content Include="Content\BootstrapSccs\bootstrap.scss" />
+    <Content Include="Content\BootstrapSccs\_alert.scss" />
+    <Content Include="Content\BootstrapSccs\_badge.scss" />
+    <Content Include="Content\BootstrapSccs\_breadcrumb.scss" />
+    <Content Include="Content\BootstrapSccs\_button-group.scss" />
+    <Content Include="Content\BootstrapSccs\_buttons.scss" />
+    <Content Include="Content\BootstrapSccs\_card.scss" />
+    <Content Include="Content\BootstrapSccs\_carousel.scss" />
+    <Content Include="Content\BootstrapSccs\_close.scss" />
+    <Content Include="Content\BootstrapSccs\_code.scss" />
+    <Content Include="Content\BootstrapSccs\_custom-forms.scss" />
+    <Content Include="Content\BootstrapSccs\_dropdown.scss" />
+    <Content Include="Content\BootstrapSccs\_forms.scss" />
+    <Content Include="Content\BootstrapSccs\_functions.scss" />
+    <Content Include="Content\BootstrapSccs\_grid.scss" />
+    <Content Include="Content\BootstrapSccs\_images.scss" />
+    <Content Include="Content\BootstrapSccs\_input-group.scss" />
+    <Content Include="Content\BootstrapSccs\_jumbotron.scss" />
+    <Content Include="Content\BootstrapSccs\_list-group.scss" />
+    <Content Include="Content\BootstrapSccs\_media.scss" />
+    <Content Include="Content\BootstrapSccs\_mixins.scss" />
+    <Content Include="Content\BootstrapSccs\_modal.scss" />
+    <Content Include="Content\BootstrapSccs\_nav.scss" />
+    <Content Include="Content\BootstrapSccs\_navbar.scss" />
+    <Content Include="Content\BootstrapSccs\_pagination.scss" />
+    <Content Include="Content\BootstrapSccs\_popover.scss" />
+    <Content Include="Content\BootstrapSccs\_print.scss" />
+    <Content Include="Content\BootstrapSccs\_progress.scss" />
+    <Content Include="Content\BootstrapSccs\_reboot.scss" />
+    <Content Include="Content\BootstrapSccs\_root.scss" />
+    <Content Include="Content\BootstrapSccs\_spinners.scss" />
+    <Content Include="Content\BootstrapSccs\_tables.scss" />
+    <Content Include="Content\BootstrapSccs\_toasts.scss" />
+    <Content Include="Content\BootstrapSccs\_tooltip.scss" />
+    <Content Include="Content\BootstrapSccs\_transitions.scss" />
+    <Content Include="Content\BootstrapSccs\_type.scss" />
+    <Content Include="Content\BootstrapSccs\_utilities.scss" />
+    <Content Include="Content\BootstrapSccs\_variables.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_alert.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_background-variant.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_badge.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_border-radius.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_box-shadow.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_breakpoints.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_buttons.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_caret.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_clearfix.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_deprecate.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_float.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_forms.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_gradients.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_grid-framework.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_grid.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_hover.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_image.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_list-group.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_lists.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_nav-divider.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_pagination.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_reset-text.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_resize.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_screen-reader.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_size.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_table-row.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_text-emphasis.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_text-hide.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_text-truncate.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_transition.scss" />
+    <Content Include="Content\BootstrapSccs\mixins\_visibility.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_align.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_background.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_borders.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_clearfix.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_display.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_embed.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_flex.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_float.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_overflow.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_position.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_screenreaders.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_shadows.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_sizing.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_spacing.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_stretched-link.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_text.scss" />
+    <Content Include="Content\BootstrapSccs\utilities\_visibility.scss" />
+    <Content Include="Content\BootstrapSccs\vendor\_rfs.scss" />
+    <Content Include="compilerconfig.json" />
+    <Content Include="Content\Main.scss" />
+    <Content Include="Scripts\bootstrap4.3.min.js" />
+    <Content Include="Scripts\creacionpregunta.js" />
+    <Content Include="Scripts\Formularios\AgregarPreguntas.js" />
+    <Content Include="Scripts\Formularios\agregarrespuestas.js" />
+    <Content Include="Scripts\Formularios\agregarsecciones.js" />
+    <Content Include="Scripts\Formularios\CargarPreguntas.js" />
+    <Content Include="Scripts\Formularios\ContadorCaracteres.js" />
+    <Content Include="Scripts\Formularios\CrearFormulario.js" />
+    <Content Include="Scripts\Formularios\CrearPreguntas.js" />
+    <Content Include="Estudiantes\archivo.csv" />
+    <EntityDeploy Include="Models\DataIntegradorModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataIntegradorModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataIntegradorModel.edmx.diagram">
+      <DependentUpon>DataIntegradorModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Formularios\CrearPreguntasModal.js" />
+    <Content Include="Scripts\Formularios\FormulariosModal.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\Plugins\bootstrap-notify.js" />
+    <Content Include="Scripts\Plugins\jquery.dirrty.js" />
+    <Content Include="Scripts\Plugins\sweetalert2.all.js" />
+    <Content Include="Scripts\UsuariosYPerfiles\alertsHandler.js" />
+    <Content Include="Scripts\UsuariosYPerfiles\dirrtyUsers.js" />
+    <Content Include="Scripts\UsuariosYPerfiles\login.js" />
+    <Content Include="Scripts\Formularios\DesactivarBotonCrear.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Visualizacion\baseRespuestasPlantilla.js" />
+    <Content Include="Scripts\Visualizacion\bootstrap-multiselect.js" />
+    <Content Include="Scripts\Visualizacion\bootstrap.min.js" />
+    <Content Include="Scripts\Visualizacion\botones.js" />
+    <Content Include="Scripts\Visualizacion\Chart.js" />
+    <Content Include="Scripts\Visualizacion\chartjs-plugin-datalabels.js" />
+    <Content Include="Scripts\Visualizacion\chroma.js" />
+    <Content Include="Scripts\CSVuploader.js" />
+    <Content Include="Scripts\Visualizacion\estadisticas.js" />
+    <Content Include="Scripts\Visualizacion\filtros.js" />
+    <Content Include="Scripts\Visualizacion\font-awesome.js" />
+    <Content Include="Scripts\Visualizacion\graficos.js" />
+    <Content Include="Scripts\Visualizacion\graficosDashboard.js" />
+    <Content Include="Scripts\Visualizacion\insertaContenidos.js" />
+    <Content Include="Scripts\Visualizacion\popper.min.js" />
+    <Content Include="Scripts\Visualizacion\textoLibre.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\Create.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\Delete.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\Details.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\Edit.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\Index.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\OpcionesDeSeleccion.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\PlanDeMejora\Index.cshtml" />
+    <Content Include="Views\ResultadosFormulario\ResultadosFormulario.cshtml" />
+    <Content Include="Views\Formularios\Create.cshtml" />
+    <Content Include="Views\Formularios\Delete.cshtml" />
+    <Content Include="Views\Formularios\Details.cshtml" />
+    <Content Include="Views\Formularios\Edit.cshtml" />
+    <Content Include="Views\Formularios\Index.cshtml" />
+    <Content Include="Views\LlenarFormulario\LlenarFormulario.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Seccion\Create.cshtml" />
+    <Content Include="Views\Seccion\Delete.cshtml" />
+    <Content Include="Views\Seccion\VistaPrevia.cshtml" />
+    <Content Include="Views\Seccion\Edit.cshtml" />
+    <Content Include="Views\Seccion\Index.cshtml" />
+    <Content Include="Views\ResponderPreguntas\PreguntaConOpciones.cshtml" />
+    <Content Include="Views\Seccion\SeccionConPreguntas.cshtml" />
+    <Content Include="Views\ResponderPreguntas\TodasLasPreguntas.cshtml" />
+    <Content Include="Views\Seccion\_SeccionPartial.cshtml" />
+    <Content Include="Views\PreguntaConOpcionesDeSeleccion\_IndexPartial.cshtml" />
+    <Content Include="Views\Objetivos\Create.cshtml" />
+    <Content Include="Views\Objetivos\Delete.cshtml" />
+    <Content Include="Views\Objetivos\Details.cshtml" />
+    <Content Include="Views\Objetivos\Edit.cshtml" />
+    <Content Include="Views\Objetivos\Index.cshtml" />
+    <Content Include="Views\Objetivos\_crearObjetivo.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Scripts\Visualizacion\jquery-3.4.1.min.js" />
+    <Content Include="Views\AccionDeMejora\Delete.cshtml" />
+    <Content Include="Views\AccionDeMejora\Edit.cshtml" />
+    <Content Include="Views\AccionDeMejora\Index.cshtml" />
+    <Content Include="Views\AccionDeMejora\_createAccionDeMejora.cshtml" />
+    <Content Include="Views\Home\PasswordReset.cshtml" />
+    <Content Include="Views\Objetivos\_TablaObjetivos.cshtml" />
+    <Content Include="Views\PlanDeMejora\_borrarPlanDeMejora.cshtml" />
+    <Content Include="Views\PlanDeMejora\_tablaPlanesDeMejora.cshtml" />
+    <Content Include="Views\Preguntas\Create.cshtml" />
+    <Content Include="Views\Preguntas\PreguntaConOpciones.cshtml" />
+    <Content Include="Views\Preguntas\OpcionesDeSeleccion.cshtml" />
+    <Content Include="Views\ResponderPreguntas\PreguntaSiNoNr.cshtml" />
+    <Content Include="Views\Preguntas\PreguntaSiNo.cshtml" />
+    <Content Include="Views\Preguntas\RespuestaLibre.cshtml" />
+    <Content Include="Views\Preguntas\Estilos.cshtml" />
+    <Content Include="Views\ResponderPreguntas\RespuestaLibre.cshtml" />
+    <Content Include="Views\ResponderPreguntas\PreguntaEscalar.cshtml" />
+    <Content Include="Views\ResponderPreguntas\PreguntaSeleccionMultiple.cshtml" />
+    <Content Include="Views\Seccion\_CreateSeccionPartial.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\Home\CambiarContrasenna.cshtml" />
+    <Content Include="Views\Preguntas\PreguntaEscalar.cshtml" />
+    <Content Include="Views\Permissions\SeleccionarPerfil.cshtml" />
+    <Content Include="Views\Accionables\Delete.cshtml" />
+    <Content Include="Views\Accionables\Details.cshtml" />
+    <Content Include="Views\Accionables\Edit.cshtml" />
+    <Content Include="Views\Accionables\Index.cshtml" />
+    <Content Include="Views\Accionables\_Create.cshtml" />
+    <Content Include="Views\Accionables\_Tabla.cshtml" />
+    <Content Include="Views\AccionDeMejora\_accionesDeUnObjetivo.cshtml" />
+    <Content Include="Views\AccionDeMejora\_crearAccionDeMejora.cshtml" />
+    <Content Include="Views\Objetivos\_EditPartialModal.cshtml" />
+    <Content Include="Views\PlanDeMejora\_objetivosDelPlan.cshtml" />
+    <Content Include="Views\TipoObjetivos\Create.cshtml" />
+    <Content Include="Views\TipoObjetivos\Edit.cshtml" />
+    <Content Include="Views\Objetivos\_EditPartialModal.cshtml" />
+    <Content Include="Views\Objetivos\_DeletePartialModal.cshtml" />
+    <Content Include="Views\AccionDeMejora\_deleteModal.cshtml" />
+    <Content Include="Views\Accionables\_deleteModal.cshtml" />
+    <Content Include="Views\PlanDeMejora\DetallesPlanDeMejora.cshtml" />
+    <Content Include="Views\Objetivos\_listarObjetivos.cshtml" />
+    <Content Include="Views\AccionDeMejora\_listarAcciones.cshtml" />
+    <Content Include="Views\Accionables\_listarAccionables.cshtml" />
+    <Content Include="Views\CSV\Index.cshtml" />
+    <Content Include="Views\Preguntas\VistaPrevia.cshtml" />
+    <Content Include="Views\LlenarFormulario\VistaPrevia.cshtml" />
+    <Content Include="Views\ActivaFormulario\Create.cshtml" />
+    <Content Include="Views\ActivaFormulario\Delete.cshtml" />
+    <Content Include="Views\ActivaFormulario\Details.cshtml" />
+    <Content Include="Views\ActivaFormulario\Edit.cshtml" />
+    <Content Include="Views\ActivaFormulario\Index.cshtml" />
+    <Content Include="Views\PlanDeMejora\Crear.cshtml" />
+    <Content Include="Views\PlanDeMejora\_AnadirProfesores.cshtml" />
+    <Content Include="Views\PlanDeMejora\_TablaProfesores.cshtml" />
+    <Content Include="Views\PlanDeMejora\_AnadirFormularios.cshtml" />
+    <Content Include="Views\PlanDeMejora\_TablaFormularios.cshtml" />
+    <Content Include="Views\PlanDeMejora\_ModalAnadirProfesores.cshtml" />
+    <Content Include="Views\PlanDeMejora\_ModalAnadirFormularios.cshtml" />
+    <Content Include="Views\Objetivos\_ModalAnadirObjetivos.cshtml" />
+    <Content Include="Views\TipoObjetivos\Index.cshtml" />
+    <Content Include="Views\EnlaceSeguro\RedireccionSegura.cshtml" />
+    <Content Include="Views\AccionDeMejora\_ModalAnadirAccionMejora.cshtml" />
+    <Content Include="Views\Accionables\_ModalAnadirAccionable.cshtml" />
+    <Content Include="Views\AccionDeMejora\_TablaAccionMejora.cshtml" />
+    <Content Include="Views\Accionables\_TablaAccionables.cshtml" />
+    <Content Include="Views\Objetivos\_ModalAnadirSecciones.cshtml" />
+    <Content Include="Views\Objetivos\_AnadirSecciones.cshtml" />
+    <Content Include="Views\LlenarFormulario\MisFormularios.cshtml" />
+    <Content Include="Views\AsignacionFormularios\Index.cshtml" />
+    <Content Include="Views\CSV\Clase.cshtml" />
+    <Content Include="Views\CSV\GuiaHorarios.cshtml" />
+    <Content Include="Views\CSV\Funcionarios.cshtml" />
+    <Content Include="Views\Preguntas\Index.cshtml" />
+    <Content Include="Views\Home\ReestablecerContrasenna.cshtml" />
+    <Content Include="Views\AccionDeMejora\_ModalAnadirPreguntas.cshtml" />
+    <Content Include="Views\AccionDeMejora\_AnadirPreguntas.cshtml" />
+    <Content Include="Views\Objetivos\_TablaObjetivosLista.cshtml" />
+    <Content Include="Views\PlanDeMejora\_ModalListaProfesores.cshtml" />
+    <Content Include="Views\PlanDeMejora\_ModalListaFormularios.cshtml" />
+    <Content Include="Views\Objetivos\_ModalSeccionesLista.cshtml" />
+    <Content Include="Views\Objetivos\_ListaSecciones.cshtml" />
+    <Content Include="Views\AccionDeMejora\_ListaPreguntas.cshtml" />
+    <Content Include="Views\AccionDeMejora\_ModalPreguntasLista.cshtml" />
+    <Content Include="Views\PlanDeMejora\_ModalListaProfesoresDeUnPlan.cshtml" />
+    <Content Include="Views\PlanDeMejora\_ModalListaFormularioDeUnPlan.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Funcionarios\" />
+    <Folder Include="Guias Horario\" />
+    <Folder Include="Listas de Clase\" />
+    <Folder Include="Views\VistaPreviaFormularios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55515</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44334/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+    <Error Condition="!Exists('packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets" Condition="Exists('packages\BuildWebCompiler.1.12.405\build\BuildWebCompiler.targets')" />
+  <Import Project="packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

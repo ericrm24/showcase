@@ -1,0 +1,49 @@
+﻿@model AppIntegrador.Models.LlenarFormulario
+
+@{
+    ViewBag.Title = "Llenar formulario";
+}
+    <div class="container">
+        @using (Html.BeginForm("GuardarRespuestas", "LlenarFormulario", FormMethod.Post))
+        {
+            @Html.Hidden("respuestas.FCodigo", null, new { @id = "respuestas.FCodigo", @Value = Model.Formulario.Codigo })
+            @Html.Hidden("respuestas.Finalizado", null, new { @id = "respuestas.Finalizado", @Value = 0 })
+            @Html.Hidden("respuestas.CSigla", null, new { @id = "respuestas.CSigla", @Value = Model.Grupo.SiglaCurso })
+            @Html.Hidden("respuestas.GNumero", null, new { @id = "respuestas.GNumero", @Value = Model.Grupo.NumGrupo })
+            @Html.Hidden("respuestas.GAnno", null, new { @id = "respuestas.GAnno", @Value = Model.Grupo.Anno })
+            @Html.Hidden("respuestas.GSemestre", null, new { @id = "respuestas.GSemestre", @Value = Model.Grupo.Semestre })
+
+            <div class="card card-header shadow">
+                <h2 id="encabezado" class="text-center">@Html.DisplayFor(model => model.Formulario.Nombre)</h2>
+            </div>
+            <br />
+
+            <div id="section-container">
+                @{ Html.RenderPartial("../Seccion/SeccionConPreguntas", Model.Secciones); }
+            </div>
+
+            <div class="card card-body shadow form-group float-right sticky-bottom">
+                <div>
+
+                    <button type="submit" class="btn-azulUCR" onclick="FinalizarFomulario()">Finalizar formulario</button>
+                    <button type="submit" class="btn-blancoUCR">Guardar Respuestas</button>
+
+                    @Html.ActionLink("Cancelar", "LlenarFormulario", "LlenarFormulario")
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+@section scripts {
+
+    <script>
+        function FinalizarFomulario() {
+            var finalizado = true;
+            document.getElementById("respuestas.Finalizado").value = finalizado;
+        }
+
+    </script>
+
+}

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AppIntegrador.Models.Seccion_tiene_pregunta>
+@{
+    ViewBag.Title = "Añadir preguntas";
+    var totalPreguntas = 0;
+}
+
+<h4> Añadir preguntas a la acción </h4>
+
+<table id="TablaSeleccionarPregunta" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Código de la sección
+            </th>
+            <th>
+                Código de la pregunta
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        @foreach (var pair in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox"
+                           id="pr(@totalPreguntas)"
+                           name="checkBoxPreguntaAccion"
+                           class="SectionCheckbox"
+                           value="@pair.PCodigo" />
+                    @*onclick="seleccionaCheckBoxGen(this, 'secc', 'scodigo', cantidadSecc)" />*@
+                </td>
+
+                <td>
+                    @pair.SCodigo
+                </td>
+                <td>
+                    @pair.PCodigo
+                </td>
+            </tr>
+            totalPreguntas += 1;
+        }
+    </thead>
+</table>

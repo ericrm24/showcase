@@ -1,0 +1,57 @@
+﻿@model AppIntegrador.Models.ResultadosFormulario
+
+@{
+    ViewBag.Title = "ResultadosFormulario";
+}
+
+<div id="cuerpoResultados" style="height: 100%">
+
+    <script>
+
+        var codigoFormulario = @Html.Raw(Model.CodigoFormulario);
+        var siglaCurso = @Html.Raw(Model.SiglaCurso);
+        var numeroGrupo = @Html.Raw(Model.NumeroGrupo);
+        var semestre = @Html.Raw(Model.Semestre);
+        var ano = @Html.Raw(Model.Ano);
+        var fechaInicio =  @Html.Raw(Model.FechaInicio);
+        var fechaFin =  @Html.Raw(Model.FechaFin);
+        var listaPreguntas = @Html.Raw(Model.Preguntas);
+
+    </script>
+
+    <div class="row filaSecciones">
+        <div class="container col-md align-content-end contenerdorSecciones">
+            @Html.DropDownList("ddlDropDownList", Model.Seccioncitas, "Seleccione una sección...", new
+            {
+                @class = "form-control",
+                id = "secciones",
+                placeholder = "Seccion",
+                data_width = "100%"
+                            ,
+                onchange = "seccion_cambiada(this.value, listaPreguntas)"
+            })
+        </div>
+    </div>
+
+    <div class="row" style="max-width: 100%; max-height: 90%; margin: 0px;">
+        <div class="d-flex flex-wrap col-md bg-light justify-content-center" id="contenedorPreguntas" style="max-height: 100%; overflow: auto;"></div>
+    </div>
+
+    <div class="modal fade" id="ModalResultados" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="enunciadoPregunta" id="Encabezado" style="width: 100%; margin: auto; padding: 20px; font-size: 22px !important"></h3>
+                </div>
+                <div class="modal-body container" id="Ejemplo">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

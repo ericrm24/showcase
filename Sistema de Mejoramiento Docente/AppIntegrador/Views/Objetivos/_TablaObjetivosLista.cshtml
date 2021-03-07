@@ -1,0 +1,100 @@
+﻿@model IEnumerable<AppIntegrador.Models.Objetivo>
+
+@*
+    Creado por: Johan Córdoba
+    Historia a la que pertenece: MOS-25 "como usuario quiero tener una interfaz que muestre de forma clara las jerarquías entre las distintas partes del subsistema de creación de planes de mejora"
+    Vista parcial de los objetvos de un plan de mejora, lista todos los objetivos del plan y sus opciones
+*@
+
+
+
+@*
+    Modificado por: Johan Córdoba
+    Historia a la que pertenece: MOS-1.2 "agregar, modificar, borrar y consultar los objetivos de un plan de mejora"
+    Cambio para que se adapte a la vista parcial de planes de mejoras.
+*@
+@{
+    int position = 0;
+    ViewBag.Title = "_TablaObjetivosListar";
+}
+
+
+@if (Model.Count() == 0)
+{
+    <div class="centeredText">
+        <p>
+            Aún no se han creado objetivos en este Plan de Mejora.
+        </p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <colgroup>
+            <col class="TablasNumero">
+            <col class="TablasNombre">
+            <col class="TablasNombre">
+            <col class="TablasFecha">
+            <col class="TablasFecha">
+            <col class="TablasOpciones">
+        </colgroup>
+
+        <thead class="thead-light">
+            <tr>
+                <th>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoObjetivo)
+                </th>
+                <th>
+                    Opciones
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var obj in Model)
+        {
+            <tbody>
+                <tr class="FilaTablasPlanesDeMejora">
+                    <td>
+                        <input type="radio" name="objetivos" value=@(position++) onclick="seleccionaObjetivoLista(@obj.codPlan, `@obj.nombre`)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.fechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.fechaFin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => obj.TipoObjetivo)
+                    </td>
+                    <td>
+                        <div>
+                            <input type="button" value="Secciones asociadas" class="btn-azulUCR float-right" id="VerSecciones" onclick="verSeccionesAsocidas(@obj.codPlan, `@obj.nombre`)" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+}
+

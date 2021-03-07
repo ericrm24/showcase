@@ -1,0 +1,80 @@
+﻿@model IEnumerable<AppIntegrador.Models.Accionable>
+
+@if (Model.Count() == 0)
+{
+    <div class="centeredText">
+        <p>
+            Aún no se han creado Acciones de mejora en este Objetivo.
+        </p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <colgroup>
+            <col style="width: 50%;">
+            <col style="width: 10%;">
+            <col class="TablasFecha">
+            <col class="TablasFecha">
+        </colgroup>
+
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.peso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pesoPorcentaje)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaFin)
+                    </td>
+                    <td>
+                        @if (item.tipo == "P")
+                        {
+                            <p>Porcentaje</p>
+                        }
+                        else if (item.tipo == "S")
+                        {
+                            <p>Si/No</p>
+                        }
+                        else if (item.tipo == "E")
+                        {
+                            <p>Escala</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.peso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pesoPorcentaje)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

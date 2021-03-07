@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Añadir Profesores";
+    var ProfesoresLista = (List<AppIntegrador.Models.Profesor>)ViewBag.ProfesoresLista;
+    var ProfesoresNombreLista = (List<String>)ViewBag.ProfesoresNombreLista;
+    var totalProfes = 0;
+}
+
+<h4> Añadir profesores al plan </h4>
+
+<table id="TablaSeleccionarProfesores" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Correo
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        @*@foreach(var profe in ProfesoresLista)*@
+        @for(int i = 0; i < ProfesoresLista.Count(); ++i)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" id="pr(@totalProfes)" class="SectionCheckbox" value="@ProfesoresLista[i].Correo" onclick="seleccionaCheckBoxGen(this, 'profe', 'correo', cantidadProfes)" />
+                </td>
+                <td>
+                    @ProfesoresNombreLista[i]
+                </td>
+                <td>
+                    @ProfesoresLista[i].Correo
+                </td>
+            </tr>
+            totalProfes += 1;
+        }
+    </thead>
+</table>

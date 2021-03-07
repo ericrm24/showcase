@@ -1,0 +1,173 @@
+﻿@model IEnumerable<AppIntegrador.Models.PlanDeMejora>
+
+@{
+    ViewBag.Title = "Index";
+
+    @*
+        Añadido por: Johan Córdoba
+        Historia a la que pertenece: MOS-1.3 "agregar, modificar, borrar y consultar las acciones de mejora de un objetivo"
+        Permite pasar más de un pármetro al javascrip que actualiza las acciones de un plan.
+    *@
+    dynamic item = new System.Dynamic.ExpandoObject();
+    item.MultiLineString = @"a multi-line string";
+    item.SingleLineString = "a single-line string";
+}
+
+<div class="fullWidth">
+    <div class="card card-default">
+        <div class="card-body">
+            <b>
+                Búsqueda
+            </b>
+
+            <form action="Buscar">
+                <input class="form-control" type="text" name="nombrePlan" placeholder="Buscar..." id="nombre-option" maxlength="50" />
+
+                <input type="submit"
+                       name="submit"
+                       value="Filtrar"
+                       class="btn btn-outline-light text-dark bg-white border-secondary" />
+
+            </form>
+
+        </div>
+        <div class="card-body">
+            @*
+            Modificado por: Johan Córdoba
+            Historia a la que pertenece: MOS-1.1 "agregar, modificar, borrar y consultar los planes de mejora"
+            Diversos cambios para que todas las vistas tengan la misma forma.
+            *@
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h2 class="impText">Planes de Mejora creados</h2>
+                </div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-2">
+                        
+                    @Html.ActionLink("Nuevo Plan de Mejora", "Crear", "PlanDeMejora", null, new { @class = "btn-azulUCR col-md-12" })
+                </div>
+
+            </div>
+
+            @if (Model.Count() == 0)
+            {
+                <div class="centeredText">
+                    <p>
+                        Aún no se han creado planes de mejora
+                    </p>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <table class="table">
+                        <colgroup>
+                            <col style="width: 35%;">
+                            <col class="TablasFecha">
+                            <col class="TablasFecha">
+                            <col class="TablasOpciones">
+                        </colgroup>
+
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nombre)
+                                </th>
+                                @*<th>
+                                    Creado por
+                                </th>
+                                <th> Se mantiene ya que posteriormente se va a implementar la opción
+                                    Asignado a
+                                </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fechaInicio)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.fechaFin)
+                                </th>
+                                <th>
+                                    Opciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="data">
+
+                            @foreach (var plan in Model)
+                            {
+                                if (@plan.borrado == false) 
+                                {
+                                    <tr onclick="clickPlan(@plan.codigo)">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => plan.nombre)
+                                        </td>
+                                        @*<td>
+                                            @HttpContext.Current.User.Identity.Name
+                                        </td>
+                                        <td>
+                                            @HttpContext.Current.User.Identity.Name
+                                        </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => plan.fechaInicio)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => plan.fechaFin)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Detalles", "PlanDeMejora", new { id = plan.codigo }, new { @class = "btn-blancoUCR" })
+                                            @Html.Partial("~/Views/PlanDeMejora/_borrarPlanDeMejora.cshtml", plan)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                     </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script>
+
+        clickPlan = function (id) {
+            console.log("click plan " + id);
+        };
+
+    </script>
+
+    <script>
+        clickObjetivo = function (id, ida) {
+            //alert(id + " nombre: " + ida); //para debug
+            $(".accionesObjetivo").load("accionesObjetivo",
+                { id: id, nomb: ida });
+        };
+    </script>
+
+    <script>
+        $("#data tr").click(function () {
+            var selected = $(this).hasClass("highlight");
+            $("#data tr").removeClass("highlight");
+            if (!selected)
+                $(this).addClass("highlight");
+        });
+    </script>
+
+    <script>
+        $("#dataObj tr").click(function () {
+            var selected = $(this).hasClass("highlight2");
+            $("#dataObj tr").removeClass("highlight2");
+            if (!selected)
+                $(this).addClass("highlight2");
+        });
+    </script>
+
+}
+
+
+

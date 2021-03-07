@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "_ModalAnadirPreguntas";
+}
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalPreguntas" tabindex="-1" role="dialog" aria-labelledby="ModalPreguntasLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="ModalAgregarPreguntasInterno" style="width:auto">
+                        Aún no se han seleccionado preguntas para la acción por lo que no es posible mostrarlas.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn-azulUCR " onclick="agregarPreguntasSeleccionadas()" data-dismiss="modal">Agregar preguntas seleccionadas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,719 @@
+{
+  "id": "0004509c-cff3-4c36-b013-8d7d3002675a",
+  "version": "2.0",
+  "name": "TestsAccionable",
+  "url": "https://localhost:44334",
+  "tests": [{
+    "id": "2efcef90-2bf7-4bea-b0cb-f845275b0e4c",
+    "name": "TestTablaAccionable",
+    "commands": [{
+      "id": "6d90b308-a16b-48d2-b5db-94df91eead7a",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "925e6260-7666-4f8c-834b-81ae8e626d7c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x696",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3cc9105f-5165-44aa-92bd-9762129c8241",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "20c873f8-6fee-46f4-9632-786b8900227e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ver mis planes",
+      "targets": [
+        ["linkText=Ver mis planes", "linkText"],
+        ["css=li:nth-child(4) li li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Ver mis planes')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[4]/ul/li/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/PlanDeMejora/Index')]", "xpath:href"],
+        ["xpath=//li[4]/ul/li/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ver mis planes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "14772c4f-e99a-42b6-a327-adc166e92f20",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Detalles",
+      "targets": [
+        ["linkText=Detalles", "linkText"],
+        ["css=tr:nth-child(1) .btn-blancoUCR", "css:finder"],
+        ["xpath=//a[contains(text(),'Detalles')]", "xpath:link"],
+        ["xpath=//tbody[@id='data']/tr/td[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/PlanDeMejora/Detalles/1')]", "xpath:href"],
+        ["xpath=//td[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Detalles')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7f02842-39f4-4b7c-b952-43b8180d7a57",
+      "comment": "",
+      "command": "click",
+      "target": "name=objetivos",
+      "targets": [
+        ["name=objetivos", "name"],
+        ["css=td > input", "css:finder"],
+        ["xpath=//input[@name='objetivos']", "xpath:attributes"],
+        ["xpath=//div[@id='listaDeObjetivos']/table/tbody/tr/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18b5ecca-3c24-4489-bc07-44ce40ca2edb",
+      "comment": "",
+      "command": "click",
+      "target": "name=accionesDeMejora",
+      "targets": [
+        ["name=accionesDeMejora", "name"],
+        ["css=#divAcciones td > input", "css:finder"],
+        ["xpath=//input[@name='accionesDeMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='divAcciones']/table/tbody/tr/td/input", "xpath:idRelative"],
+        ["xpath=//div[2]/table/tbody/tr/td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bbee518b-7e0d-4c05-9abf-1bc2bf60ae39",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#divAccionables th:nth-child(1)",
+      "targets": [
+        ["css=#divAccionables th:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='divAccionables']/table/thead/tr/th", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/div/div/div[2]/table/thead/tr/th", "xpath:position"]
+      ],
+      "value": "Descripción"
+    }, {
+      "id": "14647026-9890-4bf1-8503-80eb29c62725",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#divAccionables th:nth-child(2)",
+      "targets": [
+        ["css=#divAccionables th:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='divAccionables']/table/thead/tr/th[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/div/div/div[2]/table/thead/tr/th[2]", "xpath:position"]
+      ],
+      "value": "Inicio"
+    }, {
+      "id": "94b07868-2a09-4cd8-8da3-8b89d72d6b82",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#divAccionables th:nth-child(3)",
+      "targets": [
+        ["css=#divAccionables th:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='divAccionables']/table/thead/tr/th[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/div/div/div[2]/table/thead/tr/th[3]", "xpath:position"]
+      ],
+      "value": "Fin"
+    }, {
+      "id": "91075775-2c9a-4f0d-b332-7a848fdb058e",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#divAccionables th:nth-child(4)",
+      "targets": [
+        ["css=#divAccionables th:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='divAccionables']/table/thead/tr/th[4]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/div/div/div[2]/table/thead/tr/th[4]", "xpath:position"]
+      ],
+      "value": "Tipo"
+    }, {
+      "id": "8782b7eb-4ac9-4256-ad68-3300f06c31c0",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#divAccionables th:nth-child(5)",
+      "targets": [
+        ["css=#divAccionables th:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='divAccionables']/table/thead/tr/th[5]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[3]/div/div/div[2]/table/thead/tr/th[5]", "xpath:position"],
+        ["xpath=//th[contains(.,'Peso')]", "xpath:innerText"]
+      ],
+      "value": "Peso"
+    }, {
+      "id": "6842af9f-e471-41ad-92a2-629494a6c671",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#divAccionables th:nth-child(6)",
+      "targets": [
+        ["css=#divAccionables th:nth-child(6)", "css:finder"],
+        ["xpath=//div[@id='divAccionables']/table/thead/tr/th[6]", "xpath:idRelative"],
+        ["xpath=//div[2]/table/thead/tr/th[6]", "xpath:position"],
+        ["xpath=//th[contains(.,'Porcentaje de peso')]", "xpath:innerText"]
+      ],
+      "value": "Porcentaje de peso"
+    }]
+  }, {
+    "id": "aea5ecdc-f0f3-4608-bcfa-e48160810037",
+    "name": "TestCrearTiposAccionable",
+    "commands": [{
+      "id": "62319370-4258-4b7f-9a95-70b819d42c02",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "36ff5389-73b5-438f-a4bc-a3b9239409d2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x696",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3f207e06-b7aa-4095-8e4d-e9eb83edb64e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aefa3bf2-3efd-4578-8766-4a6c0cd82c8a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Crear plan",
+      "targets": [
+        ["linkText=Crear plan", "linkText"],
+        ["css=li:nth-child(4) li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Crear plan')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[4]/ul/li/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/PlanDeMejora/Crear')]", "xpath:href"],
+        ["xpath=//li[4]/ul/li/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Crear plan')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "43ea33a9-27c5-4e15-9547-5dff91357927",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoNombrePlanMejora",
+      "targets": [
+        ["id=campoNombrePlanMejora", "id"],
+        ["name=nombre", "name"],
+        ["css=#campoNombrePlanMejora", "css:finder"],
+        ["xpath=//input[@id='campoNombrePlanMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionPlanMejora']/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d8f7b60-8697-4e6b-97e7-96c29f8c25fb",
+      "comment": "",
+      "command": "type",
+      "target": "id=campoNombrePlanMejora",
+      "targets": [
+        ["id=campoNombrePlanMejora", "id"],
+        ["name=nombre", "name"],
+        ["css=#campoNombrePlanMejora", "css:finder"],
+        ["xpath=//input[@id='campoNombrePlanMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionPlanMejora']/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/div/input", "xpath:position"]
+      ],
+      "value": "Plan de Mejora 1"
+    }, {
+      "id": "e06b789a-face-4212-b942-410e91624120",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoFechaInicioPlanMejora",
+      "targets": [
+        ["id=campoFechaInicioPlanMejora", "id"],
+        ["name=fechaInicio", "name"],
+        ["css=#campoFechaInicioPlanMejora", "css:finder"],
+        ["xpath=//input[@id='campoFechaInicioPlanMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionPlanMejora']/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aad9a586-1275-4b19-a037-f9173f72aad9",
+      "comment": "",
+      "command": "type",
+      "target": "id=campoFechaInicioPlanMejora",
+      "targets": [
+        ["id=campoFechaInicioPlanMejora", "id"],
+        ["name=fechaInicio", "name"],
+        ["css=#campoFechaInicioPlanMejora", "css:finder"],
+        ["xpath=//input[@id='campoFechaInicioPlanMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionPlanMejora']/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "2019-12-31"
+    }, {
+      "id": "3216b865-f81f-4ab2-8ce3-09da146529b9",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoFechaFinPlanMejora",
+      "targets": [
+        ["id=campoFechaFinPlanMejora", "id"],
+        ["name=fechaFin", "name"],
+        ["css=#campoFechaFinPlanMejora", "css:finder"],
+        ["xpath=//input[@id='campoFechaFinPlanMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionPlanMejora']/div/div/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c01f82e-ead2-43a0-b062-456519a0c01b",
+      "comment": "",
+      "command": "type",
+      "target": "id=campoFechaFinPlanMejora",
+      "targets": [
+        ["id=campoFechaFinPlanMejora", "id"],
+        ["name=fechaFin", "name"],
+        ["css=#campoFechaFinPlanMejora", "css:finder"],
+        ["xpath=//input[@id='campoFechaFinPlanMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionPlanMejora']/div/div/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "2020-01-01"
+    }, {
+      "id": "34ae8f3a-bbf7-49c3-a90a-824df52c4248",
+      "comment": "",
+      "command": "click",
+      "target": "id=AgregarObjetivoBoton",
+      "targets": [
+        ["id=AgregarObjetivoBoton", "id"],
+        ["css=#AgregarObjetivoBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarObjetivoBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionObjetivos']/div/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ef044e-e4a2-4c6b-91b0-adb5e3fb4b40",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=AgregarObjetivoBoton",
+      "targets": [
+        ["id=AgregarObjetivoBoton", "id"],
+        ["css=#AgregarObjetivoBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarObjetivoBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionObjetivos']/div/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "93e179a7-cf7f-471b-ab76-afbc61ede289",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=AgregarObjetivoBoton",
+      "targets": [
+        ["id=AgregarObjetivoBoton", "id"],
+        ["css=#AgregarObjetivoBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarObjetivoBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionObjetivos']/div/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cff3532f-a800-47cc-ad51-1e187300986d",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoNombreObjetivo",
+      "targets": [
+        ["id=campoNombreObjetivo", "id"],
+        ["css=#campoNombreObjetivo", "css:finder"],
+        ["xpath=//input[@id='campoNombreObjetivo']", "xpath:attributes"],
+        ["xpath=//div[@id='formObjetivos']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b183f2ad-87bb-4f30-a3d1-8c1ae96cf087",
+      "comment": "",
+      "command": "type",
+      "target": "id=campoNombreObjetivo",
+      "targets": [
+        ["id=campoNombreObjetivo", "id"],
+        ["css=#campoNombreObjetivo", "css:finder"],
+        ["xpath=//input[@id='campoNombreObjetivo']", "xpath:attributes"],
+        ["xpath=//div[@id='formObjetivos']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Objetivo 1"
+    }, {
+      "id": "258010d8-de0e-474e-852a-a9c9a6af6c10",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoDescripcionObjetivo",
+      "targets": [
+        ["id=campoDescripcionObjetivo", "id"],
+        ["name=descripcion", "name"],
+        ["css=#campoDescripcionObjetivo", "css:finder"],
+        ["xpath=//input[@id='campoDescripcionObjetivo']", "xpath:attributes"],
+        ["xpath=//div[@id='formObjetivos']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "577ffc5b-649c-4749-8992-ac88f6276fd7",
+      "comment": "",
+      "command": "type",
+      "target": "id=campoDescripcionObjetivo",
+      "targets": [
+        ["id=campoDescripcionObjetivo", "id"],
+        ["name=descripcion", "name"],
+        ["css=#campoDescripcionObjetivo", "css:finder"],
+        ["xpath=//input[@id='campoDescripcionObjetivo']", "xpath:attributes"],
+        ["xpath=//div[@id='formObjetivos']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Descripción"
+    }, {
+      "id": "656d6c65-e655-403e-892f-63f6b6cd8c9f",
+      "comment": "",
+      "command": "click",
+      "target": "id=CrearObjetivoBoton",
+      "targets": [
+        ["id=CrearObjetivoBoton", "id"],
+        ["css=#CrearObjetivoBoton", "css:finder"],
+        ["xpath=//button[@id='CrearObjetivoBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='ModalObjetivo']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar objetivo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4cc449a-5aa7-4dda-9f50-410196acc046",
+      "comment": "",
+      "command": "click",
+      "target": "name=objetivos",
+      "targets": [
+        ["name=objetivos", "name"],
+        ["css=#TablaMostrarObjetivos input", "css:finder"],
+        ["xpath=//input[@name='objetivos']", "xpath:attributes"],
+        ["xpath=//table[@id='TablaMostrarObjetivos']/thead[2]/tr/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a692d67b-8077-4545-935f-833ca29f2011",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "name=objetivos",
+      "targets": [
+        ["name=objetivos", "name"],
+        ["css=#TablaMostrarObjetivos input", "css:finder"],
+        ["xpath=//input[@name='objetivos']", "xpath:attributes"],
+        ["xpath=//table[@id='TablaMostrarObjetivos']/thead[2]/tr/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0d00569-bc57-4f55-8bc5-eb26c19443e6",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "name=objetivos",
+      "targets": [
+        ["name=objetivos", "name"],
+        ["css=#TablaMostrarObjetivos input", "css:finder"],
+        ["xpath=//input[@name='objetivos']", "xpath:attributes"],
+        ["xpath=//table[@id='TablaMostrarObjetivos']/thead[2]/tr/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f04561cf-aa25-4799-ae9a-ea6f480eade2",
+      "comment": "",
+      "command": "click",
+      "target": "id=AgregarAccionMejoraBoton",
+      "targets": [
+        ["id=AgregarAccionMejoraBoton", "id"],
+        ["css=#AgregarAccionMejoraBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarAccionMejoraBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionAccionesMejora']/div/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3cec5eac-1994-40df-888f-84879e9f84b6",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=AgregarAccionMejoraBoton",
+      "targets": [
+        ["id=AgregarAccionMejoraBoton", "id"],
+        ["css=#AgregarAccionMejoraBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarAccionMejoraBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionAccionesMejora']/div/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f07e2038-6659-4b5e-ae57-14bacb486761",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=AgregarAccionMejoraBoton",
+      "targets": [
+        ["id=AgregarAccionMejoraBoton", "id"],
+        ["css=#AgregarAccionMejoraBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarAccionMejoraBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionAccionesMejora']/div/input", "xpath:idRelative"],
+        ["xpath=//form/div/div/div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42f90660-24af-4180-8947-bcc94bff620d",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoDescripcionAccionMejora",
+      "targets": [
+        ["id=campoDescripcionAccionMejora", "id"],
+        ["css=#campoDescripcionAccionMejora", "css:finder"],
+        ["xpath=//input[@id='campoDescripcionAccionMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionMejora']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "32d398bc-4bdd-416b-8e3b-4778bfb5da3d",
+      "comment": "",
+      "command": "click",
+      "target": "id=campoDescripcionAccionMejora",
+      "targets": [
+        ["id=campoDescripcionAccionMejora", "id"],
+        ["css=#campoDescripcionAccionMejora", "css:finder"],
+        ["xpath=//input[@id='campoDescripcionAccionMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionMejora']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "252ba7f6-8d7f-40f9-940e-b637b628af95",
+      "comment": "",
+      "command": "type",
+      "target": "id=campoDescripcionAccionMejora",
+      "targets": [
+        ["id=campoDescripcionAccionMejora", "id"],
+        ["css=#campoDescripcionAccionMejora", "css:finder"],
+        ["xpath=//input[@id='campoDescripcionAccionMejora']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionMejora']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "Acción de Mejora 1"
+    }, {
+      "id": "23a17508-fc92-463a-b9f1-c8dcbbc86ca3",
+      "comment": "",
+      "command": "click",
+      "target": "id=CrearAccionMejoraBoton",
+      "targets": [
+        ["id=CrearAccionMejoraBoton", "id"],
+        ["css=#CrearAccionMejoraBoton", "css:finder"],
+        ["xpath=//button[@id='CrearAccionMejoraBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='ModalAccionMejora']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar acción de mejora')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "89cedd31-7024-4e8c-a0ad-a1b907ee66fc",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=CrearAccionMejoraBoton",
+      "targets": [
+        ["id=CrearAccionMejoraBoton", "id"],
+        ["css=#CrearAccionMejoraBoton", "css:finder"],
+        ["xpath=//button[@id='CrearAccionMejoraBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='ModalAccionMejora']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar acción de mejora')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa3e98c0-c569-4c77-b708-5b07814d2457",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=CrearAccionMejoraBoton",
+      "targets": [
+        ["id=CrearAccionMejoraBoton", "id"],
+        ["css=#CrearAccionMejoraBoton", "css:finder"],
+        ["xpath=//button[@id='CrearAccionMejoraBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='ModalAccionMejora']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div/div/div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'\n                        Agregar acción de mejora\n                    ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "373b3e71-6605-487a-b2eb-121b0f785f28",
+      "comment": "",
+      "command": "click",
+      "target": "id=AgregarAccionableBoton",
+      "targets": [
+        ["id=AgregarAccionableBoton", "id"],
+        ["css=#AgregarAccionableBoton", "css:finder"],
+        ["xpath=//input[@id='AgregarAccionableBoton']", "xpath:attributes"],
+        ["xpath=//div[@id='seccionAccionables']/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3897e403-8c9b-4521-bd5f-d27d6d4e1c6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "104478bd-2313-4cf9-a3c3-6833d6c1309b",
+      "comment": "",
+      "command": "select",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [],
+      "value": "label=Porcentaje"
+    }, {
+      "id": "b55dc6f8-511a-495f-a157-9df71d6d1216",
+      "comment": "",
+      "command": "click",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "69de711d-5717-4042-9c54-1eee8f5ea8f1",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": "                                Porcentaje\\n                                Escalar\\n                                Sí / No\\n                            "
+    }, {
+      "id": "f51c5c7e-1cb9-43e8-bc75-0f19e872774e",
+      "comment": "",
+      "command": "click",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "725d41af-283d-46bf-8091-d13e18ea4976",
+      "comment": "",
+      "command": "select",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [],
+      "value": "label=Escalar"
+    }, {
+      "id": "05097805-a9f2-4258-93b2-496b2ad199fb",
+      "comment": "",
+      "command": "click",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ccc3daf-6459-410c-b614-65d816625ee5",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": "                                Porcentaje\\n                                Escalar\\n                                Sí / No\\n                            "
+    }, {
+      "id": "094ba447-df7c-40e7-b4ff-c7525459a23c",
+      "comment": "",
+      "command": "click",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba496604-416f-4785-b924-abb66f29d50a",
+      "comment": "",
+      "command": "select",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [],
+      "value": "label=Sí / No"
+    }, {
+      "id": "b3d44f66-22f6-415c-9cbf-83d1015b2fa9",
+      "comment": "",
+      "command": "click",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "afc0f5b3-6de0-4260-b57b-c05465da944a",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=TipoAccionableAnadir",
+      "targets": [
+        ["id=TipoAccionableAnadir", "id"],
+        ["css=#TipoAccionableAnadir", "css:finder"],
+        ["xpath=//select[@id='TipoAccionableAnadir']", "xpath:attributes"],
+        ["xpath=//div[@id='formAccionable']/div[5]/select", "xpath:idRelative"],
+        ["xpath=//div[5]/select", "xpath:position"]
+      ],
+      "value": "                                Porcentaje\\n                                Escalar\\n                                Sí / No\\n                            "
+    }]
+  }],
+  "suites": [{
+    "id": "d81fbf56-6b0c-467e-b362-ae29a08f9b46",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2efcef90-2bf7-4bea-b0cb-f845275b0e4c"]
+  }],
+  "urls": ["https://localhost:44334/"],
+  "plugins": []
+}

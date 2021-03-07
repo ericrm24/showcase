@@ -1,0 +1,81 @@
+﻿@using AppIntegrador.Helpers
+﻿@model AppIntegrador.Models.Usuario
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    @Styles.Render("~/Content/users&profiles")
+</head>
+
+@{
+    ViewBag.Title = "Login";
+}
+<body id="greybg">
+
+    <h2 class="text-center">Sistema de Mejoramiento Docente de la Universidad de Costa Rica</h2>
+
+    <div class="container-login100">
+        <div class="row">
+            <div class="blue-box">
+                <img class="ucr-logo mb-2" src='/Content/images/logo_ucr.png' border='0' alt='logo-ucr' />
+                @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post,
+                    new
+                    {
+                        @class = "login-form",
+                        onsubmit = "return validateEmail(document.getElementById('username-input'),document.getElementById('email-validation-result'))"
+                    }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group mx-1">
+                        @*TAM-1.1.1 - Autocompletar el correo, verificar tamanno*@
+                        <label style="color:white; font-weight:bold; font-size:16px;">Usuario</label>
+                        @Html.TextBoxFor(m => m.Username, new { oninput = "verificarTamanno(this,30,50,document.getElementById('email-validation-result'))", id = "username-input", @class = "form-control", required = "required", onblur = "completarCorreo()" })
+                        <p class="text-danger" id="email-validation-result">@Html.ValidationMessageFor(m => m.Username)</p>
+
+                    </div>
+                    <div class="form-group mx-1">
+                        <label style="color:white; font-weight:bold; font-size:16px;">Contraseña</label>
+                        <!-- UserStory TAM-1.1.3 - Capslock detection -->
+                        <input class="form-control" id="password-field" name="Password" type="password" data-toggle="popover" data-placement="left" data-trigger="manual" data-title="Mayúsculas activadas" autocomplete="off" required />
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password mr-2" id="password-eye" style="font-size:inherit;cursor:pointer"></span>
+                        <p class="text-danger">@Html.ValidationMessageFor(m => m.Password)</p>
+                        <!-- End of UserStory  -->
+                    </div>
+                    <!-- UserStory TAM-16.1 - Servicio captcha -->
+                    if (AppIntegrador.Models.CurrentUser.getUserLoginFailures() >= AppIntegrador.Models.CurrentUser.getMaxUserLoginFailures())
+                    {
+                        <div class="row d-flex justify-content-center mx-1 pb-3">
+                            @Html.GoogleCaptcha()
+                            @Html.InvalidGoogleCaptchaLabel("Seleccione la casilla \"No soy un robot\"")
+                        </div>
+                    }
+                    <!-- End of UserStory  -->
+
+                    <!-- UserStory 1.5 - link to new page -->
+                    <div class="form-row justify-content-between mx-1 pb-3">
+                        <button type="submit" class="btn-blancoUCR">Ingresar</button>
+                        @Html.ActionLink("¿Has olvidado la contraseña?", "PasswordReset", "Home", new object { }, new { @class = "align-self-start", style = "color: #000; text-decoration:underline" })
+                        <!-- End of UserStory  -->
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <footer class="flex-foot fixed-bottom">
+        &copy; Universidad de Costa Rica
+        <script type="text/javascript">document.write(new Date().getFullYear());</script>
+    </footer>    
+</body>
+
+@*//Si existe un mensaje de error en Viewbag, lo muestra*@
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom")
+    @if (!string.IsNullOrEmpty(ViewBag.typeMessage))
+    {
+        <script type="text/javascript">
+                customAlert('info','@ViewBag.NotifyMessage');
+        </script>
+    }
+}

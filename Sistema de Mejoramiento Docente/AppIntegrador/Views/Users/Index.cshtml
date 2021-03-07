@@ -1,0 +1,207 @@
+﻿@model IEnumerable<AppIntegrador.Models.UsuarioPersona>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/users&profiles")
+@{AppIntegrador.Utilities.IPerm permissionManager = new AppIntegrador.Utilities.PermissionManager(); }
+
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<br />
+<div class="container">
+    <div class="row" style="display:flex; padding-left:15px; ">
+        <div class="column" style="flex:50%;">
+            <h2>
+                Administración de usuarios
+            </h2>
+        </div>
+        @{if (permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.CREAR_USUARIOS))
+            {
+
+                <div class="column" style="padding-right:15px; flex:50%; text-align:right; vertical-align:bottom;">
+
+                    <p>@Html.ActionLink("Agregar usuario", "Create", "Create", new { @class = "btn-azulUCR" })</p>
+                </div>
+            }
+            else
+            {
+            }
+        }
+    </div>
+    <br />
+    <div style="max-height:650px; overflow-x:auto;">
+        <table id="selectedColumn" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" style=" top: 0; border-collapse: separate;">
+            @*<col width="50">*@
+            <thead class="users-list">
+                <tr class="users-list" id="selectedColumn">
+                    <th class="users-list">
+                        @Html.DisplayNameFor(model => model.Persona.Identificacion)
+                    </th>
+                    <th class="users-list">
+                        @Html.DisplayNameFor(model => model.Persona.Apellido1)
+                    </th>
+                    <th class="users-list">
+                        @Html.DisplayNameFor(model => model.Persona.Apellido2)
+                    </th>
+                    <th class="users-list">
+                        @Html.DisplayNameFor(model => model.Persona.Nombre1)
+                    </th>
+                    <th class="users-list">
+                        @Html.DisplayNameFor(model => model.Persona.Nombre2)
+                    </th>
+                    <th class="users-list">
+                        @Html.DisplayNameFor(model => model.Usuario.Activo)
+                    </th>
+                    <!--TAM-3.6-1: Condicional que muestra la columna de acciones en la tabla de usuarios si el usuario tiene un perfil
+                            con permisos de acceder a esa funcionalidad, sino entonces no muestra la columna.-->
+                    @{ if(!permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.VER_DETALLES_USUARIOS) &&
+                          !permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.EDITAR_USUARIOS) &&
+                          !permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.BORRAR_USUARIOS))
+                    {
+                    }else{
+                   
+                    <th class="users-list">
+                        <p style="text-align:center; display:table-cell;">Acciones</p>
+                    </th>
+                    }
+                    }
+                </tr>
+            </thead>
+
+            @foreach (var item in Model.OrderBy(item => item.Persona.Apellido1).ThenBy(item => item.Persona.Apellido2).
+            ThenBy(item => item.Persona.Nombre1).ThenBy(item => item.Persona.Nombre2))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.Identificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.Apellido1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.Apellido2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.Nombre1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.Nombre2)
+                    </td>
+                    <td class="text-center">
+                        @if (item.Usuario.Activo)
+                        {
+                            <i class="fa fa-check"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times"></i>
+                        }
+                    </td>
+                    <!--TAM-3.6-1: Condicionales que muestran los botones de ver detalles, editar y borrar si el usuario tiene un perfil
+                            con permisos de acceder a esas funcionalidades, sino entonces no muestra los botones y bloquea los intentos de acceso
+                            por otros medios.-->
+                    @{ if(!permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.VER_DETALLES_USUARIOS) &&
+                          !permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.EDITAR_USUARIOS) &&
+                          !permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.BORRAR_USUARIOS))
+                    {
+                    }else{
+                    <td style="text-align:center;">
+                    @{ if(permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.EDITAR_USUARIOS))
+                    {
+                        @Html.ActionLink("Editar", "Edit", new
+                        {
+
+                                                username = item.Persona.Correo.Contains('.') ? item.Persona.Correo.Substring(0, item.Persona.Correo.LastIndexOf('.')) : item.Persona.Correo,
+                                                domain = item.Persona.Correo.Contains('.') ? item.Persona.Correo.Substring(item.Persona.Correo.LastIndexOf('.')) : ""
+
+                                        },
+                                                new
+                                                {
+                                                    @class = "btn-azulUCR"
+                                                }
+                                        )
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                @{ if (permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.VER_DETALLES_USUARIOS))
+                                    {
+                                        @Html.ActionLink("Detalles", "Details", new
+                                        {
+                                                username = item.Persona.Correo.Contains('.') ? item.Persona.Correo.Substring(0, item.Persona.Correo.LastIndexOf('.')) : item.Persona.Correo,
+                                                domain = item.Persona.Correo.Contains('.') ? item.Persona.Correo.Substring(item.Persona.Correo.LastIndexOf('.')) : ""
+                                        },
+                                                new
+                                                {
+                                                    @class = "btn-blancoUCR"
+                                                }
+
+                                        )
+                                    }
+                                    else
+                                    {
+                                    }
+                                }
+                                @{
+                                    if (item.Persona.Correo != "admin@mail.com" && permissionManager.IsAuthorized(@AppIntegrador.Utilities.Permission.BORRAR_USUARIOS))
+                                    {
+                                        @Html.ActionLink("Borrar", "DeleteConfirmed", new
+                                   {
+                                       username = item.Persona.Correo.Contains('.') ? item.Persona.Correo.Substring(0, item.Persona.Correo.LastIndexOf('.')) : item.Persona.Correo,
+                                       domain = item.Persona.Correo.Contains('.') ? item.Persona.Correo.Substring(item.Persona.Correo.LastIndexOf('.')) : "",
+                                       confirmed = true
+                                   },
+                                        new
+                                        {    /*User Story TAM-2.3: Show a popup window to confirm before deleting the selected user.*/
+                                            onclick = "return confirm('¿Está seguro que desea borrar al usuario " + item.Persona.Correo + "? " +
+                                            "Esto borra los datos de esta persona y lo deja sin acceso al sistema.')",
+                                            @class = "btn-rojoUCR"
+                                        })
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+
+                            </td>
+                        }
+                    }
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+@*//If there is a message in ViewBag.Message it displays it as an alert*@
+@section Scripts
+    {
+    <script src="https://use.fontawesome.com/4889cf49d6.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom")
+    @if (!string.IsNullOrEmpty(ViewBag.typeMessage))
+    {
+        switch (ViewBag.typeMessage)
+        {
+            case "alert":
+                <script type="text/javascript">
+                customAlert('warning','@ViewBag.NotifyMessage');;
+                </script>
+                break;
+            case "success":
+                <script type="text/javascript">
+                customAlert('success','@ViewBag.NotifyMessage');
+                </script>
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+

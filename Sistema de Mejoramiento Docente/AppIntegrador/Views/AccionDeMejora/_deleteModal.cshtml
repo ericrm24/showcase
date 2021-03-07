@@ -1,0 +1,89 @@
+﻿
+@model AppIntegrador.Models.AccionDeMejora
+
+@{
+    ViewBag.Title = "Borrado";
+    Layout = null;
+    var modelito = Model;
+    string accionNum = this.ViewData.ContainsKey("accionNumber") ? this.ViewData["accionNumber"].ToString() : string.Empty;
+
+    string idModalBorradoAccionDeMejora = "idModalAccionDeMejora-";
+    idModalBorradoAccionDeMejora += @modelito.codPlan.ToString();
+    idModalBorradoAccionDeMejora += '-';
+    idModalBorradoAccionDeMejora += @modelito.nombreObj;
+    idModalBorradoAccionDeMejora += '-';
+    idModalBorradoAccionDeMejora += @modelito.descripcion;
+    idModalBorradoAccionDeMejora += "-delete";
+
+    <script>
+        console.log("@idModalBorradoAccionDeMejora");
+    </script>
+}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@idModalBorradoAccionDeMejora">
+    Borrar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="@idModalBorradoAccionDeMejora" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Borrado de la accion de mejora</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.descripcion)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.fechaInicio)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.fechaInicio)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.fechaFin)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.fechaFin)
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="botonCentrado">
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Borrar" class="btn btn-danger" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

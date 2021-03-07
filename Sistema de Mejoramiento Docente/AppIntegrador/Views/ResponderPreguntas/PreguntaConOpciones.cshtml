@@ -1,0 +1,21 @@
+﻿@model AppIntegrador.Models.PreguntaConNumeroSeccion
+
+@{
+    Layout = null;
+}
+
+@*RIP-EDF6*@
+
+@{string respuestaname = "secciones[" + Model.OrdenSeccion + "].Preguntas[" + Model.OrdenPregunta + "]";
+    string radname = respuestaname + ".Opciones[0]";}
+
+@foreach (var opcion in Model.Pregunta.Pregunta_con_opciones.Pregunta_con_opciones_de_seleccion.Opciones_de_seleccion)
+{
+    <div class='card-body opcion-pequena'>
+        <label for="@radname @opcion.Orden">
+            <input type="radio" class="radio-grande" id="@radname @opcion.Orden" name="@radname" value="@opcion.Orden" @(Model.Opciones != null && Model.Opciones.Any() && Model.Opciones[0] == opcion.Orden ? "checked" : "") />
+
+            @Html.DisplayFor(model => opcion.Texto)
+        </label>
+    </div>
+}

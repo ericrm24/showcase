@@ -1,0 +1,326 @@
+{
+  "id": "cc6aa079-6360-470c-9bc4-91e7f5b4ffe1",
+  "version": "2.0",
+  "name": "TestsUI",
+  "url": "https://localhost:44334",
+  "tests": [{
+    "id": "cca9c403-40b5-4bef-9774-781d1897e30f",
+    "name": "FlujoCSV",
+    "commands": [{
+      "id": "35ab3d17-0fbd-4d02-a7fc-b402a706b09c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4c50d5d0-5f97-4e81-8450-e691df5cd921",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "58bbe122-39e5-4edd-8c1c-5849be9bb279",
+      "comment": "",
+      "command": "click",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "529f8903-c15d-4bee-87b8-ca9125373b17",
+      "comment": "",
+      "command": "type",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "6baf545c-1eb3-4e80-890c-438dde7c8811",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-group:nth-child(2)",
+      "targets": [
+        ["css=.form-group:nth-child(2)", "css:finder"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5f047b9-6384-46f2-9218-38c3efe103ef",
+      "comment": "",
+      "command": "click",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1a78332-13e3-4ac6-817a-7be03bffc8d0",
+      "comment": "",
+      "command": "type",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "92d0c61e-b57a-4454-985f-cb2c9b850fcb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9cae74f3-ac6a-47ad-a6ab-4d62e7862626",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Carga de Datos ▼",
+      "targets": [
+        ["linkText=Carga de Datos ▼", "linkText"],
+        ["css=li:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Carga de Datos ▼')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[26]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Carga de Datos ▼')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "98964ace-4bdd-41c2-aad1-d0e95dcf8230",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Archivos ►",
+      "targets": [
+        ["linkText=Archivos ►", "linkText"],
+        ["css=li:nth-child(6) > ul > li > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Archivos ►')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[27]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Archivos ►')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5df1183a-3576-4179-bf91-ef25d57ac52b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lista de Clase",
+      "targets": [
+        ["linkText=Lista de Clase", "linkText"],
+        ["css=li:nth-child(6) li li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lista de Clase')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/CSV/Clase')]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lista de Clase')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "53d7abce-bb1e-4f5f-a202-033a80b0ee74",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Sistema de Mejoramiento Docente",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cdd4d155-6143-445f-9430-2ad8545ac808",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Carga de Datos ▼",
+      "targets": [
+        ["linkText=Carga de Datos ▼", "linkText"],
+        ["css=li:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Carga de Datos ▼')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[26]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Carga de Datos ▼')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "469df33a-1902-4c4f-8131-a0e3478bb591",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "268bb0b6-f20a-4de1-96ef-5c7f02e942c2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Archivos ►",
+      "targets": [
+        ["linkText=Archivos ►", "linkText"],
+        ["css=li:nth-child(6) > ul > li > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Archivos ►')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[27]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Archivos ►')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ce5ab85-228a-414b-9540-f43308fc0e77",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lista de Funcionarios",
+      "targets": [
+        ["linkText=Lista de Funcionarios", "linkText"],
+        ["css=li:nth-child(6) li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lista de Funcionarios')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/CSV/Funcionarios')]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lista de Funcionarios')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8fa5d22c-a9fe-4caa-b90a-9fd31bbb3df6",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Sistema de Mejoramiento Docente",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5891fd61-7a29-4b50-a22f-2667432d6761",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Carga de Datos ▼",
+      "targets": [
+        ["linkText=Carga de Datos ▼", "linkText"],
+        ["css=li:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Carga de Datos ▼')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[26]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Carga de Datos ▼')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "502ed0e8-4436-41f1-ab07-4a05228df853",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Archivos ►",
+      "targets": [
+        ["linkText=Archivos ►", "linkText"],
+        ["css=li:nth-child(6) > ul > li > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Archivos ►')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[27]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Archivos ►')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "146c5b94-6ea4-4812-b937-6623000d7382",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Guia de Horarios",
+      "targets": [
+        ["linkText=Guia de Horarios", "linkText"],
+        ["css=li:nth-child(6) li:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Guia de Horarios')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/CSV/GuiaHorarios')]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Guia de Horarios')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5c1ce35c-4c7e-4140-b652-50c78491b638",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Sistema de Mejoramiento Docente",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4733932-bb4d-448b-acde-dbe6b99c34a8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Carga de Datos ▼",
+      "targets": [
+        ["linkText=Carga de Datos ▼", "linkText"],
+        ["css=li:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Carga de Datos ▼')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[26]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Carga de Datos ▼')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "db210fa3-eb2d-441a-abde-e72ca7814773",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Archivos ►",
+      "targets": [
+        ["linkText=Archivos ►", "linkText"],
+        ["css=li:nth-child(6) > ul > li > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Archivos ►')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '')])[27]", "xpath:href"],
+        ["xpath=//li[6]/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Archivos ►')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ce2a049d-f091-4724-8f7b-0cc0d1130bd5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lista de Estudiantes",
+      "targets": [
+        ["linkText=Lista de Estudiantes", "linkText"],
+        ["css=ul:nth-child(2) > li:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Lista de Estudiantes')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[6]/ul/li/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/CSV/Index')]", "xpath:href"],
+        ["xpath=//li/ul/li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Lista de Estudiantes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0043ca37-c9d2-45a8-888d-348748f8f1b1",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["cca9c403-40b5-4bef-9774-781d1897e30f"]
+  }],
+  "urls": ["https://localhost:44334/"],
+  "plugins": []
+}

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AppIntegrador.Models.Formulario_tiene_seccion>
+@{
+    ViewBag.Title = "Añadir Secciones";
+    var totalSecciones = 0;
+}
+
+<h4> Añadir secciones al objetivo </h4>
+
+<table id="TablaSeleccionarSeccion" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Codigo del formulario
+            </th>
+            <th>
+                Codigo de la seccion
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        @foreach (var pair in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox"
+                           id="pr(@totalSecciones)"
+                           name="checkBoxSeccionObjetivo"
+                           class="SectionCheckbox"
+                           value="@pair.SCodigo" />
+                           @*onclick="seleccionaCheckBoxGen(this, 'secc', 'scodigo', cantidadSecc)" />*@
+                </td>
+
+                <td>
+                    @pair.FCodigo
+                </td>
+                <td>
+                    @pair.SCodigo
+                </td>
+            </tr>
+            totalSecciones += 1;
+        }
+    </thead>
+</table>

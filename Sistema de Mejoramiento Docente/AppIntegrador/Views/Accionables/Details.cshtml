@@ -1,0 +1,50 @@
+﻿@model AppIntegrador.Models.Accionable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Accionable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.progreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.progreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccionDeMejora.nombreObj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccionDeMejora.nombreObj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

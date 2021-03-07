@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AppIntegrador.Models.SeccionConPreguntas>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    @Html.Hidden("secciones[" + item.Orden + "].CodigoSeccion", null, new { @Value = item.CodigoSeccion, @class = "SeccionesAgregadasAFormulario" })
+    var displayOrden = item.Orden + 1;
+    <div class="card card-primary shadow">
+        <div class='card-header'>
+            <div class="row">
+                <span style=" font-size: 20px;" class="col-lg-11 col-md-10">
+                    @displayOrden.
+                    @Html.DisplayFor(model => item.Nombre, new { style = "font-size: 20px;" })
+                </span>
+                @if (item.Edicion)
+                {
+                    <button type="button" [disabled]="true" class="btn btn-danger" style="margin-left: 3%" id="borrarSec" onclick="BorrarSeccion('@item.CodigoSeccion')">X</button>
+                }
+            </div>
+        </div>
+        <div class='card-body '>
+            @{Html.RenderPartial("../ResponderPreguntas/TodasLasPreguntas", item.Preguntas);}
+        </div>
+
+        @if (item.Edicion)
+        {
+
+            <div class="card-footer">
+                <input type="button" value="Agregar preguntas" class="btn-azulUCR float-right" onclick="GenerarModalPreguntas('@item.CodigoSeccion')" />
+            </div>
+        }
+    </div>
+    <br />
+}
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalAgregarPregunta" tabindex="-1" role="dialog" aria-labelledby="ModalAgregarPregunta" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="BancoDePreguntas">
+                        <div id="ModalPartialBancoPreguntas">
+                        </div>
+                        <input type="button" class="btn-linkUCR float-right CrearSeccionModal" onclick="MostrarCrearPregunta()" value="Crear Pregunta" />
+                    </div>
+                    <div id="ModalCrearPregunta">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn-azulUCR " onclick="addPreguntaToSeccion()" data-dismiss="modal">Agregar preguntas seleccionadas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .full {
+        margin-left: 2%;
+        margin-right: 0%;
+        background: white;
+        border: transparent;
+    }
+
+    .card-header {
+        font-size: 20px;
+    }
+</style>
+

@@ -1,0 +1,21 @@
+﻿Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:01.0927972.
+Generating the model took 00:00:02.0565775.
+Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:00.5414781.
+Generating the model took 00:00:01.0532198.
+Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:00.5195972.
+Generating the model took 00:00:01.0815350.
+Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:00.5127735.
+Generating the model took 00:00:00.3937410.
+Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:00.5003069.
+Generating the model took 00:00:00.4118321.
+Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:00.5820417.
+Generating the model took 00:00:01.5906967.
+Generated model file: DataIntegradorModel.edmx.
+Loading metadata from the database took 00:00:00.5076616.
+Generating the model took 00:00:00.4010310.

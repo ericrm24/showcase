@@ -1,0 +1,5 @@
+CodigoCarreraCurso, CodigoEnfasisCurso, SiglaCursoCarrera, SiglaCurso, NombreCurso, SiglaCursoGrupo, NumeroGrupo, Semestre, Anno, SiglaCursoImparte, NumeroGrupoImparte, SemestreGrupoImparte, AnnoGrupoImparte, CorreoImparte, SiglaCursoMatricula, NumeroGrupoMatricula, SemestreMatricula, AnnoMatricula, CorreoMatricula
+C000000003, E000000002, CI0135, CI0135, Interacción Humano Computador, CI0135,2,2,2019, CI0135,1,2,2019, cristian.quesada@ucr.ac.cr, , , , , 
+C000000003, E000000001, CI0129, CI0129, Inteligencia Artificial, CI0129,1,2,2019, CI0129,1,2,2019, alvaro.delaossa@ucr.ac.cr, CI0129,1,2,2019, ismael.gutierrezhidalgo@ucr.ac.cr
+C000000003, E000000001, CI0132, CI0132, Teoría de la Computaciónnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn, CI0135,1,2,2019, CI0135,2,2,2019, cristian.quesada@ucr.ac.cr, CI0128,1,2,2019, ismael.gutierrezhidalgo@ucr.ac.cr
+

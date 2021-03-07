@@ -1,0 +1,59 @@
+﻿
+@{
+    var formularios = (List<AppIntegrador.Models.Formulario>)ViewBag.Formularios;
+}
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalFormulariosVer" tabindex="-1" role="dialog" aria-labelledby="ModalFormulariosLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="ModalVerFormulariosInterno" style="width:auto">
+                        <h4> Formularios asociados al plan </h4>
+
+                        @if (formularios.Count() == 0)
+                        {
+                            <div>
+                                Aún no se ha relacionado el plan con formularios.
+                            </div>
+                        }
+                        else
+                        {
+
+                            <table id="TablaVerFormularios" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Codigo
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    @foreach (var form in formularios)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @form.Nombre
+                                            </td>
+                                            <td>
+                                                @form.Codigo
+                                            </td>
+                                        </tr>
+                                    }
+                                </thead>
+                            </table>
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

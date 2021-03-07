@@ -1,0 +1,127 @@
+﻿@model AppIntegrador.Models.MisFormulariosModel
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "MisFormularios";
+
+    // Estado de la construcción de la pagina
+    // 0 = formularios de semestre
+    // 1 = formularios pasados
+    // 2 = finalizado
+    uint EstadoConstruccion = 0;
+    
+}
+
+<div class="container">
+    <div class="card card-body shadow">
+        <h2>Mis formularios</h2>
+       @while(EstadoConstruccion < 2)
+        {
+            int tamannoLista = EstadoConstruccion == 0 ?
+                Model.FormulariosSemestre.Count : Model.FormulariosPasados.Count;
+            // Colocar las tags que abren la card de formularios del semestre
+            if (EstadoConstruccion == 0) 
+            {
+                <button class="btn-blancoUCR fit redondeado" data-toggle="collapse" data-target="#collapse-actuales" aria-expanded="true" aria-controls="collapse-actuales">
+                    <div class="card-header redondeado shadow" id="link-actuales">
+                        <h5>Formularios de cursos matriculados ▼</h5>
+                    </div>
+                </button>
+                <br />
+                @:<div class="card-body shadow grisUCR2 collapse show"  aria-labelledby="link-actuales" id="collapse-actuales">
+            }
+            else if(EstadoConstruccion == 1)
+            {
+                <button class="btn-blancoUCR fit redondeado" data-toggle="collapse" data-target="#collapse-pasados" aria-expanded="false" aria-controls="collapse-pasados">
+                    <div class="card-header redondeado shadow" id="link-pasados">
+                        <h5>Formularios de cursos anteriores ▼</h5>
+                    </div>
+                </button>
+                <br />
+                @:<div class="card-body shadow grisUCR2 collapse hide"  aria-labelledby="link-pasados" id="collapse-pasados">
+            }
+            @:<div class="row">
+            if(tamannoLista == 0)
+            {
+               <span style="font-size: 120%;padding-left: 42%;">Sin formularios</span>
+              @:</div>
+              @:</div>
+            }
+
+           for (int i = 0; i < tamannoLista; ++i)
+           {
+               var item = EstadoConstruccion == 0 ?
+                   Model.FormulariosSemestre.ElementAt(i) : Model.FormulariosPasados.ElementAt(i);
+
+               if (i > 0 && i % 2 == 0)
+               {
+                    @:</div><br /><div class="row">
+                    }
+                    <div class="col-lg-6">
+                        <div class="card card-primary shadow">
+                            <div class="card-header grisUCR3">@item.Nombre</div>
+                            <div class="card-body">
+                                <strong>Curso: </strong><span>@item.Periodo.CSigla - @item.NombreCurso</span> <br />
+                                <strong>Periodo: </strong><span>@item.Periodo.GSemestre - @item.Periodo.GAnno</span><br />
+                                <strong>Fecha de inicio: </strong><span> @item.FechaInicioFormateada </span> <br />
+                                <strong>Fecha de finalización: </strong><span> @item.FechaFinFormateada </span> <br />
+                                <strong>Estado: </strong>
+                                @if (item.Estado == 3)
+                                {
+                                    <span>Disponible</span>
+                                }
+                                else if (item.Estado == 2)
+                                {
+                                    <span>No está en periodo de llenado</span>
+                                }
+                                else if (item.Estado == 1)
+                                {
+                                    <span>Finalizado</span>
+                                }
+                                else if (item.Estado == 0)
+                                {
+                                    <span>En progreso</span>
+                                }
+                            </div>
+                            @* If de prueba para no mostrar el footer cuando ya esté finalizado *@
+                            @if (item.Estado != 1 && item.Estado != 2)
+                            {
+                                <div class="card-footer">
+                                    @*Falta agregar atributo de si está en progreso, llenado, etc*@
+                                    @if (item.Estado == 3)
+                                    {
+                                        @Html.ActionLink("Llenar", "LlenarFormulario", "LlenarFormulario", new { id = item.Periodo.FCodigo, sigla = item.Periodo.CSigla, num = item.Periodo.GNumero, anno = item.Periodo.GAnno, semestre = item.Periodo.GSemestre  }, new { @class = "btn-azulUCR" })
+                                    }
+                                    @if (item.Estado == 0)
+                                    {
+                                        @Html.ActionLink("Continuar", "LlenarFormulario", "LlenarFormulario", new { id = item.Periodo.FCodigo, sigla = item.Periodo.CSigla, num = item.Periodo.GNumero, anno = item.Periodo.GAnno, semestre = item.Periodo.GSemestre }, new { @class = "btn-azulUCR" })
+                                    }
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+           }
+
+            ++EstadoConstruccion;
+           
+           @* Tags que cierran las cards *@
+           if(tamannoLista != 0)
+           {
+              @:</div>
+            @:</div>
+
+           }
+            @:<br />
+        } @* While *@ 
+
+    @* Ignorar los warnings de estos tags, son necesarios *@
+    </div>
+</div>
+
+<style>
+    .fit {
+        display: inline-block;
+        padding: 0;
+    }
+</style>

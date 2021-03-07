@@ -1,0 +1,187 @@
+﻿@model AppIntegrador.Models.Metadata.AccionDeMejoraMetadata
+
+@*
+    Creado por: Johan Córdoba
+    Historia a la que pertenece: MOS-25 "como usuario quiero tener una interfaz que muestre de forma clara las jerarquías entre las distintas partes del subsistema de creación de planes de mejora"
+    Vista parcial para crear las acciones de mejora en un objetivo seleccionado
+*@
+
+@{
+    Layout = null;
+}
+
+
+<form role="form" id="myform">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<h4>Acción de mejora codPlan:@Session["idPlan"], objt:@Session["nombreObj"]</h4>*@
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @*@Html.LabelFor(model => model.nombreObj, htmlAttributes: new { @class = "control-label" })*@
+                    @*@Html.EditorFor(model => model.nombreObj, new { htmlAttributes = new { @class = "form-control", maxlength = "50", placeholder = "Máximo 50 caracteres" } })*@
+                    @Html.TextBoxFor(model => model.nombreObj, new {style = "display:none;", @Value = @Session["nombreObj"] })
+                    @Html.ValidationMessageFor(model => model.nombreObj, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @*@Html.LabelFor(model => model.codPlan, htmlAttributes: new { @class = "control-label" })*@
+            <div class="row">
+                <div class="col-md-12">
+                    @*@Html.EditorFor(model => model.codPlan, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.TextBoxFor(model => model.codPlan, new { style = "display:none;", @Value = @Session["idPlan"] })
+                    @Html.ValidationMessageFor(model => model.codPlan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "control-label" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fechaInicio, new { htmlAttributes = new 
+                            { 
+                                @class = "form-control",
+                                id = "fechaInicioADM",
+                                @onchange = "validacionADM()"
+                            } })
+                            <span class="error">
+                                <p id="fechaInicioADM_subMsj" class="regularMsj">Inicio plan de mejora.</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "control-label" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fechaFin, new { htmlAttributes = new 
+                            { 
+                                @class = "form-control" ,
+                                id = "fechaFinalADM"    ,
+                                @onchange = "validacionADM()"
+                            } })
+                            <span class="error">
+                                <p id="fechaFinalADM_subMsj" class="regularMsj">Inicio plan de mejora.</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.descripcion, new
+                    {
+                        @class = "form-control",
+                        rows = "2",
+                        maxlength = "250",
+                        style = "resize:vertical",
+                        placeholder = "Máximo 250 caracteres",
+                        id = "descripcionADM",
+                        @onkeyup = "validacionADM()"
+                    })
+                    @*@Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <span class="error">
+                        <p id="descripcionADM_subMsj" class="regularMsj">Inicio plan de mejora.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        /*
+            Modificado por: Johan Córdoba
+            Historia a la que pertenece: MOS-1.3 "agregar, modificar, borrar y listar las acciones de mejora de un objetivo"
+            Cambio la funcionalidad del boton para que no refresque toda la vista
+            y solo cierre el modal. Además esto tambien permite que en las vistas parciales
+            an cancelar la creación de un plan de mejora vuelva a esta vista y no a la de
+            index de acciones de mejora.
+
+        */
+        <div class="form-group">
+            <div class="row">
+                <div class="botonCentrado">
+                    <input type="submit" id="enviarNuevoPDMButton" value="Crear" class="btn-azulUCR" disabled />
+                </div>
+            </div>
+        </div>
+    }
+</form>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function validacionADM() {
+        let fechaInicioObjetivo = document.getElementById('fechaInicioADM');
+        let fechaFinalObjetivo = document.getElementById('fechaFinalADM');
+        let descripcionObjetivo = document.getElementById('descripcionADM');
+
+        // Dejando el limite superior e inferior con respecto a las fechas que tiene el plan de mejora
+        let temp = `@Session["fechaInicioObjetivo"]`;
+        temp = temp.substr(0, temp.indexOf(' '));
+        let minDate = new Date(temp + 'CST');
+
+
+        temp = `@Session["fechaFinObjetivo"]`;
+        temp = temp.substr(0, temp.indexOf(' '));
+        let topDate = new Date(temp + 'CST');
+
+        let validatorObjetivos = new Validador(50, 250, minDate, topDate, 'enviarNuevoPDMButton');
+
+        //Definimos la cantidad de validaciones
+        validatorObjetivos.setTotalValidations(2);
+
+        // Ahora haciendo las validaciones
+        validatorObjetivos.validateSomethingInTextInput(descripcionObjetivo, 250);
+        validatorObjetivos.validateDates(fechaInicioObjetivo, fechaFinalObjetivo);
+
+        validatorObjetivos.validityOfForm();
+    }
+</script>
+
+
+<script>
+    $(function () {
+        $("#myform").submit(function (e) {
+            var id = "@Session["idPlan"]";
+            var objetivo = "@Session["nombreObj"]";
+            //alert("Se va a llamar a crearAccionDeMejora con id:"+id+" y con obj:"+objetivo);
+            
+            e.preventDefault();
+            $.ajax({
+                url: '/AccionDeMejora/CrearAccionDeMejora/',
+                type: 'post',
+                data: $('#myform').serialize(),
+                success: function () {
+                    cargarAccionesDeMejora(id, objetivo);
+                }
+            });
+
+            swal({
+                title: "Acción de mejora guardada exitosamente!",
+                type: "success",
+                text: "Puede ser visto la lista de acciones de mejora del objetivo",
+                icon: 'success',
+
+                timer: 100000,
+                showConfirmButton: true
+
+            });
+    });
+    });
+</script>

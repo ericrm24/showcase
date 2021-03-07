@@ -1,0 +1,109 @@
+﻿@model AppIntegrador.Models.Objetivo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+    var objModel = Model;
+    string objectiveNum = this.ViewData.ContainsKey("objectiveNumber") ? this.ViewData["objectiveNumber"].ToString() : string.Empty;
+
+    string idModalBorrado = "idModal-";
+    idModalBorrado += @objModel.codPlan.ToString();
+    idModalBorrado += '-';
+    idModalBorrado += @objectiveNum;
+    idModalBorrado += "-delete";
+
+}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@idModalBorrado">
+    Borrar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="@idModalBorrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Borrado del Objetivo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.nombre)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.fechaInicio)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.fechaInicio)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.fechaFin)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.fechaFin)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.descripcion)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DisplayNameFor(model => model.TipoObjetivo)
+                    </div>
+                    <div class="col-8">
+                        @Html.DisplayFor(model => model.TipoObjetivo)
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    /*
+                     Modificado por: Johan Córdoba
+                     Historia a la que pertenece: MOS-1.2 "agregar, modificar, borrar y consultar los objetivos de un plan de mejora"
+                     Cambio la funcionalidad del boton para que no refresque toda la vista
+                     y solo cierre el modal. Además esto tambien permite que en las vistas parciales
+                     an cancelar la creación de un plan de mejora vuelva a esta vista y no a la de
+                     index de acciones de mejora.
+
+                    */
+                    <div class="botonCentrado">
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Borrar" class="btn btn-danger" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

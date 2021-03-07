@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="~/Scripts/Visualizacion/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/CSVuploader.js"></script>
+
+<div class="fullWidth">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="impText">Carga de estudiantes</h2>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+
+    @using (Html.BeginForm("Index", "CSV", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label for="file">Subir lista de estudiantes:</label>
+        <div class="custom-file mb-3">
+
+            <input type="file" name="file" class="custom-file-input" id="file" accept=".csv" onchange="Upload()" />
+            <label class="custom-file-label" for="customFile">Elija un archivo</label>
+        </div>
+
+        <br>
+        <br>
+        <input type="button" id="Vista" value="Vista previa" class="btn btn-primary" data-toggle="modal" data-target="#ModalCSV" />
+        <input type="submit" value="Subir CSV" class="btn btn-primary" />
+        <br>
+        <br>
+    }
+
+
+    <script>
+        //refactorizar
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+    <script type="text/javascript">
+        function Upload() {
+            var fileUpload = document.getElementById("file");
+
+            if (typeof (FileReader) != "undefined") {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var table = document.createElement("table"); //Creo la tabla dinamica
+                    table.setAttribute('class', 'table table-hover table-striped table-bordered table-sm '); //Una clase para usar bootstrap
+                    table.setAttribute('width', '500px');
+                    var rows = e.target.result.split("\n"); //Cantidad de Filas
+
+                    var rowHeader = table.insertRow(-1);
+                    var cellsHeader = rows[0].split(",");
+                    if (cellsHeader.length > 1) {
+                        for (var i = 0; i < cellsHeader.length; ++i) {
+                            var headerCell = document.createElement("TH");
+                            headerCell.innerHTML = cellsHeader[i];
+                            rowHeader.appendChild(headerCell);
+                        }
+                    }
+
+                    for (var i = 1; i < rows.length; i++) {
+                        var cells = rows[i].split(",");
+                        if (cells.length > 1) {
+                            var row = table.insertRow(-1);
+                            for (var j = 0; j < cells.length; j++) {
+                                var cell = row.insertCell(-1);
+                                cell.innerHTML = cells[j];
+                            }
+                        }
+                    }
+                    var dvCSV = document.getElementById("dvCSV");
+                    dvCSV.innerHTML = "";
+                    dvCSV.appendChild(table);
+                }
+                reader.readAsText(fileUpload.files[0]);
+            } else {
+                alert("Su navegador no soporta HTML5");
+            }
+        }
+    </script>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            var msg = '@ViewBag.Message';
+            var campo = '@ViewBag.Campo'
+            if (msg == "Exitoso") {
+                const el = document.createElement('div')
+                swal({
+                    title: "¡Archivo cargado exitosamente!",
+                    type: "success",
+                    icon: 'success',
+
+                    timer: 100000,
+                    showConfirmButton: true
+
+                });
+            }
+            else if (msg == "Fallido"){
+                const el = document.createElement('div')
+                swal({
+                    title: "¡Ha ocurrido un error!",
+                    type: "error",
+                    text: campo,
+                    icon: 'error',
+
+                    timer: 100000,
+                    showConfirmButton: true
+
+                });
+            }
+        });
+    </script>
+
+
+
+    <div class="modal fade" id="ModalCSV" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="enunciadoPregunta" id="Encabezado" style="width: 100%; margin: auto; padding: 20px; font-size: 22px !important">
+                        Vista Previa
+                    </h3>
+                </div>
+                <div class="modal-body container" id="Ejemplo">
+                    <div id="dvCSV" class="container" style="overflow:auto"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModal" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Get the modal
+        var modal = document.getElementById("ModalCSV");
+        //Get the button
+        var vista = document.getElementById("Vista");
+        var closeModal = document.getElementById("closeModal");
+        // When the user clicks the button, open the modal
+        vista.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        closeModal.onclick = function () {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</div>
+

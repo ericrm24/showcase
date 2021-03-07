@@ -1,0 +1,214 @@
+{
+  "id": "6b44d7d4-b5e0-4823-b3a4-800658c0d9a7",
+  "version": "2.0",
+  "name": "test",
+  "url": "https://localhost:44334",
+  "tests": [{
+    "id": "48c2ae0b-e3f8-4b9d-894a-0f4d6b0fcb86",
+    "name": "AsignarFormularioFechasInvalida",
+    "commands": [{
+      "id": "67907ff7-39e4-467d-9a92-8d78ca39c010",
+      "comment": "",
+      "command": "open",
+      "target": "/Home/Login?ReturnUrl=%2fAsignacionFormularios%2fIndex",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e0105364-7679-48e0-89db-5b482ac3bf6b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1086x768",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ff38834-5d2d-4806-9259-7846b23f448c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "546af885-528a-4d19-bb08-e4a6fde96bdf",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Asignar",
+      "targets": [
+        ["linkText=Asignar", "linkText"],
+        ["css=tr:nth-child(2) a:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Asignar')]", "xpath:link"],
+        ["xpath=//table[@id='selectedColumn']/tbody/tr[2]/td[3]/a[3]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/AsignacionFormularios/Index/00000001')]", "xpath:href"],
+        ["xpath=//td[3]/a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Asignar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b36c09d6-145e-4417-8ef2-f006a1f7a588",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroUA",
+      "targets": [
+        ["id=filtroUA", "id"],
+        ["name=filtroUA", "name"],
+        ["css=#filtroUA", "css:finder"],
+        ["xpath=//select[@id='filtroUA']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea668ff9-2df0-4313-9f44-cf18e506344b",
+      "comment": "",
+      "command": "select",
+      "target": "id=filtroUA",
+      "targets": [],
+      "value": "label=ECCI"
+    }, {
+      "id": "a52e1b8a-d120-45e5-aaaf-f1f77a80424a",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroUA",
+      "targets": [
+        ["id=filtroUA", "id"],
+        ["name=filtroUA", "name"],
+        ["css=#filtroUA", "css:finder"],
+        ["xpath=//select[@id='filtroUA']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7837b73-1117-4bfb-8dd0-10faae542e25",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha-inicio",
+      "targets": [
+        ["id=fecha-inicio", "id"],
+        ["css=#fecha-inicio", "css:finder"],
+        ["xpath=//input[@id='fecha-inicio']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "222a1159-5e49-491b-83fb-2cc65f4022f3",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha-inicio",
+      "targets": [
+        ["id=fecha-inicio", "id"],
+        ["css=#fecha-inicio", "css:finder"],
+        ["xpath=//input[@id='fecha-inicio']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "052f3401-7a2d-4fab-a8f5-cf287b01ab92",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha-inicio",
+      "targets": [
+        ["id=fecha-inicio", "id"],
+        ["css=#fecha-inicio", "css:finder"],
+        ["xpath=//input[@id='fecha-inicio']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "be3618fe-2d3a-46da-a155-a1a280287675",
+      "comment": "",
+      "command": "type",
+      "target": "id=fecha-inicio",
+      "targets": [
+        ["id=fecha-inicio", "id"],
+        ["css=#fecha-inicio", "css:finder"],
+        ["xpath=//input[@id='fecha-inicio']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2019-12-14"
+    }, {
+      "id": "01a3f61d-8bc7-49d4-b8ae-3512e3cb13dd",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha-fin",
+      "targets": [
+        ["id=fecha-fin", "id"],
+        ["css=#fecha-fin", "css:finder"],
+        ["xpath=//input[@id='fecha-fin']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "931a7f2d-23c6-4001-aa2a-3cb0f84d87ab",
+      "comment": "",
+      "command": "type",
+      "target": "id=fecha-fin",
+      "targets": [
+        ["id=fecha-fin", "id"],
+        ["css=#fecha-fin", "css:finder"],
+        ["xpath=//input[@id='fecha-fin']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2019-12-01"
+    }, {
+      "id": "8b3fd148-5392-42df-ba9c-54feb22e6661",
+      "comment": "",
+      "command": "click",
+      "target": "css=div:nth-child(1) > .btn-azulUCR",
+      "targets": [
+        ["css=div:nth-child(1) > .btn-azulUCR", "css:finder"],
+        ["xpath=//input[@value='Asignar formulario']", "xpath:attributes"],
+        ["xpath=//div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "51f6c8ec-9eeb-4e64-b4f9-dd1ccfd24d85",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=div:nth-child(1) > .btn-azulUCR",
+      "targets": [
+        ["css=div:nth-child(1) > .btn-azulUCR", "css:finder"],
+        ["xpath=//input[@value='Asignar formulario']", "xpath:attributes"],
+        ["xpath=//div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07eef2bc-a9ea-4dbb-b899-4e99196ebdce",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=div:nth-child(1) > .btn-azulUCR",
+      "targets": [
+        ["css=div:nth-child(1) > .btn-azulUCR", "css:finder"],
+        ["xpath=//input[@value='Asignar formulario']", "xpath:attributes"],
+        ["xpath=//div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "683ccaf2-df6b-4418-96cf-919f6a6e0a1b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.confirm",
+      "targets": [
+        ["css=.confirm", "css:finder"],
+        ["xpath=//div[7]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "093fa6a3-39e1-4249-8fb9-9f85c7f0c10f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["48c2ae0b-e3f8-4b9d-894a-0f4d6b0fcb86"]
+  }],
+  "urls": ["https://localhost:44334/"],
+  "plugins": []
+}

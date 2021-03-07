@@ -1,0 +1,11 @@
+﻿@model AppIntegrador.Models.Seccion
+
+@{
+    ViewBag.Title = "Vista previa";
+}
+
+    <div class="container">
+        <h4>Vista previa de la sección @Model.Codigo</h4>
+        @Html.Action("SeccionConPreguntas", "Seccion", Model.Codigo)
+    </div>
+

@@ -1,0 +1,243 @@
+{
+  "id": "1969ba87-0952-456b-ba12-7e92d7842431",
+  "version": "2.0",
+  "name": "FinalizarFormulario",
+  "url": "https://localhost:44334",
+  "tests": [{
+    "id": "c82931f3-cf60-4335-9126-2c9e6b89a864",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "02213cb9-d720-45f9-9d3a-07fed2df1775",
+    "name": "FinalizarFormulario",
+    "commands": [{
+      "id": "7bffe48f-0082-4556-9021-e056c5d0da42",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c01fc62d-7c83-49e6-adce-606957067478",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x706",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9c0cbb04-f537-4d39-bcc9-676132ed831a",
+      "comment": "",
+      "command": "click",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "73fdaf85-a330-4996-a8a9-24e4257d9784",
+      "comment": "",
+      "command": "type",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "paco@mail.com"
+    }, {
+      "id": "fc33dfc6-f50b-4876-ba4d-f603b3c928da",
+      "comment": "",
+      "command": "type",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "paco@mail.com"
+    }, {
+      "id": "93fce17d-032d-40ed-bb1f-b7299ebe2da1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container-login100",
+      "targets": [
+        ["css=.container-login100", "css:finder"],
+        ["xpath=//body[@id='greybg']/div", "xpath:idRelative"],
+        ["xpath=//div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d2506c2-af49-44f4-8868-c49f7fa87a4c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fdb1196-dc0f-4130-87cc-403ee102f8c4",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=#firma-ucr > img",
+      "targets": [
+        ["css=#firma-ucr > img", "css:finder"],
+        ["xpath=//img[@alt='Logo Universidad de Costa Rica']", "xpath:img"],
+        ["xpath=//a[@id='firma-ucr']/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af632c21-8243-4446-be97-492e47821897",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:44334/LlenarFormulario/MisFormularios",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bbe78104-c5fc-482f-87dd-7f4784244c70",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Llenar",
+      "targets": [
+        ["linkText=Llenar", "linkText"],
+        ["css=.btn-azulUCR", "css:finder"],
+        ["xpath=//a[contains(text(),'Llenar')]", "xpath:link"],
+        ["xpath=//div[@id='collapse-actuales']/div/div[2]/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/LlenarFormulario/LlenarFormulario/00000001?sigla=CI0128&num=1&anno=2019&semestre=2')]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Llenar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "433a0860-1bb9-4113-8c71-206a7e1f891d",
+      "comment": "",
+      "command": "click",
+      "target": "id=secciones[0].Preguntas[0].Opciones[0] 0",
+      "targets": [
+        ["id=secciones[0].Preguntas[0].Opciones[0] 0", "id"],
+        ["name=secciones[0].Preguntas[0].Opciones[0]", "name"],
+        ["css=#secciones\\[0\\]\\.Preguntas\\[0\\]\\.Opciones\\[0\\]\\ 0", "css:finder"],
+        ["xpath=//input[@id='secciones[0].Preguntas[0].Opciones[0] 0']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div/div[2]/div/div/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff27f42f-cef3-499e-aefc-5a0995a99553",
+      "comment": "",
+      "command": "click",
+      "target": "id=secciones[1].Preguntas[0].Opciones[0] 2",
+      "targets": [
+        ["id=secciones[1].Preguntas[0].Opciones[0] 2", "id"],
+        ["css=#secciones\\[1\\]\\.Preguntas\\[0\\]\\.Opciones\\[0\\]\\ 2", "css:finder"],
+        ["xpath=//input[@id='secciones[1].Preguntas[0].Opciones[0] 2']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div[2]/div[2]/div/div[3]/label/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/div[3]/label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d132716-a511-4f8f-8046-bb6e9f3e11d6",
+      "comment": "",
+      "command": "click",
+      "target": "id=secciones[1].Preguntas[1].Opciones[0] 1",
+      "targets": [
+        ["id=secciones[1].Preguntas[1].Opciones[0] 1", "id"],
+        ["css=#secciones\\[1\\]\\.Preguntas\\[1\\]\\.Opciones\\[0\\]\\ 1", "css:finder"],
+        ["xpath=//input[@id='secciones[1].Preguntas[1].Opciones[0] 1']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div[2]/div[2]/div[2]/div[2]/label/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc1fff6a-3688-4286-91a0-e45ad62aa174",
+      "comment": "",
+      "command": "click",
+      "target": "id=secciones[1].Preguntas[2].Opciones[0] 2",
+      "targets": [
+        ["id=secciones[1].Preguntas[2].Opciones[0] 2", "id"],
+        ["css=#secciones\\[1\\]\\.Preguntas\\[2\\]\\.Opciones\\[0\\]\\ 2", "css:finder"],
+        ["xpath=//input[@id='secciones[1].Preguntas[2].Opciones[0] 2']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div[2]/div[2]/div[3]/div[3]/label/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div[3]/label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3c3b9a2-91f1-4faa-aea9-114ca0a645b0",
+      "comment": "",
+      "command": "click",
+      "target": "id=secciones[1].Preguntas[4].Opciones[0] 9",
+      "targets": [
+        ["id=secciones[1].Preguntas[4].Opciones[0] 9", "id"],
+        ["css=#secciones\\[1\\]\\.Preguntas\\[4\\]\\.Opciones\\[0\\]\\ 9", "css:finder"],
+        ["xpath=//input[@id='secciones[1].Preguntas[4].Opciones[0] 9']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div[2]/div[2]/div[5]/div/div[10]/label/input", "xpath:idRelative"],
+        ["xpath=//div[10]/label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d12497f-df02-40e3-9d6d-8867f8828abf",
+      "comment": "",
+      "command": "click",
+      "target": "name=secciones[2].Preguntas[0].RespuestaLibreOJustificacion",
+      "targets": [
+        ["name=secciones[2].Preguntas[0].RespuestaLibreOJustificacion", "name"],
+        ["css=.card-body > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='secciones[2].Preguntas[0].RespuestaLibreOJustificacion']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div[3]/div[2]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]/div/div/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a02a2f3d-51eb-4c17-b170-5fee48d542d2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-azulUCR:nth-child(1)",
+      "targets": [
+        ["css=.btn-azulUCR:nth-child(1)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div[3]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Finalizar formulario')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "512b6d33-c8c5-440e-b6b6-556d6c039ea0",
+      "comment": "",
+      "command": "type",
+      "target": "name=secciones[2].Preguntas[0].RespuestaLibreOJustificacion",
+      "targets": [
+        ["name=secciones[2].Preguntas[0].RespuestaLibreOJustificacion", "name"],
+        ["css=.card-body > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='secciones[2].Preguntas[0].RespuestaLibreOJustificacion']", "xpath:attributes"],
+        ["xpath=//div[@id='section-container']/div[3]/div[2]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]/div/div/textarea", "xpath:position"]
+      ],
+      "value": "hola"
+    }]
+  }],
+  "suites": [{
+    "id": "83d7fcba-4bad-414a-8605-d0bd607e3439",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["c82931f3-cf60-4335-9126-2c9e6b89a864"]
+  }],
+  "urls": ["https://localhost:44334/"],
+  "plugins": []
+}

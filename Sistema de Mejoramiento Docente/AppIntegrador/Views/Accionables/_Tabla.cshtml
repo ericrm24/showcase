@@ -1,0 +1,96 @@
+﻿@model IEnumerable<AppIntegrador.Models.Accionable>
+
+@*
+    Modificado por: Christian Asch
+    Historia a la que pertenece: MOS-11 "Como Usuario administrativo
+        quiero agregar, modificar, borrar y listar los accionables de una acción de mejora para que los profesores puedan
+        describir pasos concretos para completar una acción de mejroa
+*@
+@{
+    var numAcc = 1;
+}
+
+<div>
+    @*
+        Modificado por: Christian Asch
+        Historia a la que pertenece: MOS-11 "Como Usuario administrativo
+            quiero agregar, modificar, borrar y listar los accionables de una acción de mejora para que los profesores puedan
+            describir pasos concretos para completar una acción de mejroa
+    *@
+
+
+    @if (Model.Count() == 0)
+    {
+        <div class="centeredText">
+            <p>
+                Aún no se han creado accionables en esta acción de mejora.
+            </p>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <colgroup>
+                <col class="TablasNombre">
+                <col class="TablasDescripcion">
+                <col class="TablasFecha">
+                <col class="TablasFecha">
+                <col class="TablasOpciones">
+            </colgroup>
+
+            <thead>
+                <tr class="EncabezadoTabla">
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaFin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tipo)
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tbody id="dataOb">
+                    <tr class="FilaTablasPlanesDeMejora">
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaInicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaFin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tipo)
+                        </td>
+                        <td>
+                            <div>
+                                @*@Html.ActionLink("Editar", "Edit", "Accionable", new { plan = obj.codPlan, title = obj.nombre }, new { @class = "modal-link btn btn-primary" })*@
+                                @*@Html.ActionLink("Borrar", "Delete", "Accionable", new { plan = item.codPlan, title = item.nombre }, new { @class = "modal-link btn btn-danger" })*@
+                                @Html.Partial("~/Views/Accionables/_deleteModal.cshtml", item, new ViewDataDictionary { { "accionNumber", numAcc } })
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                numAcc++;
+            }
+
+        </table>
+    }
+
+    <hr />
+</div>
+

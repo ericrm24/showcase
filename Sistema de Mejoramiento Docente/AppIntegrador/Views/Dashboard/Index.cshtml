@@ -1,0 +1,353 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+@Scripts.Render("~/Scripts/jquery-3.4.1.js")
+@Scripts.Render("~/Scripts/bootstrap.min.js")
+@Scripts.Render("~/Scripts/Visualizacion/bootstrap-multiselect.js")
+@Scripts.Render("~/Scripts/Visualizacion/popper.min.js")
+
+@Scripts.Render("~/Scripts/Visualizacion/font-awesome.js")
+@Scripts.Render("~/Scripts/Visualizacion/filtros.js")
+@Scripts.Render("~/Scripts/Visualizacion/Chart.js")
+@Scripts.Render("~/Scripts/Visualizacion/chroma.js")
+@Scripts.Render("~/Scripts/Visualizacion/chartjs-plugin-datalabels.js")
+@Scripts.Render("~/Scripts/Visualizacion/baseRespuestasPlantilla.js")
+@Scripts.Render("~/Scripts/Visualizacion/graficos.js")
+@Scripts.Render("~/Scripts/Visualizacion/estadisticas.js")
+@Scripts.Render("~/Scripts/Visualizacion/TextoLibre.js")
+@Scripts.Render("~/Scripts/Visualizacion/insertaContenidos.js")
+@Scripts.Render("~/Scripts/Visualizacion/botones.js")
+@Scripts.Render("~/Scripts/Visualizacion/graficosDashboard.js")
+@Styles.Render("~/Content/Visualizacion/bootstrap.min.css")
+@Styles.Render("~/Content/Visualizacion/bootstrap-multiselect.css")
+@Styles.Render("~/Content/Visualizacion/styles.css")
+
+<head>
+    <meta charset="UTF-8" , name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<img id="icono_ta" width="200" height="200" style="display: none;" src="~/Content/Visualizacion/texto_abierto_icono.png">
+
+<body>
+    <h3>Dashboard</h3>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3" id="panelFiltros">
+                <h4>Filtros</h4>
+            </div>
+
+            <div class="col">
+                <div class="row" id="promedios" style="overflow: auto">
+                    <div class="col" id="colP">
+                        Calificación Promedio de Profesor
+                        <canvas class="graficosPromedio" id="gP"></canvas>
+                        <small id="pN"></small>
+                    </div>
+                    <div class="col" id="colC">
+                        Calificación Promedio de Cursos
+                        <canvas class="graficosPromedio" id="gC"></canvas>
+                        <small id="cN"></small>
+                    </div>
+                </div>
+                <div class="row" id="cuadricula">
+                    <div class="col" id="panelDashboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    var filtros = new Filtros();
+    $(document).ready(function () {
+        filtros.crearFiltros();
+        actualizarPromedios(null, null, null, null);
+    });
+
+</script>
+
+<script type="text/javascript">
+    var alturaMax = 300;
+
+
+    $(document).ready(function () {
+        $('#filtroUA').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            numberDisplayed: 1,
+            includeSelectAllOption: true,
+            maxHeight: alturaMax,
+            nonSelectedText: 'Ninguno seleccionado',
+            nSelectedText: 'seleccionado',
+            allSelectedText: 'Todos seleccionados',
+            filterPlaceholder: 'Buscar',
+            selectAllText: 'Seleccionar todos',
+            
+        });
+        $('#filtroCarreraEnfasis').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            numberDisplayed: 1,
+            includeSelectAllOption: true,
+            maxHeight: alturaMax,
+            nonSelectedText: 'Ninguno seleccionado',
+            nSelectedText: 'seleccionado',
+            allSelectedText: 'Todos seleccionados',
+            filterPlaceholder: 'Buscar',
+            selectAllText: 'Seleccionar todos',
+        });
+
+        $('#filtroProfesores').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            numberDisplayed: 1,
+            includeSelectAllOption: true,
+            maxHeight: alturaMax,
+            nonSelectedText: 'Ninguno seleccionado',
+            nSelectedText: 'seleccionado',
+            allSelectedText: 'Todos seleccionados',
+            filterPlaceholder: 'Buscar',
+            selectAllText: 'Seleccionar todos',
+        });
+
+        $('#filtroCursoGrupo').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            numberDisplayed: 1,
+            includeSelectAllOption: true,
+            maxHeight: alturaMax,
+            nonSelectedText: 'Ninguno seleccionado',
+            nSelectedText: 'seleccionado',
+            allSelectedText: 'Todos seleccionados',
+            filterPlaceholder: 'Buscar',
+            selectAllText: 'Seleccionar todos',
+        });
+
+        $('#filtroFormularios').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            numberDisplayed: 1,
+            includeSelectAllOption: true,
+            maxHeight: alturaMax,
+            nonSelectedText: 'Ninguno seleccionado',
+            nSelectedText: 'seleccionado',
+            filterPlaceholder: 'Buscar',
+        });
+
+    });
+</script>
+
+<script>
+
+    //Actualiza los filtros por debajo del de unidades académicas
+    function actualizarDebajoUA() {
+        var unidadesAcademicas = filtros.recuperarUnidadesAcademicas();
+        //alert(unidadesAcademicas.length);
+        filtros.llenarFiltroCE(unidadesAcademicas, null, null);
+        filtros.llenarFiltroG(unidadesAcademicas, null, null);
+        filtros.llenarFiltroP(unidadesAcademicas, null, null);
+        filtros.llenarFiltroF(unidadesAcademicas, null, null, null);
+
+        //Limpia el panel de la vista parcial
+        $('#panelDashboard').html("");
+
+        //Se actualizan las opciones de los multiselects
+        $('#filtroCarreraEnfasis').multiselect('rebuild');
+        $('#filtroCursoGrupo').multiselect('rebuild');
+        $('#filtroProfesores').multiselect('rebuild');
+        $('#filtroFormularios').multiselect('rebuild');
+
+        //Actulización de los promedios, basado en el filtro actual
+        this.actualizarPromedios(unidadesAcademicas, null, null, null);
+
+    }
+
+    //Actualiza los filtros por debajo del de carreras y énfasis
+    function actualizarDebajoCE() {
+
+        var unidadesAcademicas = filtros.recuperarUnidadesAcademicas();
+        var carrerasEnfasis = filtros.recuperarCarrerasEnfasis();
+        
+        filtros.llenarFiltroG(unidadesAcademicas, carrerasEnfasis, null);
+        filtros.llenarFiltroP(unidadesAcademicas, carrerasEnfasis, null);
+        filtros.llenarFiltroF(unidadesAcademicas, carrerasEnfasis, null, null);
+
+        //Limpia el panel de la vista parcial
+        $('#panelDashboard').html("");
+
+        //Se actualizan las opciones de los multiselects
+        $('#filtroCursoGrupo').multiselect('rebuild');
+        $('#filtroProfesores').multiselect('rebuild');
+        $('#filtroFormularios').multiselect('rebuild');
+
+        //Actulización de los promedios, basado en el filtro actual
+        this.actualizarPromedios(unidadesAcademicas, carrerasEnfasis, null, null);
+
+    }
+
+    //Actualiza los filtros por debajo del de grupos
+    function actualizarDebajoG() {
+
+        var unidadesAcademicas = filtros.recuperarUnidadesAcademicas();
+        var carrerasEnfasis = filtros.recuperarCarrerasEnfasis();
+        var grupos = filtros.recuperarGrupos();
+
+        filtros.llenarFiltroP(unidadesAcademicas, carrerasEnfasis, grupos);
+        filtros.llenarFiltroF(unidadesAcademicas, carrerasEnfasis, grupos, null);
+
+        //Limpia el panel de la vista parcial
+        $('#panelDashboard').html("");
+
+        //Se actualizan las opciones de los multiselects
+        $('#filtroProfesores').multiselect('rebuild');
+        $('#filtroFormularios').multiselect('rebuild');
+
+        //Actulización de los promedios, basado en el filtro actual
+        this.actualizarPromedios(unidadesAcademicas, carrerasEnfasis,grupos, null);
+
+    }
+
+    //Actualiza los filtros por debajo del de profesores
+    function actualizarDebajoP() {
+
+        var unidadesAcademicas = filtros.recuperarUnidadesAcademicas();
+        var carrerasEnfasis = filtros.recuperarCarrerasEnfasis();
+        var grupos = filtros.recuperarGrupos();
+        var profesores = filtros.recuperarProfesores();
+
+        filtros.llenarFiltroF(unidadesAcademicas, carrerasEnfasis, grupos, profesores);
+
+        //Limpia el panel de la vista parcial
+        $('#panelDashboard').html("");
+
+        //Se actualizan las opciones de los multiselects
+        $('#filtroFormularios').multiselect('rebuild');
+
+        //Actulización de los promedios, basado en el filtro actual
+        this.actualizarPromedios(unidadesAcademicas, carrerasEnfasis,grupos, profesores);
+
+    }
+
+    //Esta función obtiene los parámetros del formulario seleccionado por el usuario y actualiza la vista parcial.
+    function actualizarVistaParcial() {
+
+        $('#panelDashboard').html("");
+        var f = filtros.recuperarFormulario();
+
+        if (f != null) {
+
+            var codigoFormulario = f[0];
+            var siglaCurso = f[2];
+            var numeroGrupo = f[3];
+            var semestre = f[4];
+            var ano = f[5];
+            var fechaInicio = f[6];
+            var fechaFin = f[7];
+
+            //Aquí se recarga la vista parcial con los parámetros del formulario.
+            $.ajax({
+                url: "/ResultadosFormulario/Formulario",
+                type: "post",
+                data: {
+
+                    codigoFormulario: codigoFormulario,
+                    siglaCurso: siglaCurso,
+                    numeroGrupo: numeroGrupo,
+                    semestre: semestre,
+                    ano: ano,
+                    fechaInicio: fechaInicio,
+                    fechaFin: fechaFin
+
+                },
+                dataType: "html",
+                success: function (result) {
+                    $('#panelDashboard').html(result);
+                }
+            })
+
+        }
+
+    }
+    /* 
+     * Esta función actualiza los dos gráficos que representan 
+     * el promedio de las calificaciones dadas a un profesor
+     * y a un curso con base en los formularios filtrados.
+     * 
+     * HH.UU.:
+     * COD-67: Desplegar la información del puntaje de un profesor y un curso específico.
+     * Tarea Técnica: Mostrar las nota resultantes.
+     * 
+     * COD-78: Visualizar un gráfico para la calificación de un profesor 
+     * y promedio de un curso, a partir de los filtros.
+     * Tarea Técnica: Desplegar la cantidad de calificaciones obtenidas a partir de los filtros.
+     * 
+     * COD-79: Visualizar el promedio para la calificación de un profesor 
+     * y promedio de un curso, a partir de los filtros.
+     * Tarea Técnica: Tomar en cuenta las escogencias de todos los filtros.
+     *
+     * Cumplimiento: 10/10
+     */
+    function actualizarPromedios(unidadesAcademicas, carrerasEnfasis, grupos, profesores) {
+
+        //Clase .js con las funciones para recuperar los promedios.
+        var x = new GraficosDashboard();
+
+        //Se llaman a la funciones del controlador (por medio de la clase GraficosDashboard) para recuperar los resultados
+        var profe = x.recuperarPromedioProfesor(unidadesAcademicas, carrerasEnfasis, grupos, profesores);
+        var profeP = profe[0];
+        var profeN = profe[1];
+        var nMaloP = profe[2];
+        var nRegularP = profe[3];
+        var nBuenoP = profe[4];
+        
+        var curso = x.recuperarPromedioCursos(unidadesAcademicas, carrerasEnfasis, grupos, profesores);
+        var cursoP = curso[0];
+        var cursoN = curso[1];
+        var nMaloC = curso[2];
+        var nRegularC = curso[3];
+        var nBuenoC = curso[4];
+
+        //Se recuperan los canvas viejos del html los cuales deben ser reemplazados.
+        var canvasPViejo = document.getElementById('gP'); 
+        var canvasCViejo = document.getElementById('gC');
+
+        //Se crean los canvas del html donde se pintarán los gráficos.
+        var canvasP = document.createElement('canvas');
+        canvasP.className = "graficosPromedio";
+        canvasP.id = "gP";
+        var canvasC = document.createElement('canvas');
+        canvasC.className = "graficosPromedio";
+        canvasC.id = "gC";
+
+        //Se reemplaza el canvas viejo por el nuevo
+        document.getElementById('colP').replaceChild(canvasP, canvasPViejo);
+        document.getElementById('colC').replaceChild(canvasC, canvasCViejo);
+
+        var canvasPContext = canvasP.getContext('2d'); 
+        var canvasCContext = canvasC.getContext('2d');
+
+        //Se pintan diferentes gráficos dependiendo de la existencia de calificaciones en los formularios filtrados.
+        if (profeP >= 0) {
+            $('#pN').text("Calificaciones Totales: " + profeN);
+            x.generarGrafico(canvasPContext, profeP, nMaloP, nRegularP, nBuenoP);
+        } else {
+            $('#pN').text("No existen calificaciones para los formularios filtrados.");
+            x.generarGraficoNulo(canvasPContext);
+        }
+
+        if (cursoP >= 0) {
+            $('#cN').text("Calificaciones Totales: " + cursoN);           
+            x.generarGrafico(canvasCContext, cursoP, nMaloC, nRegularC, nBuenoC);
+        } else {
+            $('#cN').text("No existen calificaciones para los formularios filtrados.");
+            x.generarGraficoNulo(canvasCContext);
+        }
+    }
+
+</script>
+
+

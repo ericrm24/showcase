@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "_TablaProfesores";
+    var ProfesoresLista = (List<AppIntegrador.Models.Profesor>)ViewBag.ProfesoresLista;
+    var ProfesoresNombreLista = (List<String>)ViewBag.ProfesoresNombreLista;
+}
+
+@if(ProfesoresLista.Count() == 0)
+{
+    <div>
+        Aún no se han escogido profesores para el plan.
+    </div>
+} 
+else
+{
+    <table id="TablaMostrarProfesores" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Correo
+                </th>
+            </tr>
+        </thead>
+        <thead>
+            @*@foreach (var profe in Model)*@
+            @for(int i = 0; i < ProfesoresLista.Count(); ++i)
+            {
+                <tr>
+                    <td>
+                        @ProfesoresNombreLista[i]
+                    </td>
+                    <td class="EntradaTablaProfesoresCorreo">
+                        @ProfesoresLista[i].Correo
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+}

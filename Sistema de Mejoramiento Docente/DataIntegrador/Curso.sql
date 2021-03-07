@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Curso]
+(
+	[Sigla] VARCHAR(10) NOT NULL PRIMARY KEY,
+	[Nombre] VARCHAR(50) NOT NULL
+)

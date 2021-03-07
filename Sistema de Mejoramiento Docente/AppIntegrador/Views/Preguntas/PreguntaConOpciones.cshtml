@@ -1,0 +1,44 @@
+﻿@model AppIntegrador.Models.Pregunta
+
+@{
+    Layout = null;
+}
+
+<div>
+    <input type="checkbox" class="float-left" name="showField" id="showField" value="yes" onchange="myFunction()" onclick="EnableDisableTextBox(this)">
+    <label for="showField" class="col-lg-10">
+        Incluir campo de justificación para la pregunta.
+    </label>
+</div>
+
+<div class="form-group" id="justificationField">
+    <div class="col-lg-12">
+        @Html.EditorFor(model => model.Pregunta_con_opciones.TituloCampoObservacion, new
+        {
+            htmlAttributes = new
+            {
+                @class = "validar-opc form-control",
+                required = "required",
+                id = "txtJustificationNumber",
+                @maxlength = "50",
+                @placeholder = "Descripción",
+                @onkeyup = "contarCaracteres(this)"
+            }
+        })
+        <div class="contador small float-right">0/50 caracteres usados</div>
+    </div>
+</div>
+<div class="form-horizontal">
+
+@* Tercer contenidor, envuelve los elementos de las opciones de las preguntas. Con un color de fondo
+    diferente para dar difernte importancia.*@
+    <div class="card-body grisUCR1">
+        <div id="sortable">
+        </div>
+        <div class="custom-control custom-radio control-label col-sm-1 form-horizontal">
+        </div>
+        <div class="col-sm-6">
+            <input type="button" class="btn-blancoUCR" value="Agregar opción +" id="agregar-opcion" />
+        </div>
+    </div>
+</div>

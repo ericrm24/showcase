@@ -1,0 +1,231 @@
+﻿@model IEnumerable<AppIntegrador.Models.Pregunta>
+
+@{
+    ViewBag.Title = "Banco de preguntas";
+}
+
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<br />
+<div class="container">
+    <h2>Banco de preguntas</h2>
+
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+        <div class="form-horizontal card-group">
+
+            <div class=" card card-default">
+
+                <div class="card-body test2">
+                    <b>
+                        Búsqueda:
+                    </b>
+
+                    <form action="PreguntaConOpcionesDeSeleccionController/Index" name="opcionfiltro">
+
+                        <select class="form-control my-form-control" id="mySelect" onChange="check(this);">
+                            <option value="-">Sin filtro </option>
+                            <option value="C">Código </option>
+                            <option value="E">Enunciado</option>
+                            <option value="T">Tipo </option>
+                        </select>
+
+                        @* campo de filtrado para ingresar el código *@
+                        <input class="form-control" type="text" name="input0" placeholder="" id="other-option" style="display:inline;" disabled="true">
+                        <input class="form-control" type="text" name="input1" placeholder="Buscar..." id="codigo-option" style="display:none;" maxlength="8">
+                        <input class="form-control" type="text" name="input2" placeholder="Buscar..." id="enunciado-option" style="display:none;" maxlength="250">
+
+                        @* campo de filtrado para seleccionar el Tipo *@
+                        <select class="form-control" type="text" name="input3" id="type-option" style="display:none;">
+                            >
+                            <option value="">Tipos de preguntas</option>
+                            <option value="U">Selección Única</option>
+                            <option value="M">Selección Múltiple</option>
+                            <option value="S">Sí/No/NR</option>
+                            <option value="L">Respuesta Libre</option>
+                            <option value="E">Escalar</option>
+                        </select>
+
+                        @* Enviar el filtrado al controlador *@
+                        <input type="button"                             
+                               value="Filtrar"
+                               onclick="FiltrarBancoPreguntas()"
+                               class="btn btn-outline-light text-dark bg-white border-secondary" />
+                        <br />
+                    </form>
+                    @if (@ViewBag.filtro != "Ninguno")
+                    {
+                        <h5><span class="label label-default">@ViewBag.filtro</span></h5>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+
+    <div style="max-height:650px; overflow-x:auto;">
+        <table id="selectedColumn" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" style=" top: 0; border-collapse: separate;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Enunciado
+                    </th>
+                    <th>
+                        Tipo
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Enunciado)
+                    </td>
+                    <td>
+                        @if (item.Tipo == "U")
+                        {
+                            <p>Selección Única</p>
+                        }
+                        else if (item.Tipo == "M")
+                        {
+                            <p>Selección Múltiple</p>
+                        }
+                        else if (item.Tipo == "L")
+                        {
+                            <p>Respuesta Libre</p>
+                        }
+                        else if (item.Tipo == "S")
+                        {
+                            <p>Sí/No/NR</p>
+                        }
+                        else if (item.Tipo == "E")
+                        {
+                            <p>Escalar</p>
+                        }
+                        @**@
+                    </td>
+                    <td>
+                        @Html.ActionLink("Vista previa", "VistaPrevia", "Preguntas", new { id = item.Codigo }, null)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <style>
+        .test2 {
+            background: #fbfbfb;
+        }
+
+        input.QuestionCheckbox {
+            width: 30px;
+            height: 30px;
+        }
+
+        .form-control {
+            width: 25%;
+        }
+
+        .my-form-control {
+            width: 15%;
+            display: inline
+        }
+
+        .btn {
+            border: 1px solid #ccc;
+        }
+
+        .panel-body {
+            padding: 10px;
+        }
+    </style>
+
+
+
+    @section Scripts {
+
+        <script src="~/Scripts/Formularios/Banco.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#codigotext").attr("disabled", "disabled");
+                if ($("input[name=optradio]:checked").val() == "codigoinput") {
+                    $("#EnterRange").click(function () {
+                        $("#codigotext").removeAttr("disabled");
+                    });
+                }
+            });
+        </script>
+        <script>
+            function check(elem) {
+                // use one of possible conditions
+                // if (elem.value == 'Other')
+                if (elem.selectedIndex == 0) {
+                    document.getElementById("other-option").style.display = 'inline';
+
+                    document.getElementById("codigo-option").style.display = 'none';
+                    document.getElementById("codigo-option").value = "";
+
+                    document.getElementById("enunciado-option").style.display = 'none';
+                    document.getElementById("enunciado-option").value = "";
+
+                    document.getElementById("type-option").style.display = 'none';
+                    document.getElementById("type-option").value = "";
+
+                }
+                else if (elem.selectedIndex == 1) {
+                    document.getElementById("other-option").style.display = 'none';
+                    document.getElementById("other-option").value = "";
+
+                    document.getElementById("codigo-option").style.display = 'inline';
+
+                    document.getElementById("enunciado-option").style.display = 'none';
+                    document.getElementById("enunciado-option").value = "";
+
+                    document.getElementById("type-option").style.display = 'none';
+                    document.getElementById("type-option").value = "";
+                }
+                else if (elem.selectedIndex == 2) {
+                    document.getElementById("other-option").style.display = 'none';
+                    document.getElementById("other-option").value = "";
+
+                    document.getElementById("codigo-option").style.display = 'none';
+                    document.getElementById("codigo-option").value = "";
+
+                    document.getElementById("enunciado-option").style.display = 'inline';
+
+                    document.getElementById("type-option").style.display = 'none';
+                    document.getElementById("type-option").value = "";
+                }
+                else {
+                    document.getElementById("other-option").style.display = 'none';
+                    document.getElementById("other-option").value = "";
+
+                    document.getElementById("codigo-option").style.display = 'none';
+                    document.getElementById("codigo-option").value = "";
+
+                    document.getElementById("enunciado-option").style.display = 'none';
+                    document.getElementById("enunciado-option").value = "";
+
+                    document.getElementById("type-option").style.display = 'inline';
+
+                }
+            }
+        </script>
+
+        <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+
+        <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+        <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+    }

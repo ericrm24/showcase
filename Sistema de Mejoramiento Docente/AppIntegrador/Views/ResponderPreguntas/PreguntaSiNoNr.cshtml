@@ -1,0 +1,33 @@
+﻿@model AppIntegrador.Models.PreguntaConNumeroSeccion
+
+@{
+    Layout = null;
+}
+
+@*RIP-EDF6*@
+
+@*Se está aprovechando que los modelos tienen referencias a tablas a las que tiene llave foránea o viceversa,
+    en vez de crear uno o varios modelos distintos.*@
+@{string respuestaname = "secciones[" + Model.OrdenSeccion + "].Preguntas[" + Model.OrdenPregunta + "]";
+    string radname = respuestaname + ".Opciones[0]";}
+<div class='card-body opcion-pequena' >
+    <label for="@radname 0">
+        <input type="radio" class="radio-grande" name="@radname" id="@radname 0" value="0" @(Model.Opciones != null && Model.Opciones.Any() && Model.Opciones[0] == 0 ? "checked" : "") />
+        Sí
+    </label>
+</div>
+
+<div class='card-body opcion-pequena'>
+    <label for="@radname 1">
+        <input type="radio" class="radio-grande" name="@radname" id="@radname 1" value="1" @(Model.Opciones != null && Model.Opciones.Any() && Model.Opciones[0] == 1 ? "checked" : "") />
+        No
+    </label>
+</div>
+
+<div class='card-body opcion-pequena'>
+    <label for="@radname 2">
+        <input type="radio" class="radio-grande" name="@radname" id="@radname 2" value="2" @(Model.Opciones != null && Model.Opciones.Any() && Model.Opciones[0] == 2 ? "checked" : "") />
+        No sabe/no responde
+    </label>
+</div>
+

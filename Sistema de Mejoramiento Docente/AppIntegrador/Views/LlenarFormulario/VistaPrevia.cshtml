@@ -1,0 +1,19 @@
+﻿
+@model AppIntegrador.Models.LlenarFormulario
+
+@{
+    ViewBag.Title = "Vista Previa";
+}
+<div class="container">
+    @Html.Hidden("respuestas.FCodigo", null, new { @id = "respuestas.FCodigo", @Value = Model.Formulario.Codigo })
+    <div class="card card-header shadow">
+        <h2 id="encabezado" class="text-center">@Html.DisplayFor(model => model.Formulario.Nombre)</h2>
+    </div>
+    <br />
+
+    <div id="section-container">
+        @{ Html.RenderPartial("../Seccion/SeccionConPreguntas", Model.Secciones); }
+    </div>
+
+</div>
+

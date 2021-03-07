@@ -1,0 +1,5 @@
+﻿CREATE TABLE Formulario
+(
+	Codigo VARCHAR(8) NOT NULL PRIMARY KEY,
+	Nombre NVARCHAR(250) NOT NULL,
+)

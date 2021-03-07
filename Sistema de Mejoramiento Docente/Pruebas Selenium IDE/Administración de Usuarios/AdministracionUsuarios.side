@@ -1,0 +1,202 @@
+{
+  "id": "b9f2d9fa-7de8-433b-845d-eea233fe6e0b",
+  "version": "2.0",
+  "name": "AdministracionUsuarios",
+  "url": "https://localhost:44334",
+  "tests": [{
+    "id": "dd76bd0b-a9d1-434d-947e-6eae0aa0e06a",
+    "name": "TestAdministracionUsuariosUI",
+    "commands": [{
+      "id": "c0305f76-30df-4234-9d5e-76f1a78e8367",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1da6230f-295a-4978-95c1-01de02eba1c0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4e26889-d7b7-4dc1-95c3-e6082337dce2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-group:nth-child(2)",
+      "targets": [
+        ["css=.form-group:nth-child(2)", "css:finder"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5566358-7abd-487b-b696-1f01a77f24bc",
+      "comment": "",
+      "command": "click",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "015e691c-e9e5-49a8-881f-d4cff732cbe2",
+      "comment": "",
+      "command": "type",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "3ab8a13a-87db-42c7-b7ff-a17689cd8ad5",
+      "comment": "",
+      "command": "click",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70107028-0881-45f0-8352-fdb445ce37d4",
+      "comment": "",
+      "command": "type",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "e111cdbd-a384-4202-8e30-f2fcf0c2e8ef",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a55f691-10ad-4c1a-8c54-3a9750138459",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Usuarios ▼",
+      "targets": [
+        ["linkText=Usuarios ▼", "linkText"],
+        ["css=.nav > li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Usuarios ▼')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Users/Index')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Usuarios ▼')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f8d8617-d2ea-495b-b0ca-8e5b8669b798",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.users-list > #selectedColumn > .users-list:nth-child(1)",
+      "targets": [
+        ["css=.users-list > #selectedColumn > .users-list:nth-child(1)", "css:finder"],
+        ["xpath=//tr[@id='selectedColumn']/th", "xpath:idRelative"],
+        ["xpath=//th", "xpath:position"],
+        ["xpath=//th[contains(.,'Identificación')]", "xpath:innerText"]
+      ],
+      "value": "Identificación"
+    }, {
+      "id": "6ac99910-901c-4c0e-87ef-66a7c2e993da",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Agregar usuario",
+      "targets": [
+        ["linkText=Agregar usuario", "linkText"],
+        ["css=p > .btn-azulUCR", "css:finder"],
+        ["xpath=//a[contains(text(),'Agregar usuario')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Users/Create?Length=6')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Agregar usuario')]", "xpath:innerText"]
+      ],
+      "value": "Agregar usuario"
+    }, {
+      "id": "21af6c9e-d5eb-4b05-835f-642a38245aef",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Editar",
+      "targets": [
+        ["linkText=Editar", "linkText"],
+        ["css=tr:nth-child(1) .btn-azulUCR", "css:finder"],
+        ["xpath=//a[contains(text(),'Editar')]", "xpath:link"],
+        ["xpath=//table[@id='selectedColumn']/tbody/tr/td[7]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Users/Edit?username=bakers%40mail&domain=.com')]", "xpath:href"],
+        ["xpath=//td[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Editar')]", "xpath:innerText"]
+      ],
+      "value": "Editar"
+    }, {
+      "id": "573bf31c-3187-46dd-88ef-fe9c6c8fada7",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Detalles",
+      "targets": [
+        ["linkText=Detalles", "linkText"],
+        ["css=tr:nth-child(1) .btn-blancoUCR", "css:finder"],
+        ["xpath=//a[contains(text(),'Detalles')]", "xpath:link"],
+        ["xpath=//table[@id='selectedColumn']/tbody/tr/td[7]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Users/Details?username=bakers%40mail&domain=.com')]", "xpath:href"],
+        ["xpath=//td[7]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Detalles')]", "xpath:innerText"]
+      ],
+      "value": "Detalles"
+    }, {
+      "id": "a7d8c628-5644-4c4f-8792-36b9c0220fe3",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Borrar",
+      "targets": [
+        ["linkText=Borrar", "linkText"],
+        ["css=tr:nth-child(1) .btn-rojoUCR", "css:finder"],
+        ["xpath=//a[contains(text(),'Borrar')]", "xpath:link"],
+        ["xpath=//a[@onclick=\"return confirm('¿Está seguro que desea borrar al usuario bakers@mail.com? Esto borra los datos de esta persona y lo deja sin acceso al sistema.')\"]", "xpath:attributes"],
+        ["xpath=//table[@id='selectedColumn']/tbody/tr/td[7]/a[3]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/Users/DeleteConfirmed?username=bakers%40mail&domain=.com&confirmed=True')]", "xpath:href"],
+        ["xpath=//td[7]/a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Borrar')]", "xpath:innerText"]
+      ],
+      "value": "Borrar"
+    }]
+  }],
+  "suites": [{
+    "id": "def5df23-af2f-416d-a92f-e30133bdf0d8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://localhost:44334/"],
+  "plugins": []
+}

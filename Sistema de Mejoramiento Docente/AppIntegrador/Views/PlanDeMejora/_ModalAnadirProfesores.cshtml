@@ -1,0 +1,19 @@
+﻿@model AppIntegrador.Models.PlanDeMejora
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalProfesores" tabindex="-1" role="dialog" aria-labelledby="ModalProfesoresLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="ModalAgregarProfesoresInterno" style="width:auto">
+                        @{Html.RenderPartial("_AnadirProfesores", Model.Profesor);}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn-azulUCR " onclick="agregarGen('profe', 'correo', cantidadProfes, 'AnadirProfes', 'ProfeSeleccionado', '#divTablaProfesores', correosProfes)" data-dismiss="modal">Agregar profesores seleccionados</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

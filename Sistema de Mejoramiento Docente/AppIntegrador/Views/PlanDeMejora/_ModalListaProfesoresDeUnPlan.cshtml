@@ -1,0 +1,66 @@
+﻿@{ 
+    var profesores = (List<AppIntegrador.Models.Persona>)ViewBag.Profesores;
+}
+
+<div class="form-horizontal card-group">
+    <div class="modal fade" id="ModalProfesoresDeUnPlanVer" tabindex="-1" role="dialog" aria-labelledby="ModalProfesoresLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="ModalListarProfesoresInterno" style="width:auto">
+
+
+                        <h4> Profesores del plan </h4>
+
+                        @if (profesores.Count() == 0)
+                        {
+                            <div>
+                                Aún no se ha relacionado el plan con profesores.
+                            </div>
+                        }
+                        else
+                        {
+                            <table id="TablaListarProfesores" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Primer nombre
+                                        </th>
+                                        <th>
+                                            Primer Apellido
+                                        </th>
+                                        <th>
+                                            Correo
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <thead>
+                                    @foreach (var prof in profesores)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                @prof.Nombre1
+                                            </td>
+                                            <td>
+                                                @prof.Apellido1
+                                            </td>
+                                            <td>
+                                                @prof.Correo
+                                            </td>
+                                        </tr>
+                                    }
+                                </thead>
+                            </table>
+                        }
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-blancoUCR" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

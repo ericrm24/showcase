@@ -1,0 +1,288 @@
+﻿@model AppIntegrador.Models.CrearSeccionModel
+
+@{
+    ViewBag.Title = "Crear sección";
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <td style="width:36%">
+
+                <div class="form-horizontal card-group">
+
+                    <div class="card card-default">
+
+                        <div class="card-body test2">
+                            <hr />
+                            <h2>Crear Sección</h2>
+                            <div class="form-horizontal row">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group col-lg-5">
+                                    <div>
+                                        @Html.EditorFor(model => model.Seccion.Codigo, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "validar form-control",
+                                                id = "textCode",
+                                                name = "textCode",
+                                                @maxlength = "8",
+                                                required = "required",
+                                                placeholder = "Código",
+                                                rows = "5",
+                                                @onkeyup = "contarCaracteres(this)"
+                                            }
+                                        })
+                                        <div class="contador small float-right">0/8 caracteres usados</div>
+                                        @Html.ValidationMessageFor(model => model.Seccion.Codigo, "", new { @style = "color:red" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-7">
+                                    <div>
+                                        <form accept-charset="UTF-8" action="" method="POST">
+                                            @Html.EditorFor(model => model.Seccion.Nombre, new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "validar form-control",
+                                                    id = "textName",
+                                                    name = "textName",
+                                                    @maxlength = "250",
+                                                    required = "required",
+                                                    placeholder = "Nombre del formulario",
+                                                    rows = "5",
+                                                    @onkeyup = "contarCaracteres(this)"
+                                                }
+                                            })
+
+                                            <div class="contador small float-right">0/250 caracteres usados</div>
+                                            @Html.ValidationMessageFor(model => model.Seccion.Nombre, "", new { @style = "color:red" })
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-lg-offset-2 col-lg-10">
+                                    <div >
+                                        <input type="submit" value="Crear" class="btn-azulUCR" id="Create" data-toggle="modal" data-target="#myModal" />
+                                        @Html.ActionLink("Cancelar", "Create", "Controller", new { @class = "btn-blancoUCR" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td class="center-block align-middle text-center">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <button type="button" class="btn btn-primary btn-arrow-left" onclick="addPreguntaToSeccion()">Agregar</button>
+
+            </td>
+
+            <td style="width:60%">
+                @Html.Partial("/Views/PreguntaConOpcionesDeSeleccion/_IndexPartial.cshtml", Model.pregunta)
+
+            </td>
+        </tr>
+    </table>
+}
+
+<style>
+    .btn-info {
+        color: #fff;
+        background-color: #41ade7;
+    }
+
+    .btn-primary {
+        background-color: #f0f0f0;
+        color: black;
+        border-color: #a2a6aa;
+   }
+
+.required:after {
+    content: "*";
+    font-weight: bold;
+    color: red;
+}
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td 
+{
+    padding:3%;
+}
+
+    .btn {
+/* just for this demo. */
+   
+margin-top: 5px;
+}
+
+.btn-arrow-right,
+.btn-arrow-left {
+   position: relative;
+   padding-left: 13px;
+   padding-right: 18px;
+}
+
+.btn-arrow-right {
+   padding-left: 20px;
+}
+
+.btn-arrow-left {
+   padding-right: 10px;
+}
+
+.btn-arrow-right:before,
+.btn-arrow-right:after,
+.btn-arrow-left:before {
+   /* make two squares (before and after), looking similar to the button */
+   
+   content: "";
+   position: absolute;
+   top: 5px;
+   /* move it down because of rounded corners */
+   
+   width: 22px;
+   /* same as height */
+   
+   height: 22px;
+   /* button_outer_height / sqrt(2) */
+   
+   background: inherit;
+   /* use parent background */
+   
+   border: inherit;
+   /* use parent border */
+   
+   border-left-color: transparent;
+   /* hide left border */
+   
+   border-bottom-color: transparent;
+   /* hide bottom border */
+   
+   border-radius: 0px 4px 0px 0px;
+   /* round arrow corner, the shorthand property doesn't accept "inherit" so it is set to 4px */
+   
+   -webkit-border-radius: 0px 4px 0px 0px;
+   -moz-border-radius: 0px 4px 0px 0px;
+}
+
+.btn-arrow-right:before,
+.btn-arrow-right:after {
+   transform: rotate(45deg);
+   /* rotate right arrow squares 45 deg to point right */
+   
+   -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+}
+
+.btn-arrow-left:before,
+.btn-arrow-left:after {
+   transform: rotate(225deg);
+   /* rotate left arrow squares 225 deg to point left */
+   
+   -webkit-transform: rotate(225deg);
+   -moz-transform: rotate(225deg);
+   -o-transform: rotate(225deg);
+   -ms-transform: rotate(225deg);
+}
+
+.btn-arrow-right:before,
+.btn-arrow-left:before {
+   /* align the "before" square to the left */
+   
+   left: -11px;
+}
+
+.btn-arrow-right:after,
+.btn-arrow-left:after {
+   /* align the "after" square to the right */
+   
+   right: -11px;
+}
+
+.btn-arrow-right:after,
+.btn-arrow-left:before {
+   /* bring arrow pointers to front */
+   
+   z-index: 1;
+}
+
+.btn-arrow-right:before,
+.btn-arrow-left:after {
+   /* hide arrow tails background */
+   
+   background-color: white;
+}
+</style>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/Formularios/AgregarPreguntas.js"></script>
+    <script src="~/Scripts/Formularios/ContadorCaracteres.js"></script>
+    <script src="~/Scripts/Formularios/DesactivarBotonCrear.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            validarEntradas();
+            agregarPreguntas.init();
+            $("#codigotext").attr("disabled", "disabled");
+            if ($("input[name=optradio]:checked").val() == "codigoinput") {
+                $("#EnterRange").click(function () {
+                    $("#codigotext").removeAttr("disabled");
+                });
+            }
+            $('#dtBasicExample').DataTable({
+                "ordering": false // false to disable sorting (or any other option)
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+    @*
+        Historia RIP-BKS1
+        Se movieron los scripts de la vista parcial a esta vista, porque las vistas
+        parciales no pueden tener sus propias secciones (de acuerdo a lo que encontramos).
+    *@
+    <script type="text/javascript">
+        var currentEnabled = null;
+        function enableElement(elem) {
+            console.log(elem.name);
+            if (currentEnabled) {
+                currentEnabled.disabled = true;
+            }
+            elem.disabled = false;
+            currentEnabled = elem;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function toggleTextbox(opt) {
+            if (opt == 'txtText') {
+                var txtPassportNumber = document.getElementById('txtText');
+                txtJustificationNumber.disabled = opt.checked ? false : true;
+                if (!txtJustificationNumber.disabled) {
+                    txtJustificationNumber.focus();
+                }
+            }
+
+        }
+
+    </script>
+}

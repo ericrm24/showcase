@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AppIntegrador.Models.PreguntaConNumeroSeccion>
+
+@{
+    Layout = null;
+}
+
+@foreach (var pregunta in Model)
+{
+
+    @*Se ocupa el tipo de la pregunta para poder guardar las respuestas*@
+    @Html.Hidden("secciones[" + pregunta.OrdenSeccion + "].Preguntas[" + pregunta.OrdenPregunta +
+                "].Pregunta.Tipo", null, new { @Value = pregunta.Pregunta.Tipo })
+
+    @*Se ocupa el código de la pregunta para poder guardar las respuestas*@
+    @Html.Hidden("secciones[" + pregunta.OrdenSeccion + "].Preguntas[" + pregunta.OrdenPregunta +
+                "].Pregunta.Codigo", null, new { @Value = pregunta.Pregunta.Codigo, @class = "PreguntasAgregadas(" + pregunta.CodigoSeccion + ")" })
+    <div>
+        @(pregunta.OrdenPregunta + 1).
+        @Html.DisplayFor(model => pregunta.Pregunta.Enunciado)
+        @if (pregunta.Edit)
+        {
+        <button type="button" [disabled]="true" class="close" aria-label="Close" style="margin-left: 3%" id="borrarPreg" onclick="BorrarPregunta('@pregunta.CodigoSeccion', '@pregunta.Pregunta.Codigo')">
+            &times;
+        </button>
+        }
+        @if (pregunta.Pregunta.Tipo == "S")
+        {
+            { Html.RenderPartial("../ResponderPreguntas/PreguntaSiNoNr", pregunta); }
+        }
+        else if (pregunta.Pregunta.Tipo == "U")
+        {
+            { Html.RenderPartial("../ResponderPreguntas/PreguntaConOpciones", pregunta); }
+        }
+        else if (pregunta.Pregunta.Tipo == "L")
+        {
+            { Html.RenderPartial("../ResponderPreguntas/RespuestaLibre", pregunta); }
+        }
+        else if (pregunta.Pregunta.Tipo == "E")
+        {
+            { Html.RenderPartial("../ResponderPreguntas/PreguntaEscalar", pregunta); }
+        }
+        else if (pregunta.Pregunta.Tipo == "M")
+        {
+            { Html.RenderPartial("../ResponderPreguntas/PreguntaSeleccionMultiple", pregunta); }
+        }
+
+        @if (pregunta.Pregunta.Tipo == "U" || pregunta.Pregunta.Tipo == "M" || pregunta.Pregunta.Tipo == "E" || pregunta.Pregunta.Tipo == "S")
+        {
+            string justificacionname = "secciones[" + pregunta.OrdenSeccion + "].Preguntas[" + pregunta.OrdenPregunta + "].RespuestaLibreOJustificacion";
+            if (pregunta.Pregunta.Pregunta_con_opciones != null && pregunta.Pregunta.Pregunta_con_opciones.TituloCampoObservacion != null)
+            {
+                <div class="card-body grisUCR2">
+                    <div style="margin: -0.5%">
+                        @pregunta.Pregunta.Pregunta_con_opciones.TituloCampoObservacion
+                        <textarea class="form-control long-textbox col-md-12 redondeado" style="width: 100%;max-width: 100%; min-width: 100%" cols="50"
+                                  name="@justificacionname" maxlength="250">@pregunta.RespuestaLibreOJustificacion</textarea>
+                    </div>
+                </div>
+            }
+        }
+
+        <hr />
+    </div>
+}
+

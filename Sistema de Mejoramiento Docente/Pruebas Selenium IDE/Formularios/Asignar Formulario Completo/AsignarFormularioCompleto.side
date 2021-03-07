@@ -1,0 +1,372 @@
+{
+  "id": "129fca61-39e1-4ab0-a260-186f9c51e23b",
+  "version": "2.0",
+  "name": "AsignarFormularioCompleto",
+  "url": "https://localhost:44334",
+  "tests": [{
+    "id": "62e3cbb9-e4c8-49a7-8f73-ae193789efa5",
+    "name": "TestAsignarPorTodo",
+    "commands": [{
+      "id": "8c713bd7-0b0b-4f33-910b-dce725131959",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "24d89347-dc91-4101-85f4-f3ecb4d8baec",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x706",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fa27d3e9-d423-4829-a459-c58edb62caff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container-login100",
+      "targets": [
+        ["css=.container-login100", "css:finder"],
+        ["xpath=//body[@id='greybg']/div", "xpath:idRelative"],
+        ["xpath=//div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "865fe84e-2e66-4fdd-8cb4-da9ac66a1adb",
+      "comment": "",
+      "command": "type",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "a17be57e-3b3f-467d-856d-33ff87e83f4e",
+      "comment": "",
+      "command": "type",
+      "target": "id=username-input",
+      "targets": [
+        ["id=username-input", "id"],
+        ["name=Username", "name"],
+        ["css=#username-input", "css:finder"],
+        ["xpath=//input[@id='username-input']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@mail.com"
+    }, {
+      "id": "0b54798d-d742-4f5d-ab9b-31644858343d",
+      "comment": "",
+      "command": "click",
+      "target": "id=password-field",
+      "targets": [
+        ["id=password-field", "id"],
+        ["name=Password", "name"],
+        ["css=#password-field", "css:finder"],
+        ["xpath=//input[@id='password-field']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56ef7157-a198-4f1f-a2cf-d794fd753456",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-blancoUCR",
+      "targets": [
+        ["css=.btn-blancoUCR", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//body[@id='greybg']/div/div/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ingresar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "85c4bc32-c3f9-48a3-985d-82ccff6409ec",
+      "comment": "",
+      "command": "open",
+      "target": "https://localhost:44334/Formularios/Index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "582a6dc7-c7d5-4b4e-b6c8-02506722ab83",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Asignar",
+      "targets": [
+        ["linkText=Asignar", "linkText"],
+        ["css=tr:nth-child(2) a:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Asignar')]", "xpath:link"],
+        ["xpath=//table[@id='selectedColumn']/tbody/tr[2]/td[3]/a[3]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/AsignacionFormularios/Index/00000001')]", "xpath:href"],
+        ["xpath=//td[3]/a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Asignar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "117f5309-08c8-4489-a047-121caf52d86c",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroUA",
+      "targets": [
+        ["id=filtroUA", "id"],
+        ["name=filtroUA", "name"],
+        ["css=#filtroUA", "css:finder"],
+        ["xpath=//select[@id='filtroUA']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "87d7d33c-2f79-4f0d-a330-618e7f95893d",
+      "comment": "",
+      "command": "select",
+      "target": "id=filtroUA",
+      "targets": [],
+      "value": "label=ECCI"
+    }, {
+      "id": "28d9733d-8ec4-455a-ad98-4ab954c697a4",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroUA",
+      "targets": [
+        ["id=filtroUA", "id"],
+        ["name=filtroUA", "name"],
+        ["css=#filtroUA", "css:finder"],
+        ["xpath=//select[@id='filtroUA']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6de9967-dde7-4d78-9a0f-8ef0e99b533d",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroCarreraEnfasis",
+      "targets": [
+        ["id=filtroCarreraEnfasis", "id"],
+        ["name=filtroCarreraEnfasis", "name"],
+        ["css=#filtroCarreraEnfasis", "css:finder"],
+        ["xpath=//select[@id='filtroCarreraEnfasis']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select[2]", "xpath:idRelative"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ece0768-e9db-4c5a-9637-3d52f3ade003",
+      "comment": "",
+      "command": "select",
+      "target": "id=filtroCarreraEnfasis",
+      "targets": [],
+      "value": "label=Bachillerato en Computación - Tronco Común"
+    }, {
+      "id": "36cd2326-a9f3-4b07-8ca8-4735fe3e3e36",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroCarreraEnfasis",
+      "targets": [
+        ["id=filtroCarreraEnfasis", "id"],
+        ["name=filtroCarreraEnfasis", "name"],
+        ["css=#filtroCarreraEnfasis", "css:finder"],
+        ["xpath=//select[@id='filtroCarreraEnfasis']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select[2]", "xpath:idRelative"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc9b6b9a-b7d9-43dc-9b97-82a528809241",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroCursoGrupo",
+      "targets": [
+        ["id=filtroCursoGrupo", "id"],
+        ["name=filtroCursoGrupo", "name"],
+        ["css=#filtroCursoGrupo", "css:finder"],
+        ["xpath=//select[@id='filtroCursoGrupo']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select[3]", "xpath:idRelative"],
+        ["xpath=//select[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bb9a3449-480c-4f2c-9fbc-7dc6820c117b",
+      "comment": "",
+      "command": "select",
+      "target": "id=filtroCursoGrupo",
+      "targets": [],
+      "value": "label=CI0128 - Proyecto Integrador de BD e IS - 1 - 2 - 2019"
+    }, {
+      "id": "6f7add6c-ba40-49d8-ae01-f418699ca9d7",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroCursoGrupo",
+      "targets": [
+        ["id=filtroCursoGrupo", "id"],
+        ["name=filtroCursoGrupo", "name"],
+        ["css=#filtroCursoGrupo", "css:finder"],
+        ["xpath=//select[@id='filtroCursoGrupo']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select[3]", "xpath:idRelative"],
+        ["xpath=//select[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4245a032-a04d-41ba-80a2-83502500974b",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroProfesores",
+      "targets": [
+        ["id=filtroProfesores", "id"],
+        ["name=filtroProfesores", "name"],
+        ["css=#filtroProfesores", "css:finder"],
+        ["xpath=//select[@id='filtroProfesores']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select[4]", "xpath:idRelative"],
+        ["xpath=//select[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4697bfe6-f0f4-4e77-a6ff-7a43129c46c7",
+      "comment": "",
+      "command": "select",
+      "target": "id=filtroProfesores",
+      "targets": [],
+      "value": "label=Quesada Lopez Cristian Ulises"
+    }, {
+      "id": "92e81aca-d6e6-4bd0-b025-5faa9897b93f",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtroProfesores",
+      "targets": [
+        ["id=filtroProfesores", "id"],
+        ["name=filtroProfesores", "name"],
+        ["css=#filtroProfesores", "css:finder"],
+        ["xpath=//select[@id='filtroProfesores']", "xpath:attributes"],
+        ["xpath=//container[@id='containerFiltros']/select[4]", "xpath:idRelative"],
+        ["xpath=//select[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0a50410f-7d60-479d-9e00-17a4e6a76fa8",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha-inicio",
+      "targets": [
+        ["id=fecha-inicio", "id"],
+        ["css=#fecha-inicio", "css:finder"],
+        ["xpath=//input[@id='fecha-inicio']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31a623de-3705-4636-9d12-5809387447d5",
+      "comment": "",
+      "command": "type",
+      "target": "id=fecha-inicio",
+      "targets": [
+        ["id=fecha-inicio", "id"],
+        ["css=#fecha-inicio", "css:finder"],
+        ["xpath=//input[@id='fecha-inicio']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2019-12-03"
+    }, {
+      "id": "5b04f34a-cab2-4dc4-a526-9029e33c3182",
+      "comment": "",
+      "command": "click",
+      "target": "id=fecha-fin",
+      "targets": [
+        ["id=fecha-fin", "id"],
+        ["css=#fecha-fin", "css:finder"],
+        ["xpath=//input[@id='fecha-fin']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "494006c8-d117-4d1c-8a52-4b70dfc0c8f4",
+      "comment": "",
+      "command": "type",
+      "target": "id=fecha-fin",
+      "targets": [
+        ["id=fecha-fin", "id"],
+        ["css=#fecha-fin", "css:finder"],
+        ["xpath=//input[@id='fecha-fin']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2019-12-05"
+    }, {
+      "id": "ecb47dd4-c3b4-4dec-b432-7460729a6462",
+      "comment": "",
+      "command": "click",
+      "target": "css=div:nth-child(1) > .btn-azulUCR",
+      "targets": [
+        ["css=div:nth-child(1) > .btn-azulUCR", "css:finder"],
+        ["xpath=//input[@value='Asignar formulario']", "xpath:attributes"],
+        ["xpath=//div/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19bd8f34-a9d7-4f25-b00a-86e8f043008a",
+      "comment": "",
+      "command": "click",
+      "target": "id=solapado-si",
+      "targets": [
+        ["id=solapado-si", "id"],
+        ["css=#solapado-si", "css:finder"],
+        ["xpath=//button[@id='solapado-si']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-solapado']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Combinar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "564f2fe2-6d99-4b28-a273-7d1b25c3cf24",
+      "comment": "",
+      "command": "click",
+      "target": "css=.confirm",
+      "targets": [
+        ["css=.confirm", "css:finder"],
+        ["xpath=//div[7]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "693fa291-32cf-438b-9996-34a2e80f1f9d",
+      "comment": "",
+      "command": "click",
+      "target": "id=solapado-si",
+      "targets": [
+        ["id=solapado-si", "id"],
+        ["css=#solapado-si", "css:finder"],
+        ["xpath=//button[@id='solapado-si']", "xpath:attributes"],
+        ["xpath=//div[@id='modal-solapado']/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Combinar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "22630433-c8ed-47ba-bf60-fbb2e72c5eb2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.confirm",
+      "targets": [
+        ["css=.confirm", "css:finder"],
+        ["xpath=//div[7]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "448fad41-82f3-4b1a-96f4-5af0bf90996c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["62e3cbb9-e4c8-49a7-8f73-ae193789efa5"]
+  }],
+  "urls": ["https://localhost:44334/"],
+  "plugins": []
+}

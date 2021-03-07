@@ -1,0 +1,84 @@
+﻿
+@model AppIntegrador.Models.PlanDeMejora
+
+@{
+    ViewBag.Title = "Edit";
+    var planFinal = Model;
+
+    int codigoInt = Convert.ToInt32(ViewData["codigoPlan"]);
+}
+
+
+
+<!-- Boton para editar el plan de mejora -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@planFinal.codigo">
+    Editar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="@planFinal.codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Edición del plan de mejora</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form action="ModificarPlan">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10">
+                                @Html.LabelFor(model => model.nombre, "Nombre")
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Máximo 50 caracteres", maxlength = "50" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.fechaInicio, "Fecha Inicio")
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.fechaInicio, new { htmlAttributes = new { @class = "form-control", } })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.fechaFin, "Fecha Fin")
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.fechaFin, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", style="display:none;"} })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="botonCentrado">
+                                <input type="submit" value="Guardar" class="btn btn-success" />
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,192 @@
+﻿@model AppIntegrador.Models.Metadata.AccionableMetadata
+
+@{
+    ViewBag.Title = "Crear accionable";
+    Layout = null;
+
+    List<SelectListItem> pesos = new List<SelectListItem>();
+    pesos.Add(new SelectListItem
+    {
+        Text = "1",
+        Value = "1"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "2",
+        Value = "2",
+        Selected = true
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "3",
+        Value = "3"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "4",
+        Value = "4"
+    });
+    pesos.Add(new SelectListItem
+    {
+        Text = "5",
+        Value = "5"
+    });
+}
+
+<form role="form" id="accionableForm">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.codPlan, new { style = "display:none;", @Value = @Session["codPlan"] })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.nombreObj, new { style = "display:none;", @Value = @Session["nombreObj"] })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.descripAcMej, new { style = "display:none;", @Value = @Session["descripAcMej"] })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.progreso, new { style = "display:none;", @Value = @Session["progreso"] })
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.fechaInicio, htmlAttributes: new { @class = "col-form-label" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fechaInicio, new
+                            {
+                                htmlAttributes = new
+                            {
+                                @class = "form-control",
+                                id = "fechaInicioACC",
+                                @onchange = "validacionACC()"
+                                }
+                            })
+                            <span class="error">
+                                <p id="fechaInicioACC_subMsj" class="regularMsj">Inicio accionable.</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.fechaFin, htmlAttributes: new { @class = "col-form-label" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fechaFin, new
+                        {
+                           htmlAttributes = new
+                           {
+                               @class = "form-control",
+                               id = "fechaFinalACC",
+                               @onchange = "validacionACC()"
+                           }
+                        })
+                            <span class="error">
+                                <p id="fechaFinalACC_subMsj" class="regularMsj">Final accionable.</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "col-form-label" })
+                    @Html.TextAreaFor(model => model.descripcion, new
+                    {
+                        @class = "form-control",
+                        rows = "2",
+                        maxlength = "250",
+                        style = "resize:vertical",
+                        placeholder = "Máximo 250 caracteres",
+                        id = "descripcionACC",
+                        @onkeyup = "validacionACC()"
+                    })
+                    <span class="error">
+                        <p id="descripcionACC_subMsj" class="regularMsj">Tienes 250 caracteres.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.peso, pesos, "-- Seleccione el peso --")
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="botonCentrado">
+                    <input type="submit" id="crearAccionable234" value="Crear accionable" class="btn-azulUCR" disabled />
+                </div>
+            </div>
+        </div>
+    }
+</form>
+
+
+<script>
+    function validacionACC() {
+        let fechaInicioACC = document.getElementById('fechaInicioACC');
+        let fechaFinalACC = document.getElementById('fechaFinalACC');
+        let descripcionACC = document.getElementById('descripcionACC');
+
+        // Dejando el limite superior e inferior con respecto a las fechas que tiene el plan de mejora
+        let temp = `@Session["fechaInicioAccionDeMejora"]`;
+        temp = temp.substr(0, temp.indexOf(' '));
+        let minDate = new Date(temp + 'CST');
+
+
+        temp = `@Session["fechaFinAccionDeMejora"]`;
+        temp = temp.substr(0, temp.indexOf(' '));
+        let topDate = new Date(temp + 'CST');
+
+        let validatorAccionables = new Validador(50, 250, minDate, topDate, 'crearAccionable234');
+
+        //Definimos la cantidad de validaciones
+        validatorAccionables.setTotalValidations(2);
+
+        // Ahora haciendo las validaciones
+        validatorAccionables.validateSomethingInTextInput(descripcionACC, 250);
+        validatorAccionables.validateDates(fechaInicioACC, fechaFinalACC);
+
+        validatorAccionables.validityOfForm();
+    }
+</script>
+
+<script>
+$(function () {
+    $("#accionableForm").submit(function (e) {
+        var id = "@Session["codPlan"]";
+        var objetivo = "@Session["nombreObj"]";
+        var desc = "@Session["descripAcMej"]";
+
+        e.preventDefault();
+        $.ajax({
+            url: '/Accionables/Create/',
+            type: 'post',
+            data: $('#accionableForm').serialize(),
+            success: function () {
+                cargarAccionables(id, objetivo, desc);
+            }
+        });
+        swal({
+            title: "Accionable guardado exitosamente!",
+            type: "success",
+            text: "Puede ser visto la lista de accionables",
+            icon: 'success',
+
+            timer: 100000,
+            showConfirmButton: true
+
+        });
+    });
+});
+</script>

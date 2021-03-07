@@ -1,0 +1,146 @@
+﻿@model AppIntegrador.Models.Seccion
+
+@{
+    ViewBag.Title = "Crear sección";
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 200px;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            .centered img {
+                width: 150px;
+                border-radius: 50%;
+            }
+    </style>
+</head>
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="split left">
+        <h2>Crear Sección</h2>
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Codigo, "Codigo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control", id = "textCode", name = "textCode", @maxlength = "8", required = "required", placeholder = "Código", rows = "5" } })
+                    @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "pull-right", id = "count_code" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    <form accept-charset="UTF-8" action="" method="POST">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", id = "textName", name = "textName", @maxlength = "80", required = "required", placeholder = "Nombre de la sección", rows = "5" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "pull-right", id = "count_name" })
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Crear" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" />
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Desea guardar la sección?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+    <div class="split right">
+  
+
+    </div>
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var name_max = 80;
+        $('#count_name').html("0/" + name_max);
+
+        $('#textName').keyup(function () {
+            var name_length = $('#textName').val().length;
+
+            $('#count_name').html(name_length + "/" + name_max);
+        });
+    </script>
+
+    <script>
+        var code_max = 8;
+        $('#count_code').html("0/" + code_max);
+
+        $('#textCode').keyup(function () {
+            var code_length = $('#textCode').val().length;
+
+            $('#count_code').html(code_length + "/" + code_max);
+        });
+    </script>
+
+    <script>
+        $(function () {
+            var includes = $('[data-include]');
+            jQuery.each(includes, function () {
+                var file = 'views/' + $(this).data('include') + '.html';
+                $(this).load(file);
+            });
+        });
+    </script>
+
+}
