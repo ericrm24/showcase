@@ -1,0 +1,6 @@
+*.vscode/
+*.class
+*__pycache__
+*parser.out
+*parsetab.py
+*.irbcc

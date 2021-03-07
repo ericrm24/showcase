@@ -1,0 +1,30 @@
+function factorial(n):
+    declare factorial = 1
+    
+    from i = 1 to n:
+        factorial = factorial * i
+
+    return factorial
+
+function factorial_r(n):
+    declare factorial = 1
+
+    if(n isnot 0):
+        factorial = n * factorial_r(n-1)
+
+    return factorial
+
+declare fact = factorial(10)
+declare fact_r = factorial_r(10)
+
+declare fact_string = "El factorial de 10 es "
+declare fact_r_string = "El factorial recursivo de 10 es "
+declare lineBreak = "\n"
+
+writeText(fact_string)
+writeNumber(fact)
+writeText(lineBreak)
+
+writeText(fact_r_string)
+writeNumber(fact_r)
+writeText(lineBreak)

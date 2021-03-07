@@ -1,0 +1,6 @@
+748	poetry1.txt	poetry2.txt
+1222	poetry2.txt	poetry3.txt
+1242	poetry1.txt	poetry3.txt
+1619	poetry3.txt	poetry4.txt
+1675	poetry2.txt	poetry4.txt
+1679	poetry1.txt	poetry4.txt

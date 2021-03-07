@@ -1,0 +1,125 @@
+function factorial(n):
+    declare factorial = 1
+    
+    from i = 1 to n:
+        factorial = factorial * i
+
+    return factorial
+
+function factorial_r(n):
+    declare factorial = 1
+
+    if(n isnot 0):
+        factorial = n * factorial_r(n-1)
+
+    return factorial
+
+function factorial_demo():
+    writeText("\n1. Factorial de n.\n")
+    writeText("Digite el valor de n: ")
+    declare n = readNumber()
+    declare factorial = factorial(n)
+    writeText("El factorial de ")
+    writeNumber(n)
+    writeText(" es ")
+    writeNumber(factorial)
+    writeText("\n")
+
+function factorial_r_demo():
+    writeText("\n2. Factorial recursivo de n.\n")
+    writeText("Digite el valor de n: ")
+    declare n = readNumber()
+    declare factorial = factorial_r(n)
+    writeText("El factorial recursivo de ")
+    writeNumber(n)
+    writeText(" es ")
+    writeNumber(factorial)
+    writeText("\n")
+
+function dot_product_demo():
+    writeText("\n3. Producto punto de dos vectores.\n")
+
+    declare u = [1, 2, 3]
+    declare v = [4, 5, 6]
+
+    declare dot_product = 0
+
+    from i = 0 to 2:
+        dot_product = dot_product + u[i] * v[i]
+
+    writeText("\nu = [ ")
+    from i = 0 to 2:
+        writeNumber(u[i])
+        writeText(" ")
+    writeText("]")
+
+    writeText("\nv = [ ")
+    from i = 0 to 2:
+        writeNumber(v[i])
+        writeText(" ")
+    writeText("]\n")
+
+    writeText("\nEl producto punto de u y v es ")
+    writeNumber(dot_product)
+    writeText("\n")
+
+function matrix_demo():
+    writeText("\n4. Imprimir matriz.\n")
+
+    declare matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+    from i = 0 to 2:
+        from j = 0 to 2:
+            writeText("i = ")
+            writeNumber(i)
+            writeText(", j = ")
+            writeNumber(j)
+            writeText(" -> ")
+            writeNumber(matrix[i][j])
+            writeText("\n")
+
+    writeText("\n")
+
+    declare i = 0
+    declare j = 0
+
+    while(i<3):
+        j = 0
+        while(j<3):
+            writeNumber(matrix[i][j])
+            writeText(" ")
+            j = j + 1
+        writeText("\n")
+        i = i + 1
+
+function imprimirMenu():
+    writeText("\nPor favor escoja una de las siguientes demostraciones:\n")
+    writeText("    1. Factorial de n.\n")
+    writeText("    2. Factorial recursivo de n.\n")
+    writeText("    3. Producto punto de dos vectores.\n")
+    writeText("    4. Imprimir matriz.\n")
+    writeText("    5. Salir.\n")
+    writeText("\nOpción: ")
+
+function main():
+    declare continuar = true
+    declare opcion = 0
+    while(continuar):
+        writeText("\n--------------------------------------------------------------------------------\n")
+        imprimirMenu()
+        opcion = readNumber()
+        writeText("\n--------------------------------------------------------------------------------\n")
+        if(opcion is 1):
+            factorial_demo()
+        elseif(opcion is 2):
+            factorial_r_demo()
+        elseif(opcion is 3):
+            dot_product_demo()
+        elseif(opcion is 4):
+            matrix_demo()
+        elseif(opcion is 5):
+            continuar = false
+        else:
+            writeText('Opción no válida')
+
+main()

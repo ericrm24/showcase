@@ -1,0 +1,6 @@
+5546	reviews/review01.txt	reviews/review03.txt
+5806	reviews/review02.txt	reviews/review03.txt
+5906	reviews/review01.txt	reviews/review02.txt
+6573	reviews/review03.txt	reviews/review04.txt
+6661	reviews/review01.txt	reviews/review04.txt
+6718	reviews/review02.txt	reviews/review04.txt

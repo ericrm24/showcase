@@ -1,0 +1,17 @@
+function printer(disk, sourceTower, targetTower):
+	writeNumber(disk)
+	writeText(' : ')
+	writeNumber(sourceTower)
+	writeText(" -> ")
+	writeNumber(targetTower)
+	writeText("\n")
+
+function hanoi(numberOfDisks, sourceTower, targetTower, auxiliaryTower):
+	if(numberOfDisks isnot 1):
+		hanoi(numberOfDisks - 1, sourceTower, auxiliaryTower, targetTower)
+		printer(numberOfDisks, sourceTower, targetTower)
+		hanoi(numberOfDisks - 1, auxiliaryTower, targetTower, sourceTower)
+	else:
+		printer(numberOfDisks, sourceTower, targetTower)
+
+hanoi(3, 0, 2, 1)

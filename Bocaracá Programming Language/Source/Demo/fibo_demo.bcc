@@ -1,0 +1,17 @@
+function fibonacci(n):
+	declare solution = 1
+	if(n > 1):
+		solution = fibonacci(n-1) + fibonacci(n-2)
+	return solution
+
+function saludo():
+	declare saludo = "Buenos dias"
+	writeText(saludo)
+
+declare string = "El 10mo numero de fibonacci es: "
+declare new_line = "\n"
+declare solution = fibonacci(10)
+
+writeText(string)
+writeNumber(solution)
+writeText(new_line)

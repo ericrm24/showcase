@@ -1,0 +1,22 @@
+declare num = 115
+
+if(num > 100):
+	if(num > 150):
+		writeText("El número es mayor que 150.\n")
+	elseif(num > 125):
+		writeText("El número es mayor que 125.\n")
+	else:
+		writeText("El número es mayor que 100.\n")
+elseif(num > 50):
+	if(num > 90):
+		writeText("El número es mayor que 90.\n")
+	else:
+		writeText("El número es mayor que 50.\n")
+elseif(num > 0):
+	writeText("El número es mayor que 0.\n")
+elseif(num < 0):
+	writeText("El número es menor que 0.\n")
+else:
+	if (num is 0):
+		writeText("El número es igual a 0.\n")
+	writeText("El número es igual a 0.\n")
