@@ -1,0 +1,11 @@
+[Unit]
+Description= Load Balancer Service
+After=multi-user.target network.target syslog.target network-online.target
+ 
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/python3.6 /home/pi/Documents/proyecto-2-andromeda/Balanceador/bc.py -pu wlan0 -pr eth0 -sp
+Restart=on-abort
+ 
+[Install]
+WantedBy=multi-user.target

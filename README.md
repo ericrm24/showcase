@@ -6,6 +6,8 @@ Inside each folder there is a better description of the corresponding project.
 
 ### *Sistema de Mejoramiento Docente*
 
+### Load Balancer
+
 ### Bocaracá Programming Language
 
 ### Multiprocessor Simulation

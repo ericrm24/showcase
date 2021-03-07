@@ -1,0 +1,11 @@
+*.autosave
+*.o
+*.exe
+*.dSYM
+*.user*
+build-*
+*.e?????
+*.o?????
+*.pyc
+*cache*
+*.log
